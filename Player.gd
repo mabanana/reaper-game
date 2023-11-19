@@ -64,4 +64,7 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	jump_counter = 1
+	if body.get_parent().name == "Mobs":
+		print(body.name)
+		jump_counter = 1
+		player_jump(0)

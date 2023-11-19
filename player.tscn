@@ -256,10 +256,10 @@ libraries = {
 "": SubResource("AnimationLibrary_dh5bq")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Mob Collision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_j076x")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
