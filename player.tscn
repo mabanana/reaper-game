@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=27 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="Texture2D" uid="uid://giuocebl3k1k" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_opci6"]
@@ -233,6 +233,9 @@ _data = {
 "Run": SubResource("Animation_p6rlf")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qspht"]
+size = Vector2(18, 3)
+
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
@@ -259,7 +262,7 @@ libraries = {
 [node name="Mob Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_j076x")
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_qspht")
 
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
