@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://cj7eonpspsmu8"]
+
+[ext_resource type="Script" path="res://Cherry.gd" id="1_cosd6"]
+[ext_resource type="Texture2D" uid="uid://733hc40v13hh" path="res://Sunny-land-files/Graphical Assets/spritesheets/cherry.png" id="2_0ex6j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1kfd"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2altl"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxx2t"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vow0h"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm763"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(63, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upwoo"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(84, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn85v"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(63, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkw6o"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avf4d"]
+atlas = ExtResource("2_0ex6j")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y5yqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2altl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxx2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vow0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm763")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upwoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn85v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkw6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avf4d")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}]
+
+[node name="Cherry" type="Area2D"]
+script = ExtResource("1_cosd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s1kfd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y5yqu")
+animation = &"Idle"
+frame_progress = 0.298499
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
