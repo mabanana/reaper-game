@@ -79,6 +79,6 @@ shape = SubResource("CircleShape2D_s1kfd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y5yqu")
 animation = &"Idle"
-frame_progress = 0.298499
+frame_progress = 0.129393
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

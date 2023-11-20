@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=12 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="PackedScene" uid="uid://bmin8jl4ji6iv" path="res://player.tscn" id="1_eqybh"]
 [ext_resource type="Script" path="res://BG.gd" id="1_xgj32"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brtmx2325v773" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="4_1p1vv"]
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="5_5n1dh"]
 [ext_resource type="PackedScene" uid="uid://cj7eonpspsmu8" path="res://cherry.tscn" id="6_hdviy"]
+[ext_resource type="Script" path="res://Collectables.gd" id="6_taqa4"]
 [ext_resource type="Script" path="res://HP.gd" id="6_tfvtb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gi35f"]
@@ -508,9 +509,20 @@ position = Vector2(381, 339)
 
 [node name="Collectables" type="Node2D" parent="."]
 position = Vector2(12, 57)
+script = ExtResource("6_taqa4")
 
 [node name="Cherry" parent="Collectables" instance=ExtResource("6_hdviy")]
 position = Vector2(58, 290)
+
+[node name="Cherry2" parent="Collectables" instance=ExtResource("6_hdviy")]
+position = Vector2(711, 84)
+
+[node name="Cherry3" parent="Collectables" instance=ExtResource("6_hdviy")]
+position = Vector2(92, 388)
+
+[node name="Timer" type="Timer" parent="Collectables"]
+wait_time = 3.0
+autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -540,8 +552,4 @@ text = "HP
 "
 script = SubResource("GDScript_tohbf")
 
-[node name="Cherry" parent="." instance=ExtResource("6_hdviy")]
-position = Vector2(723, 141)
-
-[node name="Cherry2" parent="." instance=ExtResource("6_hdviy")]
-position = Vector2(104, 445)
+[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
