@@ -18,7 +18,6 @@ func player_jump(direction):
 
 func _physics_process(delta):
 	var direction = Input.get_axis("move_left", "move_right")
-	print(jump_counter)
 	if player_alive == true:
 		# Add the gravity.
 		if not is_on_floor():

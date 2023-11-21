@@ -314,7 +314,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
-size = Vector2(16, 0)
+size = Vector2(18, 0)
 
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 8.0

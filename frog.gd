@@ -62,7 +62,7 @@ func _on_player_detection_body_exited(body):
 
 
 func _on_hurt_box_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
+	if body.name == "Player" and anim.animation != "Death" and is_spawned and not body.is_on_floor():
 		death()
 		Game.player_gold += 5
 		
