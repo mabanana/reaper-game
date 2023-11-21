@@ -16,7 +16,7 @@ var health = 1
 func _ready():
 	self.modulate.a = 0.3
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 1, 1)
+	tween.tween_property(self, "modulate:a", 1, 0.5)
 	await tween.finished
 	anim.play("Idle")
 	is_spawned = true
@@ -55,37 +55,25 @@ func _physics_process(delta):
 	
 	
 func _on_player_detection_body_entered(body):
-
 	if body.name == "Player" and anim.animation != "Death": 
 		chase = true
-
-
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
 		chase = false
 
 
-func _on_hurt_box_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death" and is_spawned:
-		#health -= 1
-		#Game.player_gold += 5
-		pass
-
-
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
 		var direction = (player.global_position - global_position).normalized()
-
 		$frog_attack.play()
 		velocity.x = direction.x * -1200
 		velocity.y = direction.y * -100
 		move_and_slide()
-		Game.player_hp -= 0
+		Game.player_hp -= 1
 		
 func death():
 	has_gravity = false
 	chase = false
-	$"Hurt Box".set_monitoring(true)
 	anim.play("Death")
 	$CollisionShape2D.set_deferred("disabled",true)	
 	await anim.animation_finished

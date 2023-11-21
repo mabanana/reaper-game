@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=24 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -122,9 +122,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfwwa"]
 radius = 104.043
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0cmw"]
-size = Vector2(32, 9)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy4sx"]
 size = Vector2(28, 16)
 
@@ -144,12 +141,6 @@ animation = &"Idle"
 [node name="Player Detection" type="CollisionShape2D" parent="Player Detection"]
 shape = SubResource("CircleShape2D_pfwwa")
 
-[node name="Hurt Box" type="Area2D" parent="."]
-
-[node name="HurtBoxCollision" type="CollisionShape2D" parent="Hurt Box"]
-position = Vector2(0, -9)
-shape = SubResource("RectangleShape2D_x0cmw")
-
 [node name="PlayerCollision" type="Area2D" parent="."]
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerCollision"]
@@ -164,5 +155,4 @@ stream = ExtResource("6_nbeqg")
 
 [connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]
-[connection signal="body_entered" from="Hurt Box" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
