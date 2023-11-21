@@ -9,7 +9,7 @@ func spawn_cherry(int_x, int_y):
 	add_child(cherry_temp)
 
 func _on_timer_timeout():
-	print("timer timeout")
+	pass
 #	var rng =RandomNumberGenerator.new()
 #	var rand_int_x = rng.randi_range(100, 1150)
 #	var rand_int_y = rng.randi_range(150, 250)
@@ -28,9 +28,8 @@ func _on_gem_body_entered(body):
 func _on_mobs_child_exiting_tree(node):
 	var mob_position = node.position
 	for i in RandomNumberGenerator.new().randi_range(2,3):
-		print(i)
 		spawn_cherry(mob_position.x + (8*i), mob_position.y  - (5*i))
-		$Timer.start(0.15)
-		await $Timer.timeout
+		$"../Timers/Timer".start(0.15)
+		await $"../Timers/Timer".timeout
 
 

@@ -7,8 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://gagnlvnycj3p" path="res://Sunny-land-files/Custom/frog_hurt.wav" id="5_u3llr"]
 [ext_resource type="AudioStream" uid="uid://ccvsdaeu884j5" path="res://Sunny-land-files/10_Battle_SFX/08_Bite_04.wav" id="6_nbeqg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq220"]
-size = Vector2(26, 21)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yhpw6"]
+radius = 12.0104
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vshu"]
 atlas = ExtResource("1_rq300")
@@ -132,10 +132,10 @@ size = Vector2(28, 16)
 script = ExtResource("1_tbwk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0.5)
-shape = SubResource("RectangleShape2D_aq220")
+shape = SubResource("CircleShape2D_yhpw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.44, -0.86)
 sprite_frames = SubResource("SpriteFrames_1wjjb")
 animation = &"Idle"
 
@@ -147,7 +147,7 @@ shape = SubResource("CircleShape2D_pfwwa")
 [node name="Hurt Box" type="Area2D" parent="."]
 
 [node name="HurtBoxCollision" type="CollisionShape2D" parent="Hurt Box"]
-position = Vector2(-1, -8.5)
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_x0cmw")
 
 [node name="PlayerCollision" type="Area2D" parent="."]

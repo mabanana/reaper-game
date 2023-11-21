@@ -564,19 +564,11 @@ position = Vector2(381, 339)
 [node name="Frog6" parent="Mobs" instance=ExtResource("5_5n1dh")]
 position = Vector2(307, 482)
 
-[node name="SpawnTimer" type="Timer" parent="Mobs"]
-wait_time = 5.0
-autostart = true
-
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("6_taqa4")
 
 [node name="Gem" parent="Collectables" instance=ExtResource("8_1cjnh")]
 position = Vector2(724, 560)
-
-[node name="Timer" type="Timer" parent="Collectables"]
-wait_time = 0.15
-one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -606,7 +598,17 @@ text = "HP
 "
 script = SubResource("GDScript_tohbf")
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+autostart = true
+
+[node name="Timer" type="Timer" parent="Timers"]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
-[connection signal="timeout" from="Mobs/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="body_entered" from="Collectables/Gem" to="Collectables" method="_on_gem_body_entered"]
-[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]

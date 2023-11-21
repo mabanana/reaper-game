@@ -75,7 +75,7 @@ func _on_hurt_box_body_entered(body):
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
 		var direction = (player.global_position - global_position).normalized()
-		print("bump")
+
 		$frog_attack.play()
 		velocity.x = direction.x * -1200
 		velocity.y = direction.y * -100
@@ -90,7 +90,6 @@ func death():
 	$CollisionShape2D.set_deferred("disabled",true)	
 	await anim.animation_finished
 	#Utils.saveGame()
-	print("frog die")
 	self.queue_free()
 	
 	

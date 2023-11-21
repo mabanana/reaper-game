@@ -12,7 +12,6 @@ func _process(delta):
 
 
 func _on_spawn_timer_timeout():
-	print("spawn frog")
 	var frog_temp = frog.instantiate()
 	var rng = RandomNumberGenerator.new()
 	var rand_int_x = rng.randi_range(850, 1150)
