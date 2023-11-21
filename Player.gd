@@ -14,11 +14,11 @@ func player_jump(direction):
 	velocity.y = JUMP_VELOCITY
 	if direction != 0:
 		is_running_jump = true
-	jump_counter = 0
+	jump_counter -= 1
 
 func _physics_process(delta):
 	var direction = Input.get_axis("move_left", "move_right")
-	print(player_alive)
+	print(jump_counter)
 	if player_alive == true:
 		# Add the gravity.
 		if not is_on_floor():
@@ -29,10 +29,14 @@ func _physics_process(delta):
 				anim.play("Jump")
 		else:
 			is_running_jump = false
-			jump_counter = 1
+			if Game.gem_collected == true:
+				jump_counter = 2
+			
+			else:
+				jump_counter = 1
 			
 		# Handle Jump.
-		if (Input.is_action_just_pressed("jump") or Input.is_action_pressed("jump")) and is_on_floor():
+		if Input.is_action_just_pressed("jump") and jump_counter > 0:
 			player_jump(direction)
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -56,7 +60,6 @@ func _physics_process(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED/3)
 			if velocity.y == 0:
-				print("idle")
 				anim.play("Idle") 
 			
 		move_and_slide()
@@ -68,8 +71,11 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.get_parent().name == "Mobs":
-		print(body.name)
-		jump_counter = 1
+		if Game.gem_collected == true:
+			jump_counter = 1
+			
+		else:
+			jump_counter = 0
 		player_jump(0)
 
 func player_death():

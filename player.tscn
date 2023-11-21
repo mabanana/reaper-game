@@ -314,7 +314,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qspht"]
-size = Vector2(7, 8)
+size = Vector2(16, 3)
 
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 8.0
@@ -328,7 +328,6 @@ shape = SubResource("CapsuleShape2D_j076x")
 position = Vector2(1, -5)
 sprite_frames = SubResource("SpriteFrames_k20a2")
 animation = &"Death"
-frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
@@ -343,7 +342,7 @@ libraries = {
 [node name="Mob Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(-0.5, 8)
+position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_qspht")
 
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]

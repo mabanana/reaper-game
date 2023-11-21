@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=12 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="PackedScene" uid="uid://bmin8jl4ji6iv" path="res://player.tscn" id="1_eqybh"]
 [ext_resource type="Script" path="res://BG.gd" id="1_xgj32"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="5_5n1dh"]
 [ext_resource type="Script" path="res://Collectables.gd" id="6_taqa4"]
 [ext_resource type="Script" path="res://HP.gd" id="6_tfvtb"]
+[ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://gem.tscn" id="8_1cjnh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gi35f"]
 texture = ExtResource("4_1p1vv")
@@ -541,5 +542,8 @@ theme_override_font_sizes/font_size = 30
 text = "HP
 "
 script = SubResource("GDScript_tohbf")
+
+[node name="Gem" parent="." instance=ExtResource("8_1cjnh")]
+position = Vector2(632, 556)
 
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
