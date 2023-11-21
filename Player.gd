@@ -81,4 +81,4 @@ func player_death():
 	await anim.animation_finished
 	print("remove")
 	queue_free()
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://game_over.tscn")

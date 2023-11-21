@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw4je04tg2m4c"]
+
+[ext_resource type="Script" path="res://GameOver.gd" id="1_e7lqy"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_e7lqy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 297.0
+offset_top = 211.0
+offset_right = 842.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+
+[node name="Play" type="Button" parent="."]
+offset_left = 476.0
+offset_top = 395.0
+offset_right = 683.0
+offset_bottom = 447.0
+text = "Return To Main Menu"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
