@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://chk7o0xymch0x"]
+
+[ext_resource type="Script" path="res://player_message.gd" id="1_fx40o"]
+
+[node name="PlayerMessage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fx40o")
+
+[node name="pickup_gem" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 298.0
+offset_right = 925.0
+offset_bottom = 383.0
+theme_override_font_sizes/normal_font_size = 50
+text = "You can now Double Jump!!"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

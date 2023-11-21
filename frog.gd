@@ -63,6 +63,7 @@ func _on_player_detection_body_exited(body):
 
 func _on_hurt_box_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned and not body.is_on_floor():
+		print(body.is_on_floor())
 		death()
 		Game.player_gold += 5
 		
@@ -70,7 +71,11 @@ func _on_hurt_box_body_entered(body):
 
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
-		death()
+		var direction = (player.global_position - global_position).normalized()
+		print("bump")
+		velocity.x = direction.x * -800
+		velocity.y = direction.y * -100
+		move_and_slide()
 		Game.player_hp -= 1
 		
 func death():

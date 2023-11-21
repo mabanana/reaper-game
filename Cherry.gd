@@ -26,6 +26,8 @@ func _on_body_entered(body):
 		tween.tween_callback(queue_free)
 	elif body.name == "TileMap":
 		is_on_floor = true
+		
+		
 
 
 func _on_body_exited(body):
