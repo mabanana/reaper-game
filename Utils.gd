@@ -5,6 +5,7 @@ const SAVE_PATH = "res://savegame.bin"
 func game_reset():
 	Game.player_hp = 10
 	Game.player_gold = 0
+
 func saveGame():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data: Dictionary = {

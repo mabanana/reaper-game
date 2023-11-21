@@ -7,64 +7,71 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player
 var chase = false
+var is_spawned = false
 @onready var has_gravity = true
 @onready var anim = get_node("AnimatedSprite2D")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _ready():
+	self.modulate.a = 0.3
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 1, 1)
+	await tween.finished
 	anim.play("Idle")
+	is_spawned = true
 
 
 func _physics_process(delta):
 	# Add the gravity.
-	if has_gravity == true:
-		velocity.y += gravity * delta * 0.8
-	else:
-		velocity.y = 0
-		velocity.x = 0
-	player = get_node("../../Player/Player")
-	var direction = (player.global_position - global_position).normalized()
-	
-
-	if chase:	
-		if direction.x >= 0.5:
-			velocity.x = direction.x + SPEED / 2
-			anim.play("Jump")
-			anim.flip_h = true
-		elif direction.x <= -0.5:
-			velocity.x = direction.x - SPEED / 2
-			anim.play("Jump")
-			anim.flip_h = false		
-	else:
-		if anim.animation != "Death":
-			anim.play("Idle")
+	if is_spawned:
+		if has_gravity == true:
+			velocity.y += gravity * delta * 0.8
+		else:
+			velocity.y = 0
 			velocity.x = 0
-			
-	move_and_slide()
+		player = get_node("../../Player/Player")
+		var direction = (player.global_position - global_position).normalized()
+		
+
+		if chase:	
+			if direction.x >= 0.5:
+				velocity.x = direction.x + SPEED / 2
+				anim.play("Jump")
+				anim.flip_h = true
+			elif direction.x <= -0.5:
+				velocity.x = direction.x - SPEED / 2
+				anim.play("Jump")
+				anim.flip_h = false		
+		else:
+			if anim.animation != "Death":
+				anim.play("Idle")
+				velocity.x = 0
+				
+		move_and_slide()
 	
 	
 func _on_player_detection_body_entered(body):
 
-	if body.name == "Player" and anim.animation != "Death": 
+	if body.name == "Player" and anim.animation != "Death" and is_spawned == true: 
 		chase = true
 
 
 func _on_player_detection_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and is_spawned == true:
 		chase = false
 
 
 func _on_hurt_box_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death":
+	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
 		death()
 		Game.player_gold += 5
 		
 
 
 func _on_player_collision_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death":
+	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
 		death()
-		Game.player_hp -= 5
+		Game.player_hp -= 1
 		
 func death():
 	has_gravity = false

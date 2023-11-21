@@ -62,6 +62,6 @@ shape = SubResource("RectangleShape2D_gl8vb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6xlx0")
 animation = &"Idle"
-frame_progress = 0.130935
+frame_progress = 0.792801
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

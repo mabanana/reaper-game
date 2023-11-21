@@ -5,7 +5,6 @@ var cherry = preload("res://cherry.tscn")
 
 
 func _on_timer_timeout():
-	print("spawn cherry")
 	var cherry_temp = cherry.instantiate()
 	var rng =RandomNumberGenerator.new()
 	var rand_int_x = rng.randi_range(100, 1150)
