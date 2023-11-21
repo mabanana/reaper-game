@@ -314,7 +314,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
-size = Vector2(20, 6)
+size = Vector2(16, 0)
 
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 8.0
@@ -342,7 +342,7 @@ libraries = {
 [node name="Mob Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(0, 10)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_5s4n5")
 
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
