@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cj7eonpspsmu8"]
+[gd_scene load_steps=15 format=3 uid="uid://cj7eonpspsmu8"]
 
 [ext_resource type="Script" path="res://Cherry.gd" id="1_cosd6"]
 [ext_resource type="Texture2D" uid="uid://733hc40v13hh" path="res://Sunny-land-files/Graphical Assets/spritesheets/cherry.png" id="2_0ex6j"]
+[ext_resource type="AudioStream" uid="uid://clieqhw76rah1" path="res://Sunny-land-files/10_UI_Menu_SFX/098_Unpause_04.wav" id="3_0k2ku"]
+[ext_resource type="AudioStream" uid="uid://cpq30py3uk15c" path="res://Sunny-land-files/10_UI_Menu_SFX/051_use_item_01.wav" id="3_2wioi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1kfd"]
 radius = 9.0
@@ -80,6 +82,12 @@ shape = SubResource("CircleShape2D_s1kfd")
 sprite_frames = SubResource("SpriteFrames_y5yqu")
 animation = &"Idle"
 frame_progress = 0.129393
+
+[node name="spawn_cherry" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0k2ku")
+
+[node name="pickup_cherry" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2wioi")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

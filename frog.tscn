@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=25 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
 [ext_resource type="Texture2D" uid="uid://cuupsuvehbey7" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-idle.png" id="2_172nw"]
 [ext_resource type="Texture2D" uid="uid://d3nmayu6axbrh" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-jump.png" id="3_r8l5i"]
+[ext_resource type="AudioStream" uid="uid://gagnlvnycj3p" path="res://Sunny-land-files/Custom/frog_hurt.wav" id="5_u3llr"]
+[ext_resource type="AudioStream" uid="uid://ccvsdaeu884j5" path="res://Sunny-land-files/10_Battle_SFX/08_Bite_04.wav" id="6_nbeqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq220"]
 size = Vector2(26, 21)
@@ -153,6 +155,12 @@ shape = SubResource("RectangleShape2D_x0cmw")
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerCollision"]
 position = Vector2(-1, 4)
 shape = SubResource("RectangleShape2D_oy4sx")
+
+[node name="frog_death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u3llr")
+
+[node name="frog_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nbeqg")
 
 [connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]

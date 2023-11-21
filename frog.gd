@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player
 var chase = false
 var is_spawned = false
+var health = 1
 @onready var has_gravity = true
 @onready var anim = get_node("AnimatedSprite2D")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +34,7 @@ func _physics_process(delta):
 		var direction = (player.global_position - global_position).normalized()
 		
 
-		if chase:	
+		if chase and is_spawned:	
 			if direction.x >= 0.5:
 				velocity.x = direction.x + SPEED / 2
 				anim.play("Jump")
@@ -48,35 +49,38 @@ func _physics_process(delta):
 				velocity.x = 0
 				
 		move_and_slide()
+	if health <= 0  and anim.animation != "Death":
+		$frog_death.play()
+		death()
 	
 	
 func _on_player_detection_body_entered(body):
 
-	if body.name == "Player" and anim.animation != "Death" and is_spawned == true: 
+	if body.name == "Player" and anim.animation != "Death": 
 		chase = true
 
 
 func _on_player_detection_body_exited(body):
-	if body.name == "Player" and is_spawned == true:
+	if body.name == "Player":
 		chase = false
 
 
 func _on_hurt_box_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death" and is_spawned and not body.is_on_floor():
-		print(body.is_on_floor())
-		death()
-		Game.player_gold += 5
-		
+	if body.name == "Player" and anim.animation != "Death" and is_spawned:
+		#health -= 1
+		#Game.player_gold += 5
+		pass
 
 
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
 		var direction = (player.global_position - global_position).normalized()
 		print("bump")
-		velocity.x = direction.x * -800
+		$frog_attack.play()
+		velocity.x = direction.x * -1200
 		velocity.y = direction.y * -100
 		move_and_slide()
-		Game.player_hp -= 1
+		Game.player_hp -= 0
 		
 func death():
 	has_gravity = false
@@ -86,5 +90,7 @@ func death():
 	$CollisionShape2D.set_deferred("disabled",true)	
 	await anim.animation_finished
 	#Utils.saveGame()
+	print("frog die")
 	self.queue_free()
+	
 	

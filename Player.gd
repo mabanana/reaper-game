@@ -36,6 +36,7 @@ func _physics_process(delta):
 			
 		# Handle Jump.
 		if Input.is_action_just_pressed("jump") and jump_counter > 0:
+			$SFX/player_jump.play()
 			player_jump(direction)
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -70,13 +71,16 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.get_parent().name == "Mobs":
+		body.health -= 1
+		$SFX/player_land_on_mob.play()
 		if Game.gem_collected == true:
 			jump_counter = 1
 			
 		else:
 			jump_counter = 0
 		player_jump(0)
-
+	elif $SFX/player_land_on_ground.playing == false:
+		$SFX/player_land_on_ground.play()
 func player_death():
 	velocity.y = SPEED
 	#$Camera2D.enabled = false

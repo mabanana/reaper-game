@@ -569,15 +569,13 @@ wait_time = 5.0
 autostart = true
 
 [node name="Collectables" type="Node2D" parent="."]
-position = Vector2(12, 57)
 script = ExtResource("6_taqa4")
 
 [node name="Gem" parent="Collectables" instance=ExtResource("8_1cjnh")]
-position = Vector2(703, 503)
+position = Vector2(724, 560)
 
 [node name="Timer" type="Timer" parent="Collectables"]
 wait_time = 3.0
-autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -607,6 +605,8 @@ text = "HP
 "
 script = SubResource("GDScript_tohbf")
 
+[connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="timeout" from="Mobs/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
+[connection signal="child_entered_tree" from="Collectables" to="Collectables" method="_on_child_entered_tree"]
 [connection signal="body_entered" from="Collectables/Gem" to="Collectables" method="_on_gem_body_entered"]
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]

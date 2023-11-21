@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4tuji157tluo"]
+[gd_scene load_steps=14 format=3 uid="uid://c4tuji157tluo"]
 
 [ext_resource type="Script" path="res://Gem.gd" id="1_bj645"]
 [ext_resource type="Texture2D" uid="uid://u8l8b0nuiu33" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-1.png" id="2_8etvn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dgthi3v4cysoc" path="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-3.png" id="8_1dkjm"]
 [ext_resource type="Texture2D" uid="uid://cyd7vy7p17qfd" path="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-4.png" id="9_fpasf"]
 [ext_resource type="Texture2D" uid="uid://b1cve26nxwlru" path="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-5.png" id="10_mgnjx"]
+[ext_resource type="AudioStream" uid="uid://brx81k5kp7376" path="res://Sunny-land-files/10_UI_Menu_SFX/070_Equip_10.wav" id="11_e666u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gl8vb"]
 
@@ -63,5 +64,8 @@ shape = SubResource("RectangleShape2D_gl8vb")
 sprite_frames = SubResource("SpriteFrames_6xlx0")
 animation = &"Idle"
 frame_progress = 0.435792
+
+[node name="pickup_gem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_e666u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

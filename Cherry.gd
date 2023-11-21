@@ -1,8 +1,9 @@
 extends Area2D
 var is_on_floor: bool = false
-
+var is_picked: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$spawn_cherry.play()
 	$AnimatedSprite2D.play("Idle")
 
 
@@ -15,7 +16,9 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and not is_picked:
+		is_picked = true
+		$pickup_cherry.play()
 		Game.player_gold += 5
 		if Game.player_hp < 10:
 			Game.player_hp += 1
@@ -26,9 +29,6 @@ func _on_body_entered(body):
 		tween.tween_callback(queue_free)
 	elif body.name == "TileMap":
 		is_on_floor = true
-		
-		
-
 
 func _on_body_exited(body):
 	if body.name == "TileMap":
