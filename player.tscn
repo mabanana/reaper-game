@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=31 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="Texture2D" uid="uid://giuocebl3k1k" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_opci6"]
@@ -19,6 +19,18 @@
 radius = 7.0
 height = 20.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_odam7"]
+atlas = ExtResource("2_opci6")
+region = Rect2(0, 96, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfti0"]
+atlas = ExtResource("2_opci6")
+region = Rect2(33, 96, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fx2m"]
+atlas = ExtResource("2_opci6")
+region = Rect2(66, 96, 33, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqy44"]
 atlas = ExtResource("2_opci6")
 region = Rect2(1, 128, 29, 32)
@@ -29,6 +41,20 @@ region = Rect2(34, 128, 29, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k20a2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odam7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfti0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fx2m")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jqy44")
@@ -223,8 +249,26 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_xvx6m"]
+resource_name = "Attack"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh5bq"]
 _data = {
+"Attack": SubResource("Animation_xvx6m"),
 "Death": SubResource("Animation_cgppq"),
 "Fall": SubResource("Animation_js5y2"),
 "Idle": SubResource("Animation_0fo2f"),
@@ -247,7 +291,7 @@ shape = SubResource("CapsuleShape2D_j076x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -5)
 sprite_frames = SubResource("SpriteFrames_k20a2")
-animation = &"Run"
+animation = &"Attack"
 frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -73,6 +73,6 @@ func death():
 	anim.play("Death")
 	$CollisionShape2D.set_deferred("disabled",true)	
 	await anim.animation_finished
-	Utils.saveGame()
+	#Utils.saveGame()
 	self.queue_free()
 	
