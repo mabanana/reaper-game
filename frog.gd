@@ -64,7 +64,7 @@ func _on_hurt_box_body_entered(body):
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death":
 		death()
-		Game.player_hp -= 2
+		Game.player_hp -= 5
 		
 func death():
 	has_gravity = false

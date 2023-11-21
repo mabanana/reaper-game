@@ -62,9 +62,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y0lq8")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -120,6 +120,30 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_cgppq"]
 resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
 [sub_resource type="Animation" id="Animation_js5y2"]
 resource_name = "Fall"
@@ -218,6 +242,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
 
 [sub_resource type="Animation" id="Animation_p6rlf"]
 resource_name = "Run"
@@ -278,7 +314,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qspht"]
-size = Vector2(12, 8)
+size = Vector2(7, 8)
 
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 8.0
@@ -291,11 +327,12 @@ shape = SubResource("CapsuleShape2D_j076x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -5)
 sprite_frames = SubResource("SpriteFrames_k20a2")
-animation = &"Attack"
+animation = &"Death"
 frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
+position_smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
@@ -306,7 +343,7 @@ libraries = {
 [node name="Mob Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(0, 8)
+position = Vector2(-0.5, 8)
 shape = SubResource("RectangleShape2D_qspht")
 
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
