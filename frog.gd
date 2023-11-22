@@ -50,6 +50,8 @@ func _physics_process(delta):
 				
 		move_and_slide()
 	if health <= 0  and anim.animation != "Death":
+		$"Hurtbox".set_monitorable(false)
+		print("frog hitbox off")
 		$frog_death.play()
 		death()
 	

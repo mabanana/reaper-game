@@ -5,14 +5,15 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimationPlayer")
-var jump_counter = 1
-var player_alive = true
-var is_running_jump = false
+var jump_counter: int = 1
+var player_alive: bool = true
+var is_running_jump: bool = false
+var mob_jump: bool = false
 
 
 
 func _physics_process(delta):
-	
+	move_and_slide()
 	var direction = Input.get_axis("move_left", "move_right")
 	if player_alive == true:
 		# Adds the gravity and plays air animations.
@@ -22,6 +23,7 @@ func _physics_process(delta):
 				anim.play("Fall")
 			elif velocity.y < 0:
 				anim.play("Jump")
+				
 		# Resets jump counters for when the player is on the ground
 		else:
 			is_running_jump = false
@@ -30,13 +32,23 @@ func _physics_process(delta):
 			else:
 				jump_counter = 1
 			
-		# Handle jump inputs
-		if Input.is_action_just_pressed("jump") and jump_counter != 0:
+		#handles jumps on mobs
+		if mob_jump == true:
+			mob_jump = false
+			$SFX/player_land_on_mob.play()
+			player_jump(0)
+			if Game.gem_collected == true:
+				jump_counter = 1		
+			else:
+				jump_counter = 0
+		# Handle jump inputs		
+		elif Input.is_action_just_pressed("jump") and jump_counter != 0:
 			$SFX/player_jump.play()
 			player_jump(direction)
 		elif Input.is_action_pressed("jump") and is_on_floor():
 			$SFX/player_jump.play()
 			player_jump(direction)
+		
 			
 
 		# Get the input direction and handle the movement/deceleration.
@@ -59,8 +71,9 @@ func _physics_process(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED/3)
 			if velocity.y == 0:
-				anim.play("Idle") 	
-		move_and_slide()
+				anim.play("Idle") 
+					
+		
 		# Sets player state to dead when HP falls below 0
 		if Game.player_hp <= 0:
 			player_alive = false
@@ -68,18 +81,29 @@ func _physics_process(delta):
 		player_death()
 
 func _on_area_2d_body_entered(body):
-	if body.get_parent().name == "Mobs" and velocity.y > 0 and player_alive:
-		body.health -= 1
-		$SFX/player_land_on_mob.play()
-		player_jump(0)
-		if Game.gem_collected == true:
-			jump_counter = 1		
-		else:
-			jump_counter = 0
-	elif $SFX/player_land_on_ground.playing == false:
+	print("land on a body")
+	#if body.get_parent().name == "Mobs" and velocity.y > 0 and player_alive:
+		#print("landed on a mob")
+		#mob_jump = true
+		#body.health -= 1
+		#$SFX/player_land_on_mob.play()
+		#player_jump(0)
+#		if Game.gem_collected == true:
+#			jump_counter = 1		
+#		else:
+#			jump_counter = 0
+	if $SFX/player_land_on_ground.playing == false:
 		$SFX/player_land_on_ground.play()
 
-		
+func _on_mob_collision_area_entered(area):
+	print(area.get_parent())
+	if area.name == "Hurtbox" and velocity.y >= 0 and player_alive:
+		print("landed on an area")
+		mob_jump = true
+		area.get_parent().health -= 1
+		print(area)
+
+
 func player_death():
 	velocity.y = SPEED
 	#$Camera2D.enabled = false
@@ -93,8 +117,10 @@ func player_death():
 	
 func player_jump(direction):
 	velocity.y = JUMP_VELOCITY
+	print("player jump")
 	if direction != 0:
 		is_running_jump = true
 	jump_counter -= 1
 #	if jump_counter > 0:
 #		jump_counter -= 1
+	print(str(jump_counter) + " jump counters left")

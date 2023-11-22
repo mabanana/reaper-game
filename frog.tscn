@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=25 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -125,6 +125,9 @@ radius = 104.043
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy4sx"]
 size = Vector2(28, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
+size = Vector2(24, 25)
+
 [node name="Frog" type="CharacterBody2D"]
 script = ExtResource("1_tbwk3")
 
@@ -152,6 +155,12 @@ stream = ExtResource("5_u3llr")
 
 [node name="frog_attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_nbeqg")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_11pcb")
 
 [connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]
