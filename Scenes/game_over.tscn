@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bw4je04tg2m4c"]
 
-[ext_resource type="Script" path="res://GameOver.gd" id="1_e7lqy"]
+[ext_resource type="Script" path="res://Scenes/GameOver.gd" id="1_e7lqy"]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_e7lqy")

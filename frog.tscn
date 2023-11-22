@@ -128,7 +128,13 @@ size = Vector2(28, 16)
 size = Vector2(24, 25)
 
 [node name="Frog" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_tbwk3")
+health = 1
+drop_amount = 2
+drop_range = 1
+attack_damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")
