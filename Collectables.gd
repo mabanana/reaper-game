@@ -27,8 +27,11 @@ func _on_gem_body_entered(body):
 
 func _on_mobs_child_exiting_tree(node):
 	var mob_position = node.position
-	for i in RandomNumberGenerator.new().randi_range(2,3):
-		spawn_cherry(mob_position.x + (8*i), mob_position.y  - (5*i))
+	var mob_name = str(node.name)
+	for i in RandomNumberGenerator.new().randi_range(node.drop_amount, node.drop_amount + node.drop_range):
+		var rng = RandomNumberGenerator.new().randi_range(-10,10)
+		spawn_cherry(mob_position.x + (rng), mob_position.y)
+		print("Collectables: " + mob_name + " drops 1 cherry")
 		$"../Timers/Timer".start(0.15)
 		await $"../Timers/Timer".timeout
 

@@ -15,6 +15,6 @@ func _on_spawn_timer_timeout():
 	var frog_temp = frog.instantiate()
 	var rng = RandomNumberGenerator.new()
 	var rand_int_x = rng.randi_range(850, 1150)
-	var rand_int_y = rng.randi_range(300, 310)
-	frog_temp.position = Vector2(rand_int_x,rand_int_y)
+	var int_y = 310
+	frog_temp.position = Vector2(rand_int_x,int_y)
 	add_child(frog_temp)# Replace with function body.

@@ -7,8 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://gagnlvnycj3p" path="res://Sunny-land-files/Custom/frog_hurt.wav" id="5_u3llr"]
 [ext_resource type="AudioStream" uid="uid://ccvsdaeu884j5" path="res://Sunny-land-files/10_Battle_SFX/08_Bite_04.wav" id="6_nbeqg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yhpw6"]
-radius = 12.0104
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kj2hp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vshu"]
 atlas = ExtResource("1_rq300")
@@ -132,16 +131,16 @@ size = Vector2(24, 25)
 script = ExtResource("1_tbwk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_yhpw6")
+shape = SubResource("RectangleShape2D_kj2hp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.44, -0.86)
 sprite_frames = SubResource("SpriteFrames_1wjjb")
 animation = &"Idle"
 
-[node name="Player Detection" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="."]
 
-[node name="Player Detection" type="CollisionShape2D" parent="Player Detection"]
+[node name="PlayerDetection" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_pfwwa")
 
 [node name="PlayerCollision" type="Area2D" parent="."]
@@ -162,6 +161,6 @@ stream = ExtResource("6_nbeqg")
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
-[connection signal="body_entered" from="Player Detection" to="." method="_on_player_detection_body_entered"]
-[connection signal="body_exited" from="Player Detection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]

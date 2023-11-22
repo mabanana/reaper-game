@@ -524,12 +524,12 @@ func _process(delta):
 script = ExtResource("1_xgj32")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="BG"]
-motion_scale = Vector2(0.5, 0.2)
+motion_scale = Vector2(0.5, 0.1)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Back" type="Sprite2D" parent="BG/ParallaxLayer"]
-position = Vector2(576, 325)
-scale = Vector2(3, 2.70833)
+position = Vector2(576, 340.5)
+scale = Vector2(3, 3.2375)
 texture = ExtResource("2_dsatn")
 
 [node name="TileMap" type="TileMap" parent="."]

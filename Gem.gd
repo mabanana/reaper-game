@@ -11,6 +11,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.name == "Player" and not $pickup_gem.playing:
+		print("Gem: player picks up a gem")
 		$pickup_gem.play()
 		Game.gem_collected = true
 		var tween = get_tree().create_tween()

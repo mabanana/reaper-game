@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -9,6 +9,9 @@ var player
 var chase = false
 var is_spawned = false
 var health = 1
+var drop_amount: int = 2
+var drop_range: int = 1
+var attack_damage: int = 1
 @onready var has_gravity = true
 @onready var anim = get_node("AnimatedSprite2D")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,11 +39,11 @@ func _physics_process(delta):
 
 		if chase and is_spawned:	
 			if direction.x >= 0.5:
-				velocity.x = direction.x + SPEED / 2
+				velocity.x = direction.x + SPEED
 				anim.play("Jump")
 				anim.flip_h = true
 			elif direction.x <= -0.5:
-				velocity.x = direction.x - SPEED / 2
+				velocity.x = direction.x - SPEED
 				anim.play("Jump")
 				anim.flip_h = false		
 		else:
@@ -51,7 +54,6 @@ func _physics_process(delta):
 		move_and_slide()
 	if health <= 0  and anim.animation != "Death":
 		$"Hurtbox".set_monitorable(false)
-		print("frog hitbox off")
 		$frog_death.play()
 		death()
 	
@@ -71,7 +73,8 @@ func _on_player_collision_body_entered(body):
 		velocity.x = direction.x * -1200
 		velocity.y = direction.y * -100
 		move_and_slide()
-		Game.player_hp -= 1
+		Game.player_hp -= attack_damage
+		print("Frog: frog deals " + str(attack_damage) + " to player")
 		
 func death():
 	has_gravity = false
@@ -79,6 +82,7 @@ func death():
 	anim.play("Death")
 	$CollisionShape2D.set_deferred("disabled",true)	
 	await anim.animation_finished
+	print("Frog: frog dies")
 	#Utils.saveGame()
 	self.queue_free()
 	

@@ -9,6 +9,7 @@ var jump_counter: int = 1
 var player_alive: bool = true
 var is_running_jump: bool = false
 var mob_jump: bool = false
+var jump_damage: int = 1
 
 
 
@@ -81,11 +82,12 @@ func _physics_process(delta):
 		player_death()
 
 func _on_area_2d_body_entered(body):
-	print("player landed on a body" + str(body.name))
-	#if body.get_parent().name == "Mobs" and velocity.y > 0 and player_alive:
-		#print("landed on a mob")
-		#mob_jump = true
-		#body.health -= 1
+	print("Player: " + "player landed on a body " + str(body.name))
+	print("Player: Parent: " + str(body.get_parent().name) + ", player y-velo: " + str(velocity.y) + ", is_alive: " + str(player_alive) )
+	if body.get_parent().name == "Mobs" and velocity.y >= 0 and player_alive:
+		mob_jump = true
+		body.health -= 1
+		print("Player: " + "dealt " + str(jump_damage) + " to a " + str(body.name))
 		#$SFX/player_land_on_mob.play()
 		#player_jump(0)
 #		if Game.gem_collected == true:
@@ -96,10 +98,11 @@ func _on_area_2d_body_entered(body):
 		$SFX/player_land_on_ground.play()
 
 func _on_mob_collision_area_entered(area):
-	if area.name == "Hurtbox" and velocity.y >= 0 and player_alive:
-		print("landed on an area" + str(area.name))
-		mob_jump = true
-		area.get_parent().health -= 1
+	print("Player: " + "landed on an area: " + str(area.name))
+#	if area.name == "Hurtbox" and velocity.y >= 0 and player_alive:
+#		mob_jump = true
+#		area.get_parent().health -= jump_damage
+#		print("Player: " + "dealt " + str(jump_damage) + " to a " + str(area.get_parent().name))
 
 
 func player_death():
@@ -115,9 +118,9 @@ func player_death():
 	
 func player_jump(direction):
 	velocity.y = JUMP_VELOCITY
-	print("player jumps")
+	print("Player: player jumps")
 	if direction != 0:
 		is_running_jump = true
 	if jump_counter > 0:
 		jump_counter -= 1
-	print(str(jump_counter) + " jump counters left")
+	print("Player: " + str(jump_counter) + " jump counters left")

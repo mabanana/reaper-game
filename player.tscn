@@ -357,7 +357,7 @@ libraries = {
 [node name="Mob Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(0, 13)
+position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_5s4n5")
 
 [connection signal="area_entered" from="Mob Collision" to="." method="_on_mob_collision_area_entered"]

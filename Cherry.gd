@@ -11,17 +11,18 @@ func _ready():
 func _process(delta):
 	if not is_on_floor:
 		position.y += 50 * delta
-	else:
-		position.y -= 1 * delta
 
 
 func _on_body_entered(body):
 	if body.name == "Player" and not is_picked:
+		print("Cherry: player picks up a Cherry")
 		is_picked = true
 		$pickup_cherry.play()
 		Game.player_gold += 5
+		print("Cherry: player +5 gold")
 		if Game.player_hp < 10:
 			Game.player_hp += 1
+			print("Cherry: player heals 1 health")
 		var tween = get_tree().create_tween()
 		var tween1 = get_tree().create_tween()
 		tween.tween_property(self, "position", position - Vector2 (0 , 25), 0.2)
