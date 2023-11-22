@@ -1,7 +1,7 @@
 extends Node2D
 
 var cherry = preload("res://cherry.tscn")
-var msg = preload("res://player_message.tscn")
+var msg = preload("res://UI/player_message.tscn")
 
 func spawn_cherry(int_x, int_y):
 	var cherry_temp = cherry.instantiate()

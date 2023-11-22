@@ -28,7 +28,12 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if is_spawned:
-		if has_gravity == true:
+		
+		if can_atk:
+			attack()
+			
+			
+		if has_gravity == true and not is_on_floor():
 			velocity.y += gravity * delta * 0.8
 		else:
 			velocity.y = 0
@@ -68,15 +73,22 @@ func _on_player_detection_body_exited(body):
 
 func _on_player_collision_body_entered(body):
 	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
-		var direction = (player.global_position - global_position).normalized()
-		$frog_attack.play()
-		velocity.x += direction.x * -1200
-		velocity.y += direction.y * -100
-#		move_and_collide(velocity)
-		move_and_slide()
-		Game.player_hp -= attack_damage
-		print("Frog: frog deals " + str(attack_damage) + " to player")
-		
+		can_atk = true
+
+func _on_player_collision_body_exited(body):
+	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
+		can_atk = false
+
+func attack():
+	var direction = (player.global_position - global_position).normalized()
+	$frog_attack.play()
+	velocity.x += direction.x * -1200
+	velocity.y += direction.y * -100
+#	move_and_collide(velocity)
+	move_and_slide()
+	Game.player_hp -= attack_damage
+	print("Frog: frog deals " + str(attack_damage) + " to player")
+
 func death():
 	has_gravity = false
 	chase = false
@@ -88,3 +100,6 @@ func death():
 	self.queue_free()
 	
 	
+
+
+

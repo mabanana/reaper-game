@@ -38,7 +38,7 @@ func on_exit():
 
 
 func _on_mob_collision_body_entered(body):
-	print("AirState: " + "player landed on a body " + str(body))
+	print("AirState: " + "player landed on a body " + str(body.name))
 	if body.get_parent().name == "Mobs" and character.velocity.y >= 0 and character.player_alive:
 		character.mob_jump = true
 		has_double_jumped = false

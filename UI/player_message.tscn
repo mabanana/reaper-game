@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://chk7o0xymch0x"]
 
-[ext_resource type="Script" path="res://player_message.gd" id="1_fx40o"]
+[ext_resource type="Script" path="res://UI/player_message.gd" id="1_fx40o"]
 
 [node name="PlayerMessage" type="Control"]
 layout_mode = 3

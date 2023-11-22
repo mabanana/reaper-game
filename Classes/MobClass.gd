@@ -4,6 +4,7 @@ class_name Mob
 var player
 var chase = false
 var is_spawned = false
+var can_atk: bool = false
 @export var health: int
 @export var drop_amount: int
 @export var drop_range: int

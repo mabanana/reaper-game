@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="6_0u63l"]
 [ext_resource type="Script" path="res://Collectables.gd" id="7_pklcw"]
 [ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://gem.tscn" id="8_3diud"]
-[ext_resource type="Script" path="res://HP.gd" id="9_8sr02"]
+[ext_resource type="Script" path="res://UI/HP.gd" id="9_wgko5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gi35f"]
 texture = ExtResource("3_d6wah")
@@ -584,7 +584,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
 text = "HP
 "
-script = ExtResource("9_8sr02")
+script = ExtResource("9_wgko5")
 
 [node name="Gold" type="Label" parent="UI"]
 offset_left = 12.0

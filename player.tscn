@@ -10,12 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://b3jncwsc2chip" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-2.png" id="8_p4gqy"]
 [ext_resource type="Script" path="res://CharacterStates/GroundState.gd" id="9_s804k"]
 [ext_resource type="Script" path="res://CharacterStates/AirState.gd" id="10_gfhmd"]
-[ext_resource type="Script" path="res://StateDebugLabel.gd" id="11_m1vsv"]
+[ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j076x"]
-radius = 7.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ncpo"]
+size = Vector2(16, 18)
 
 [sub_resource type="Animation" id="Animation_xvx6m"]
 resource_name = "Attack"
@@ -542,8 +541,8 @@ floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_j076x")
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_7ncpo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)

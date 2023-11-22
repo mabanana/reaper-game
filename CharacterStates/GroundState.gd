@@ -7,6 +7,10 @@ class_name GroundState
 @export var jump_animation : String = "Jump"
 @export var ground_deceleration: int = 100
 
+func on_enter():
+	if Input.is_action_pressed("jump"):
+		jump()
+	pass
 
 func state_process(delta):
 	if(not character.is_on_floor()):
