@@ -55,7 +55,7 @@ func _physics_process(delta):
 #			mob_jump = false
 #			$SFX/player_land_on_mob.play()
 #			player_jump(0)
-#			if Game.gem_collected == true:
+#			if Game.gems_collected > 0:
 #				jump_counter = 1		
 #			else:
 #				jump_counter = 0
@@ -99,7 +99,7 @@ func _on_area_2d_body_entered(body):
 #		print("Player: " + "dealt " + str(jump_damage) + " to a " + str(body.name))
 		#$SFX/player_land_on_mob.play()
 		#player_jump(0)
-#		if Game.gem_collected == true:
+#		if Game.gems_collected > 0:
 #			jump_counter = 1		
 #		else:
 #			jump_counter = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=12 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Mobs.gd" id="5_voxrr"]
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="6_0u63l"]
 [ext_resource type="Script" path="res://Collectables.gd" id="7_pklcw"]
-[ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://gem.tscn" id="8_3diud"]
 [ext_resource type="Script" path="res://UI/HP.gd" id="9_wgko5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gi35f"]
@@ -568,9 +567,6 @@ position = Vector2(307, 482)
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("7_pklcw")
 
-[node name="Gem" parent="Collectables" instance=ExtResource("8_3diud")]
-position = Vector2(724, 560)
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HP" type="Label" parent="UI"]
@@ -610,6 +606,6 @@ wait_time = 0.15
 one_shot = true
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
-[connection signal="body_entered" from="Collectables/Gem" to="Collectables" method="_on_gem_body_entered"]
+[connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]

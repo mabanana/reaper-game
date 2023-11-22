@@ -20,7 +20,7 @@ func state_process(delta):
 	
 func state_input(event: InputEvent):
 	if event.is_action_pressed("jump") and not has_double_jumped:
-		if Game.gem_collected == true:
+		if Game.gems_collected > 0:
 			double_jump()
 
 
@@ -40,8 +40,9 @@ func on_exit():
 func _on_mob_collision_body_entered(body):
 	print("AirState: " + "player landed on a body " + str(body.name))
 	if body.get_parent().name == "Mobs" and character.velocity.y >= 0 and character.player_alive:
-		character.mob_jump = true
-		has_double_jumped = false
-		body.health -= 1
-		print("Air State: " + "player dealt " + str(character.jump_damage) + " to a " + str(body.name))
+#		character.mob_jump = true
+		body.health -= int(character.jump_damage * character.velocity.y / 100)
+		print("Air State: " + "player dealt " + str(int(character.jump_damage * character.velocity.y / 100)) + " to a " + str(body.name))
 		$"../../SFX/player_land_on_mob".play()
+		double_jump()
+		has_double_jumped = false

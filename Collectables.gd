@@ -1,7 +1,18 @@
 extends Node2D
 
 var cherry = preload("res://cherry.tscn")
+var gem = preload("res://Gem.tscn")
 var msg = preload("res://UI/player_message.tscn")
+
+
+func _ready():
+	var gem_temp = gem.instantiate()
+	gem_temp.position = Vector2(724,560)
+	add_child(gem_temp)
+	var gem_temp2 = gem.instantiate()
+	gem_temp2.position = Vector2(641,147)
+	add_child(gem_temp2)
+	pass
 
 func spawn_cherry(int_x, int_y):
 	var cherry_temp = cherry.instantiate()
@@ -18,11 +29,12 @@ func _on_timer_timeout():
 #	cherry_temp.position = Vector2(rand_int_x,rand_int_y)
 #	add_child(cherry_temp)
 
-func _on_gem_body_entered(body):
-	if body.name == "Player":
-		var msg_temp = msg.instantiate()
-		msg_temp.position = self.global_position
-		$"../UI".add_child(msg_temp)
+#func _on_gem_body_entered(body):
+#	if body.name == "Player":
+#		print("Collectables: display message for " + str(Game.gems_collected) + " gem.")
+#		var msg_temp = msg.instantiate()
+#		msg_temp.position = self.global_position
+#		$"../UI".add_child(msg_temp)
 
 
 func _on_mobs_child_exiting_tree(node):
@@ -36,3 +48,10 @@ func _on_mobs_child_exiting_tree(node):
 		await $"../Timers/Timer".timeout
 
 
+func _on_child_exiting_tree(node):
+	print(node.id)
+	if node.id == "Gem":
+		print("Collectables: display message for " + str(Game.gems_collected) + " gem.")
+		var msg_temp = msg.instantiate()
+		msg_temp.position = self.global_position
+		$"../UI".add_child(msg_temp)

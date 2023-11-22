@@ -533,7 +533,7 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-128, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
-size = Vector2(12, 2.5)
+size = Vector2(18, 2.5)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
@@ -569,7 +569,7 @@ parameters/Move/blend_position = 0.0
 collision_mask = 10
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(0, 14)
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_5s4n5")
 
 [node name="SFX" type="Node2D" parent="."]
