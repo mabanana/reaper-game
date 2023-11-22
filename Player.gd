@@ -81,7 +81,7 @@ func _physics_process(delta):
 		player_death()
 
 func _on_area_2d_body_entered(body):
-	print("land on a body")
+	print("player landed on a body" + str(body.name))
 	#if body.get_parent().name == "Mobs" and velocity.y > 0 and player_alive:
 		#print("landed on a mob")
 		#mob_jump = true
@@ -96,12 +96,10 @@ func _on_area_2d_body_entered(body):
 		$SFX/player_land_on_ground.play()
 
 func _on_mob_collision_area_entered(area):
-	print(area.get_parent())
 	if area.name == "Hurtbox" and velocity.y >= 0 and player_alive:
-		print("landed on an area")
+		print("landed on an area" + str(area.name))
 		mob_jump = true
 		area.get_parent().health -= 1
-		print(area)
 
 
 func player_death():
@@ -117,10 +115,9 @@ func player_death():
 	
 func player_jump(direction):
 	velocity.y = JUMP_VELOCITY
-	print("player jump")
+	print("player jumps")
 	if direction != 0:
 		is_running_jump = true
-	jump_counter -= 1
-#	if jump_counter > 0:
-#		jump_counter -= 1
+	if jump_counter > 0:
+		jump_counter -= 1
 	print(str(jump_counter) + " jump counters left")
