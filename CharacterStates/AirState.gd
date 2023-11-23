@@ -41,7 +41,7 @@ func _on_mob_collision_body_entered(body):
 	print("AirState: " + "player landed on a body " + str(body.name))
 	if body.get_parent().name == "Mobs" and character.velocity.y >= 0 and character.player_alive:
 #		character.mob_jump = true
-		body.health -= int(character.jump_damage * character.velocity.y / 100)
+		body.health -= character.jump_damage + int(character.jump_damage + character.velocity.y / 100)
 		print("Air State: " + "player dealt " + str(int(character.jump_damage * character.velocity.y / 100)) + " to a " + str(body.name))
 		$"../../SFX/player_land_on_mob".play()
 		double_jump()

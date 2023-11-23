@@ -15,17 +15,11 @@ var can_atk: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	self.modulate.a = 0.3
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 1, 0.5)
-	await tween.finished
-	is_spawned = true
 	pass
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	
+	pass
 
-	move_and_slide()
+
+
+

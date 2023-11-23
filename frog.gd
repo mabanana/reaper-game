@@ -13,6 +13,7 @@ const JUMP_VELOCITY = -400.0
 #var attack_damage: int = 1
 @onready var has_gravity: bool = true
 @onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var character_state_machine: CharacterStateMachine = $MobCharacterStateMachine
 
 
 func _ready():

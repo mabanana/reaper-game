@@ -49,7 +49,6 @@ func _on_mobs_child_exiting_tree(node):
 
 
 func _on_child_exiting_tree(node):
-	print(node.id)
 	if node.id == "Gem":
 		print("Collectables: display message for " + str(Game.gems_collected) + " gem.")
 		var msg_temp = msg.instantiate()

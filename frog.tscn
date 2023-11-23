@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=31 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://d3nmayu6axbrh" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-jump.png" id="3_r8l5i"]
 [ext_resource type="AudioStream" uid="uid://gagnlvnycj3p" path="res://Sunny-land-files/Custom/frog_hurt.wav" id="5_u3llr"]
 [ext_resource type="AudioStream" uid="uid://ccvsdaeu884j5" path="res://Sunny-land-files/10_Battle_SFX/08_Bite_04.wav" id="6_nbeqg"]
+[ext_resource type="Script" path="res://MobStateMachine.gd" id="7_6rwwl"]
+[ext_resource type="Script" path="res://MobDeathState.gd" id="8_oee8k"]
+[ext_resource type="Script" path="res://ChaseState.gd" id="9_dxus6"]
+[ext_resource type="Script" path="res://MobAttackState.gd" id="10_v4h75"]
+[ext_resource type="Script" path="res://MobIdleState.gd" id="11_seo57"]
+[ext_resource type="Script" path="res://Spawn.gd" id="12_4nh25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj2hp"]
 
@@ -131,7 +137,7 @@ size = Vector2(24, 25)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_tbwk3")
-health = 5
+health = 1
 drop_amount = 2
 drop_range = 1
 attack_damage = 1
@@ -142,7 +148,7 @@ shape = SubResource("RectangleShape2D_kj2hp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.44, -0.86)
 sprite_frames = SubResource("SpriteFrames_1wjjb")
-animation = &"Idle"
+animation = &"Jump"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 
@@ -168,7 +174,35 @@ stream = ExtResource("6_nbeqg")
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
+[node name="MobCharacterStateMachine" type="Node" parent="."]
+script = ExtResource("7_6rwwl")
+
+[node name="Death" type="Node" parent="MobCharacterStateMachine"]
+script = ExtResource("8_oee8k")
+death_animation = null
+can_move = null
+
+[node name="Timer" type="Timer" parent="MobCharacterStateMachine/Death"]
+one_shot = true
+
+[node name="Chase" type="Node" parent="MobCharacterStateMachine"]
+script = ExtResource("9_dxus6")
+
+[node name="Attack" type="Node" parent="MobCharacterStateMachine"]
+script = ExtResource("10_v4h75")
+attack_animation = null
+attack_damage = null
+can_move = null
+
+[node name="Idle" type="Node" parent="MobCharacterStateMachine"]
+script = ExtResource("11_seo57")
+
+[node name="Spawn" type="Node" parent="MobCharacterStateMachine"]
+script = ExtResource("12_4nh25")
+
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
+[connection signal="body_entered" from="PlayerCollision" to="MobCharacterStateMachine/Idle" method="_on_player_collision_body_entered"]
 [connection signal="body_exited" from="PlayerCollision" to="." method="_on_player_collision_body_exited"]
+[connection signal="timeout" from="MobCharacterStateMachine/Death/Timer" to="MobCharacterStateMachine/Death" method="_on_timer_timeout"]

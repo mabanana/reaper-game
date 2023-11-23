@@ -1,6 +1,7 @@
 extends Area2D
 var is_on_floor: bool = false
 var is_picked: bool = false
+var id: String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$spawn_cherry.play()
