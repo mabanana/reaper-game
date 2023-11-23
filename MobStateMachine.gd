@@ -4,8 +4,9 @@ class_name MobCharacterStateMachine
 
 @export var current_state : State
 @export var character: CharacterBody2D
-@export var anim: AnimationTree
+@export var anim: AnimatedSprite2D
 @export var death_state : State
+@export var spawn_state : State
 var states : Array[State]
 
 
@@ -22,9 +23,10 @@ func _ready():
 
 
 func _physics_process(delta):
-	if current_state.next_state != null:
-		switch_states(current_state.next_state)
-	current_state.state_process(delta)
+	if current_state != null:
+		if current_state.next_state != null:
+			switch_states(current_state.next_state)
+		current_state.state_process(delta)
 
 
 func switch_states(new_state):

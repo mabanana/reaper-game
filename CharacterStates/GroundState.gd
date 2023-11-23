@@ -15,10 +15,12 @@ func on_enter():
 func state_process(delta):
 	if(not character.is_on_floor()):
 		next_state = air_state
+#		TODO: move fall animation logic to AirState
 		if character.velocity.y > 0:
 			playback.travel("fall")
 	else:
 		character.jump_direction = 0
+#		TODO: Remove mob_jump to trigger jump()
 	if character.mob_jump == true:
 		jump()
 		character.mob_jump = false

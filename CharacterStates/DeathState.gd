@@ -3,6 +3,7 @@ extends State
 class_name DeathState
 
 func on_enter():
+#	TODO: node references change to @export
 	$"../../CollisionShape2D".set_deferred("disabled", true)
 	$"../../Mob Collision/CollisionShape2D2".set_deferred("disabled", true)
 	character.velocity.y = 0

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const speed = 300.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimationPlayer")
@@ -37,49 +36,19 @@ func _physics_process(delta):
 				sprite_2d.flip_h = false
 			if velocity.x * direction < 0:
 				jump_direction = 0
-			velocity.x = direction * SPEED
+			velocity.x = direction * speed
 		# Changes deceleration depending on whether the player is in the air
 		else:
 			if character_state_machine.current_state.name == "Ground":
-				velocity.x = move_toward(velocity.x, 0, SPEED/3)
+				velocity.x = move_toward(velocity.x, 0, speed/3)
 			elif character_state_machine.current_state.name == "Air":
 				if jump_direction != 0:
-					velocity.x = move_toward(velocity.x, 0, SPEED/60)
+					velocity.x = move_toward(velocity.x, 0, speed/60)
 				else:
-					velocity.x = move_toward(velocity.x, 0, SPEED/3)
+					velocity.x = move_toward(velocity.x, 0, speed/3)
 
-
-
-		# Handles jumps on mobs, otherwise checks for jump inputs
-#		if mob_jump == true:
-#			mob_jump = false
-#			$SFX/player_land_on_mob.play()
-#			player_jump(0)
-#			if Game.gems_collected > 0:
-#				jump_counter = 1		
-#			else:
-#				jump_counter = 0
-#			# Handle jump inputs
-#		elif Input.is_action_just_pressed("jump") and jump_counter != 0:
-#			$SFX/player_jump.play()
-#			#player_jump(direction)
-#			# Allows for press and hold jumping without triggering instant double jumps
-#		elif Input.is_action_pressed("jump") and is_on_floor():
-#			$SFX/player_jump.play()
-#			#player_jump(direction)	
-
-
-
-#		# Check for if player is not is_on_floor without jumping:	
-#		if was_on_floor == true and not is_on_floor():
-#			if is_jump and jump_counter > 0 :
-#				jump_counter -= 1
-#			elif not is_jump and velocity.y > 0:
-#				was_on_floor = false
-#				jump_counter -= 1
-#				print("Player: player walked off a floor object with " + str(jump_counter) + " jump counters left")	
 		move_and_slide()
-
+		Game.player_global_position = global_position
 
 		# Sets player state to dead when HP falls below 0
 		if Game.player_hp <= 0:
@@ -91,27 +60,11 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-#	print("Player: " + "player landed on a body " + str(body.name))
-#	print("Player: Parent: " + str(body.get_parent().name) + ", falling: " + str(velocity.y >= 0) + ", is_alive: " + str(player_alive) )
-#	if body.get_parent().name == "Mobs" and velocity.y >= 0 and player_alive:
-#		mob_jump = true
-#		body.health -= 1
-#		print("Player: " + "dealt " + str(jump_damage) + " to a " + str(body.name))
-		#$SFX/player_land_on_mob.play()
-		#player_jump(0)
-#		if Game.gems_collected > 0:
-#			jump_counter = 1		
-#		else:
-#			jump_counter = 0
 	if $SFX/player_land_on_ground.playing == false:
 		$SFX/player_land_on_ground.play()
 
 func _on_mob_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
-#	if area.name == "Hurtbox" and velocity.y >= 0 and player_alive:
-#		mob_jump = true
-#		area.get_parent().health -= jump_damage
-#		print("Player: " + "dealt " + str(jump_damage) + " to a " + str(area.get_parent().name))
 	pass
 
 func player_death():
@@ -126,12 +79,5 @@ func player_death():
 	queue_free()
 	print("Player: change scene to game over scene")
 	get_tree().change_scene_to_file("res://game_over.tscn")
-	
-	
-#func player_jump(direction):
-#	is_jump = true
-#	print("Player: player jumps")
-#	if direction != 0:
-#		jump_direction = true
-#	print("Player: " + str(jump_counter) + " jump counters left")
+
 

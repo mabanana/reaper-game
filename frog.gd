@@ -1,11 +1,11 @@
 extends Mob
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -400.0
+const speed = 150.0
+const jump_velocity = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var player: CharacterBody2D
-#var chase: bool = false
+var wander: bool = false
 #var is_spawned: bool = false
 #var health: int = 1
 #var drop_amount: int = 2
@@ -13,16 +13,16 @@ const JUMP_VELOCITY = -400.0
 #var attack_damage: int = 1
 @onready var has_gravity: bool = true
 @onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
-@onready var character_state_machine: CharacterStateMachine = $MobCharacterStateMachine
+@onready var character_state_machine: MobCharacterStateMachine = $MobCharacterStateMachine
 
-
-func _ready():
-	self.modulate.a = 0.3
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 1, 0.5)
-	await tween.finished
-	anim.play("Idle")
-	is_spawned = true
+#
+#func _ready():
+#	self.modulate.a = 0.3
+#	var tween = get_tree().create_tween()
+#	tween.tween_property(self, "modulate:a", 1, 0.5)
+#	await tween.finished
+#	anim.play("Idle")
+#	is_spawned = true
 	
 
 
@@ -45,11 +45,11 @@ func _physics_process(delta):
 
 		if chase and is_spawned:	
 			if direction.x >= 0.5:
-				velocity.x = direction.x + SPEED
+				velocity.x = direction.x + speed
 				anim.play("Jump")
 				anim.flip_h = true
 			elif direction.x <= -0.5:
-				velocity.x = direction.x - SPEED
+				velocity.x = direction.x - speed
 				anim.play("Jump")
 				anim.flip_h = false		
 		else:
@@ -58,10 +58,11 @@ func _physics_process(delta):
 				velocity.x = 0
 				
 		move_and_slide()
-	if health <= 0  and anim.animation != "Death":
+	if health <= 0  and character_state_machine.current_state != null and character_state_machine.current_state.name != "Death":
+		print(character_state_machine.current_state.name)
 		$"Hurtbox".set_monitorable(false)
-		$frog_death.play()
-		death()
+#		death()
+		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 	
 	
 func _on_player_detection_body_entered(body):

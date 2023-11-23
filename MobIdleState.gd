@@ -2,9 +2,11 @@ extends State
 
 class_name IdleState
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var idle_state: State
+@export var chase_state: State
 @export var idle_animation: String = "Idle"
 @export var idle_sound: AudioStreamPlayer2D
+
+var player_direction: int
 
 
 
@@ -18,5 +20,7 @@ func on_exit():
 	pass
 
 
-func _on_player_collision_body_entered(body):
-	pass # Replace with function body.
+func _on_player_detection_body_entered(body):
+	print("FrogIdleState: " + body.name+ " has entered the player detection")
+	if body.name == "Player": 
+		next_state = chase_state
