@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=42 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -23,7 +23,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +47,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -64,7 +64,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +76,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -88,7 +88,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -104,19 +104,19 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("3_r8l5i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -128,7 +128,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -146,7 +146,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -158,7 +158,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -170,7 +170,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -179,6 +179,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_fscf5"]
 resource_name = "Death"
@@ -186,7 +222,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -198,7 +234,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,7 +246,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -227,7 +263,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("FrogSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -239,7 +275,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("FrogSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -251,7 +287,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("FrogSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -263,7 +299,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/path = NodePath("FrogSprite:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -278,7 +314,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("FrogSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -288,8 +324,49 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_biimr"]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrogSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_r8l5i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrogSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrogSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3dja4"]
 _data = {
+"Attack": SubResource("Animation_biimr"),
 "Death": SubResource("Animation_fscf5"),
 "Fall": SubResource("Animation_wuxpt"),
 "Idle": SubResource("Animation_beojv"),
@@ -298,6 +375,9 @@ _data = {
 "Run": SubResource("Animation_a37ro"),
 "Spawn": SubResource("Animation_j6fbt")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jd7h"]
+animation = &"Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wiixc"]
 animation = &"Death"
@@ -330,24 +410,26 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_ttet7")
 blend_point_4/pos = Vector2(0, -1)
 min_space = Vector2(-1.1, -1)
 max_space = Vector2(1.1, 1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ew6qo"]
 animation = &"Spawn"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ddofg"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a85wf"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77r3f"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fg3fu"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b0fcc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_53we1"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xx1i0"]
+states/Attack/node = SubResource("AnimationNodeAnimation_7jd7h")
+states/Attack/position = Vector2(558, 151)
 states/Death/node = SubResource("AnimationNodeAnimation_wiixc")
 states/Death/position = Vector2(735, 100)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_yr37h")
@@ -355,7 +437,7 @@ states/Move/position = Vector2(558, 61)
 states/Spawn/node = SubResource("AnimationNodeAnimation_ew6qo")
 states/Spawn/position = Vector2(369, 100)
 states/Start/position = Vector2(202, 100)
-transitions = ["Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_ddofg"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_a85wf"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_77r3f"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_fg3fu")]
+transitions = ["Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_ddofg"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_a85wf"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_77r3f"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_fg3fu"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_b0fcc"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_53we1")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfwwa"]
 radius = 104.043
@@ -366,33 +448,35 @@ size = Vector2(30, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
 size = Vector2(24, 25)
 
-[node name="Frog" type="CharacterBody2D"]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_tbwk3")
+animation_tree = NodePath("FrogAnimationTree")
+sprite_2d = NodePath("FrogSprite")
+character_state_machine = NodePath("CharacterStateMachine")
 health = 1
 drop_amount = 2
 drop_range = 1
 attack_damage = 1
-speed = 150.0
-jump_velocity = -400.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_kj2hp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="FrogSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.211765)
 texture = ExtResource("2_172nw")
 hframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="FrogAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3dja4")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="FrogAnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_xx1i0")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("../FrogAnimationPlayer")
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="PlayerDetection" type="Area2D" parent="."]
@@ -410,10 +494,10 @@ collision_layer = 2
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_oy4sx")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="FrogHurtbox" type="Area2D" parent="."]
 visible = false
 
-[node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
+[node name="Hurtbox" type="CollisionShape2D" parent="FrogHurtbox"]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
@@ -423,8 +507,12 @@ stream = ExtResource("5_u3llr")
 [node name="frog_attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_nbeqg")
 
-[node name="CharacterStateMachine" type="Node" parent="."]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree", "death_state")]
 script = ExtResource("7_ypbje")
+current_state = NodePath("Spawn")
+character = NodePath("..")
+animation_tree = NodePath("../FrogAnimationTree")
+death_state = NodePath("Death")
 
 [node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("death_sound")]
 script = ExtResource("8_aikl1")
@@ -437,8 +525,11 @@ script = ExtResource("9_03bk7")
 attack_state = NodePath("../Attack")
 move_animation = "Move"
 
-[node name="Attack" type="Node" parent="CharacterStateMachine"]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("move_state", "attack_sound")]
 script = ExtResource("10_jrs1a")
+move_state = NodePath("../Move")
+attack_sound = NodePath("../../frog_attack")
+can_move = false
 
 [node name="Spawn" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("move_state", "spawn_sound")]
 script = ExtResource("10_x62h4")
@@ -457,8 +548,9 @@ text = "text"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_nqbje")
-state_machine = NodePath("")
+state_machine = NodePath("../CharacterStateMachine")
 
+[connection signal="animation_finished" from="FrogAnimationTree" to="." method="_on_frog_animation_tree_animation_finished"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]

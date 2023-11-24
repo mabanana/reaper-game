@@ -16,14 +16,14 @@ func on_enter():
 	pass
 
 func state_process(delta):
-	if(not character.is_on_floor()):
+	character.is_on_floor()
+	if not character.is_on_floor():
 		next_state = air_state
 	else:
 		character.jump_direction = 0
 
-
 func state_input(event : InputEvent):
-	if event.is_action_just_pressed("jump"):
+	if event.is_action_pressed("jump"):
 		if character.direction_pressed != 0:
 			jump()
 			character.jump_direction = character.direction_pressed

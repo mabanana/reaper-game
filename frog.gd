@@ -1,16 +1,16 @@
 extends Mob
 
-
-
 @onready var has_gravity: bool = true
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var character_state_machine: CharacterStateMachine = $CharacterStateMachine
+@export var animation_tree: AnimationTree
+@export var sprite_2d: Sprite2D
+@export var character_state_machine: CharacterStateMachine
 
+var name_animation_finished: String = ""
 
+func _ready():
+	animation_tree.active = true
 
 func _physics_process(delta):
-
 	if character_state_machine.current_state.can_move:
 		# Calculate the direction towards the player for chasing
 		var direction = (Game.player_global_position - global_position).normalized()
@@ -69,7 +69,8 @@ func _on_player_collision_body_exited(body):
 #	#Utils.save()
 #	self.queue_free()
 	
-	
 
 
+func _on_frog_animation_tree_animation_finished(anim_name):
+	name_animation_finished = anim_name
 

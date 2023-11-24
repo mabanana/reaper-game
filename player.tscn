@@ -584,9 +584,11 @@ character = NodePath("..")
 animation_tree = NodePath("../PlayerAnimationTree")
 death_state = NodePath("Death")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("jump_sound")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "jump_sound", "walk_sound")]
 script = ExtResource("9_wfcsp")
+air_state = NodePath("../Air")
 jump_sound = NodePath("../../SFX/player_jump")
+walk_sound = NodePath("../../SFX/player_land_on_ground")
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "jump_sound")]
 script = ExtResource("10_3vlpb")

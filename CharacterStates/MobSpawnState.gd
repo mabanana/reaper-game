@@ -10,9 +10,7 @@ var is_spawned = false
 func state_process(delta):
 	if not is_spawned:
 		playback.travel(spawn_animation)
-		is_spawned = true
-
-	if playback.get_current_node() != spawn_animation:
+	if character.name_animation_finished == spawn_animation:
 		next_state = move_state
 
 func on_enter():
