@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=43 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -545,10 +545,13 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-253, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
-size = Vector2(18, 2.5)
+size = Vector2(18, 2.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8wts"]
+size = Vector2(22, 13)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
-collision_mask = 12
+collision_mask = 14
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
 animation_tree = NodePath("PlayerAnimationTree")
@@ -581,12 +584,19 @@ anim_player = NodePath("../PlayerAnimationPlayer")
 parameters/Jump/blend_position = 0
 parameters/Move/blend_position = 0.0
 
-[node name="Mob Collision" type="Area2D" parent="."]
+[node name="MobJumpCollision" type="Area2D" parent="."]
 collision_mask = 10
 
-[node name="MobCollisionShape" type="CollisionShape2D" parent="Mob Collision"]
-position = Vector2(-1, 17)
+[node name="MobCollisionShape" type="CollisionShape2D" parent="MobJumpCollision"]
+position = Vector2(-1, 17.125)
 shape = SubResource("RectangleShape2D_5s4n5")
+
+[node name="MobBumpCollision" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="BumpCollision" type="CollisionShape2D" parent="MobBumpCollision"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_q8wts")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree", "death_state")]
 script = ExtResource("8_83iwg")
@@ -642,5 +652,7 @@ stream = ExtResource("3_laasd")
 
 [connection signal="animation_finished" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_finished"]
 [connection signal="animation_started" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_started"]
-[connection signal="area_entered" from="Mob Collision" to="." method="_on_mob_collision_area_entered"]
-[connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]
+[connection signal="body_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_body_entered"]
+[connection signal="body_entered" from="MobBumpCollision" to="." method="_on_mob_bump_collision_body_entered"]
+[connection signal="body_exited" from="MobBumpCollision" to="." method="_on_mob_bump_collision_body_exited"]

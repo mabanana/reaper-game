@@ -11,6 +11,7 @@ var direction_pressed: int = 0
 var is_jump: bool = false
 var mob_jump: bool = false
 var jump_damage: int = 1
+var bump: bool = false
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
@@ -52,19 +53,27 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed/3)
 	else:
 		velocity.x = 0
+		
 	if not is_on_floor() and character_state_machine.current_state.has_gravity == true:
 		velocity.y += gravity * delta
 	
-			
 	move_and_slide()
 	# Sends player into death state if health drops below 0
 	if Game.player_hp <= 0 and character_state_machine.current_state.name != "Death":
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 
 
+func _on_mob_bump_collision_body_entered(body):
+	if character_state_machine.current_state.name == "Ground":
+		print("Player: " + "bumped into a body: " + str(body.name))
+		if body.get_parent().name == "Mobs" and body.health > 0:
+			bump = true
 
+func _on_mob_bump_collision_body_exited(body):
+	bump = false
+		
 
-func _on_area_2d_body_entered(body):
+func _on_mob_jump_collision_body_entered(body):
 	if character_state_machine.current_state.name == "Air":
 		print("Player: " + "landed on an body: " + str(body.name))
 		if body.get_parent().name == "Mobs" and body.health > 0:
@@ -73,23 +82,9 @@ func _on_area_2d_body_entered(body):
 			print("Player: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
 			mob_jump = true
 
-func _on_mob_collision_area_entered(area):
+func _on_mob_jump_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
 	pass
-
-#func player_death():
-#	$CollisionShape2D.set_deferred("disabled", true)
-#	velocity.y = 0
-#	# Causes player to float up slightly on death
-#	var tween = get_tree().create_tween()
-#	tween.tween_property(self, "position", position - Vector2 (3 , 15), 0.3)
-#	$SFX/player_death.play()
-#	anim.play("Death")
-#	await anim.animation_finished
-#	queue_free()
-#	print("Player: change scene to game over scene")
-#	get_tree().change_scene_to_file("res://game_over.tscn")
-
 
 
 func _on_player_animation_tree_animation_finished(anim_name):
@@ -98,3 +93,6 @@ func _on_player_animation_tree_animation_finished(anim_name):
 
 func _on_player_animation_tree_animation_started(anim_name):
 	name_animation_finished = ""
+
+
+

@@ -239,7 +239,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [2, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_fejpj"]
@@ -516,13 +516,14 @@ _data = {
 "Spawn": SubResource("Animation_ld68c")
 }
 
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine", "collision_shape")]
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_tbwk3")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
+collision_shape = NodePath("FrogCollisionShape")
 health = 1
 drop_amount = 2
 drop_range = 1
@@ -531,8 +532,8 @@ speed = 150
 jump_velocity = -400
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_172nw")
-hframes = 4
+texture = ExtResource("3_r8l5i")
+hframes = 3
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")

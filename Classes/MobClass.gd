@@ -3,6 +3,7 @@ class_name Mob
 
 var chase = false
 var can_atk: bool = false
+@export var collision_shape: CollisionShape2D
 @export var health: int
 @export var drop_amount: int
 @export var drop_range: int

@@ -11,6 +11,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if health <= 0 and character_state_machine.current_state.name != "Death":
+		collision_shape.set_deferred("disabled", true)
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
@@ -40,6 +41,8 @@ func _physics_process(delta):
 		blend_position = blend_position.normalized()
 		if blend_position.y == 1:
 			blend_position.x = 0
+	else:
+		velocity.y = 0
 
 	# Sends movement data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
