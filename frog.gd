@@ -26,10 +26,7 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 
 		# Sends movement data to the animation tree
-		print(velocity.normalized())
 		animation_tree.set("parameters/Move/blend_position", velocity.normalized())
-		if animation_tree.get_node("Move") != null:
-			print("blend position: " + str(animation_tree.get_node("Move").get_current_animation_position()))
 		
 		move_and_slide()
 		

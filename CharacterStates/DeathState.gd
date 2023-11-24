@@ -7,7 +7,6 @@ class_name DeathState
 func on_enter():
 	death_sound.play()
 	playback.travel(death_animation)
-	print("death")
 
 
 func state_process(delta):

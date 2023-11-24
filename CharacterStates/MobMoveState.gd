@@ -7,7 +7,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func state_process(delta):
-	print(playback.get_current_node())
 	if character.can_atk:
 		next_state = attack_state
 	

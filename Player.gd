@@ -70,18 +70,18 @@ func _on_mob_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
 	pass
 
-func player_death():
-	$CollisionShape2D.set_deferred("disabled", true)
-	velocity.y = 0
-	# Causes player to float up slightly on death
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position - Vector2 (3 , 15), 0.3)
-	$SFX/player_death.play()
-	anim.play("Death")
-	await anim.animation_finished
-	queue_free()
-	print("Player: change scene to game over scene")
-	get_tree().change_scene_to_file("res://game_over.tscn")
+#func player_death():
+#	$CollisionShape2D.set_deferred("disabled", true)
+#	velocity.y = 0
+#	# Causes player to float up slightly on death
+#	var tween = get_tree().create_tween()
+#	tween.tween_property(self, "position", position - Vector2 (3 , 15), 0.3)
+#	$SFX/player_death.play()
+#	anim.play("Death")
+#	await anim.animation_finished
+#	queue_free()
+#	print("Player: change scene to game over scene")
+#	get_tree().change_scene_to_file("res://game_over.tscn")
 
 
 

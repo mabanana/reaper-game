@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var running_jump_deceleration: int = 5
 @export var air_deceleration: int = 100
 @export var jump_sound: AudioStreamPlayer2D
+@export var mob_jump_sound: AudioStreamPlayer2D
 
 var has_double_jumped = false
 
@@ -26,7 +27,7 @@ func state_input(event: InputEvent):
 
 
 func double_jump():
-	$"../../SFX/player_jump".play()
+	jump_sound.play()
 	character.velocity.y = jump_velocity
 	if playback.get_current_node() != jump_animation:
 		playback.travel(jump_animation)
@@ -41,10 +42,10 @@ func on_exit():
 func _on_mob_collision_body_entered(body):
 	print("AirState: " + "player landed on a body " + str(body.name))
 	if body.get_parent().name == "Mobs" and character.velocity.y >= 0:
-#		character.mob_jump = true
-		body.health -= character.jump_damage + int(character.jump_damage + character.velocity.y / 100)
-		print("Air State: " + "player dealt " + str(int(character.jump_damage * character.velocity.y / 100)) + " to a " + str(body.name))
-		jump_sound.play()
+		var jump_damage = character.jump_damage + int(character.jump_damage + character.velocity.y / 100)
+		body.health -= jump_damage
+		print("Air State: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
+		mob_jump_sound.play()
 		double_jump()
 		has_double_jumped = false
 

@@ -11,7 +11,6 @@ func state_process(delta):
 	if not is_spawned:
 		playback.travel(spawn_animation)
 		is_spawned = true
-		print("SpawnState play spawn animation")
 	if character.name_animation_finished == spawn_animation:
 		next_state = move_state
 		
