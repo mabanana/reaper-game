@@ -1,6 +1,6 @@
-extends Label
+extends Node
 
-@export var state_machine : MobCharacterStateMachine
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -8,5 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if state_machine.current_state != null:
-		text = "State : " + state_machine.current_state.name
+	pass
+
+func _on_child_exiting_tree(node):
+	if node.name == "Player":
+		print("DeathState: change scene to game over scene")
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
