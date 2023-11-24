@@ -57,6 +57,7 @@ blend_point_3/pos = Vector2(1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_fjans")
 blend_point_4/pos = Vector2(-1, 0)
 snap = Vector2(1, 1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fllje"]
 animation = &"Spawn"
@@ -83,7 +84,7 @@ states/Move/position = Vector2(518, 89)
 states/Spawn/node = SubResource("AnimationNodeAnimation_fllje")
 states/Spawn/position = Vector2(320, 116)
 transitions = ["Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_6wp1n"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_eulny"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_fkjje"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_52ida"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_x7ttk"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_kla7w")]
-graph_offset = Vector2(5, 54)
+graph_offset = Vector2(3, 16)
 
 [sub_resource type="Animation" id="Animation_biimr"]
 resource_name = "Attack"
@@ -532,8 +533,8 @@ speed = 150
 jump_velocity = -400
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_r8l5i")
-hframes = 3
+texture = ExtResource("2_172nw")
+hframes = 4
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")

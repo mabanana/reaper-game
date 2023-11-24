@@ -63,24 +63,15 @@ func _physics_process(delta):
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 
 
-func _on_mob_bump_collision_body_entered(body):
-	if character_state_machine.current_state.name == "Ground":
-		print("Player: " + "bumped into a body: " + str(body.name))
-		if body.get_parent().name == "Mobs" and body.health > 0:
-			bump = true
-
-func _on_mob_bump_collision_body_exited(body):
-	bump = false
-		
-
 func _on_mob_jump_collision_body_entered(body):
 	if character_state_machine.current_state.name == "Air":
 		print("Player: " + "landed on an body: " + str(body.name))
 		if body.get_parent().name == "Mobs" and body.health > 0:
 			var dmg = jump_damage + int(jump_damage + velocity.y / 100)
 			body.health -= dmg
-			print("Player: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
+			print("Player: " + "player dealt " + str(dmg) + " to a " + str(body.name))
 			mob_jump = true
+
 
 func _on_mob_jump_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))

@@ -16,6 +16,7 @@ func state_process(delta):
 	if character.mob_jump:
 		double_jump()
 		character.mob_jump = false
+		has_double_jumped = false
 	elif character.is_on_floor():
 		next_state = ground_state
 	if character.velocity.y > 0:

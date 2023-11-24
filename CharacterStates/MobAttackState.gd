@@ -18,7 +18,7 @@ func on_enter():
 	Game.player_hp -= character.attack_damage
 	print("Frog: frog deals " + str(character.attack_damage) + " to player")
 	var direction = (Game.player_global_position - character.global_position).normalized()
-	character.velocity.x += direction.x * -400
+	character.velocity.x += direction.x * -character.speed
 	character.velocity.y += direction.y * -100
 	character.move_and_slide()
 #	character.velocity = Vector2(0,0)

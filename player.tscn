@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=42 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -547,9 +547,6 @@ graph_offset = Vector2(-253, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
 size = Vector2(18, 2.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8wts"]
-size = Vector2(22, 13)
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
 collision_mask = 14
 floor_snap_length = 8.0
@@ -591,13 +588,6 @@ collision_mask = 10
 position = Vector2(-1, 17.125)
 shape = SubResource("RectangleShape2D_5s4n5")
 
-[node name="MobBumpCollision" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="BumpCollision" type="CollisionShape2D" parent="MobBumpCollision"]
-position = Vector2(-1, -2.5)
-shape = SubResource("RectangleShape2D_q8wts")
-
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree", "death_state")]
 script = ExtResource("8_83iwg")
 current_state = NodePath("Ground")
@@ -623,6 +613,12 @@ death_animation = "Death"
 death_sound = NodePath("../../SFX/player_death")
 can_move = false
 has_gravity = false
+
+[node name="MessageLabel" type="RichTextLabel" parent="."]
+offset_left = -41.0
+offset_top = -27.0
+offset_right = -1.0
+offset_bottom = 13.0
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -41.0
@@ -654,5 +650,3 @@ stream = ExtResource("3_laasd")
 [connection signal="animation_started" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_started"]
 [connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]
 [connection signal="body_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_body_entered"]
-[connection signal="body_entered" from="MobBumpCollision" to="." method="_on_mob_bump_collision_body_entered"]
-[connection signal="body_exited" from="MobBumpCollision" to="." method="_on_mob_bump_collision_body_exited"]
