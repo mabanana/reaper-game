@@ -15,7 +15,6 @@ func on_enter():
 	playback.travel(move_animation)
 
 
-
 func on_exit():
 	if next_state == attack_state:
 		playback.travel("Attack")

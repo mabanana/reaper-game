@@ -3,6 +3,7 @@ extends Node
 class_name State
 
 @export var can_move: bool = true
+@export var has_gravity: bool = true
 
 var character : CharacterBody2D
 var next_state: State

@@ -50,9 +50,13 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed/60)
 				else:
 					velocity.x = move_toward(velocity.x, 0, speed/3)
-		if not is_on_floor():
-			velocity.y += gravity * delta
-		move_and_slide()
+	else:
+		velocity.x = 0
+	if not is_on_floor() and character_state_machine.current_state.has_gravity == true:
+		velocity.y += gravity * delta
+	
+			
+	move_and_slide()
 	# Sends player into death state if health drops below 0
 	if Game.player_hp <= 0 and character_state_machine.current_state.name != "Death":
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
@@ -61,12 +65,13 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	print("Player: " + "landed on an body: " + str(body.name))
-	if body.get_parent().name == "Mobs" and velocity.y >= 0:
-		var dmg = jump_damage + int(jump_damage + velocity.y / 100)
-		body.health -= dmg
-		print("Player: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
-		mob_jump = true
+	if character_state_machine.current_state.name == "Air":
+		print("Player: " + "landed on an body: " + str(body.name))
+		if body.get_parent().name == "Mobs" and body.health > 0:
+			var dmg = jump_damage + int(jump_damage + velocity.y / 100)
+			body.health -= dmg
+			print("Player: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
+			mob_jump = true
 
 func _on_mob_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))

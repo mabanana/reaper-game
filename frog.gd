@@ -1,6 +1,5 @@
 extends Mob
 
-@onready var has_gravity: bool = true
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
@@ -9,34 +8,42 @@ var name_animation_finished: String = ""
 
 func _ready():
 	animation_tree.active = true
-
+	
 func _physics_process(delta):
+	if health <= 0 and character_state_machine.current_state.name != "Death":
+		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
-	
+	var blend_position: Vector2
 	# Moves the chatacter based on input if state allows movement
 	if character_state_machine.current_state.can_move:
+#		animation_tree["parameters/Move/blend_position"] = (Vector2(0, 0))
 		# Calculate the direction towards the player for chasing
-		var direction = (Game.player_global_position - global_position).normalized()
-		if direction.x >= 0.5:
-			velocity.x = direction.x + speed
-			sprite_2d.flip_h = true
-		elif direction.x <= -0.5:
-			velocity.x = direction.x - speed
-			sprite_2d.flip_h = false
+		if chase:
+			var direction = (Game.player_global_position - global_position).normalized()
+			if direction.x >= 0.5:
+				velocity.x = direction.x + speed
+				sprite_2d.flip_h = true
+			elif direction.x <= -0.5:
+				velocity.x = direction.x - speed
+				sprite_2d.flip_h = false
+			blend_position.x = velocity.x
+	else:
+		if character_state_machine.current_state.name == "Attack":
+			velocity.x = move_toward(velocity.x, 0, speed/10)
+		else:
+			velocity.x = 0
 		#Adds gravity to mobs if not on the floor
-		if not is_on_floor():
-			velocity.y += gravity * delta
+	if not is_on_floor() and character_state_machine.current_state.has_gravity == true:
+		velocity.y += gravity * delta
+		blend_position.y = velocity.y
+		blend_position = blend_position.normalized()
+		if blend_position.y == 1:
+			blend_position.x = 0
 
-		# Sends movement data to the animation tree
-		animation_tree.set("parameters/Move/blend_position", velocity.normalized())
-		
-		move_and_slide()
-		
-		if health <= 0:
-			character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
-
-
+	# Sends movement data to the animation tree
+	animation_tree.set("parameters/Move/blend_position", blend_position)
+	move_and_slide()
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 
@@ -52,28 +59,6 @@ func _on_player_collision_body_entered(body):
 func _on_player_collision_body_exited(body):
 	if body.name == "Player":
 		can_atk = false
-
-
-#func attack():
-#	var direction = (player.global_position - global_position).normalized()
-#	$frog_attack.play()
-#	velocity.x += direction.x * -1200
-#	velocity.y += direction.y * -100
-##	move_and_collide(velocity)
-#	move_and_slide()
-#	Game.player_hp -= attack_damage
-#	print("Frog: frog deals " + str(attack_damage) + " to player")
-
-
-#func death():
-#	has_gravity = false
-#	chase = false
-#	anim.play("Death")
-#	$CollisionShape2D.set_deferred("disabled",true)	
-#	await anim.animation_finished
-#	print("Frog: frog dies")
-#	#Utils.save()
-#	self.queue_free()
 	
 
 

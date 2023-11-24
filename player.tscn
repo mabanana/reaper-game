@@ -611,6 +611,8 @@ mob_jump_sound = NodePath("../../SFX/player_land_on_mob")
 script = ExtResource("11_tgcha")
 death_animation = "Death"
 death_sound = NodePath("../../SFX/player_death")
+can_move = false
+has_gravity = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -41.0
