@@ -26,9 +26,15 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 
 		# Sends movement data to the animation tree
-		animation_tree.set("parameters/Move/blend_position", velocity)
+		print(velocity.normalized())
+		animation_tree.set("parameters/Move/blend_position", velocity.normalized())
+		if animation_tree.get_node("Move") != null:
+			print("blend position: " + str(animation_tree.get_node("Move").get_current_animation_position()))
+		
 		move_and_slide()
-
+		
+		if health <= 0:
+			character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 
 
 
@@ -74,3 +80,11 @@ func _on_player_collision_body_exited(body):
 func _on_frog_animation_tree_animation_finished(anim_name):
 	name_animation_finished = anim_name
 
+
+
+func _on_animation_tree_animation_started(anim_name):
+	pass
+
+
+func _on_asd_animation_tree_animation_finished(anim_name):
+	name_animation_finished = anim_name

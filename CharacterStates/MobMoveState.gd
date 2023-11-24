@@ -7,13 +7,17 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func state_process(delta):
+	print(playback.get_current_node())
 	if character.can_atk:
 		next_state = attack_state
+	
 
 func on_enter():
 	playback.travel(move_animation)
-	print(move_animation)
+
+
 
 func on_exit():
-	pass
+	if next_state == attack_state:
+		playback.travel("Attack")
 

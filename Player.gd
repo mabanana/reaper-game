@@ -15,6 +15,9 @@ var jump_damage: int = 1
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
 
+var name_animation_finished: String = ""
+
+
 func _ready():
 	animation_tree.active = true
 
@@ -81,3 +84,6 @@ func player_death():
 	get_tree().change_scene_to_file("res://game_over.tscn")
 
 
+
+func _on_player_animation_tree_animation_finished(anim_name):
+	name_animation_finished = anim_name

@@ -7,8 +7,9 @@ class_name DeathState
 func on_enter():
 	death_sound.play()
 	playback.travel(death_animation)
+	print("death")
 
 
 func state_process(delta):
-	if playback.get_current_node() == "End":
+	if character.name_animation_finished == death_animation:
 		character.queue_free() 

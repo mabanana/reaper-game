@@ -531,7 +531,7 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_gtsmd")
 states/Move/position = Vector2(268, 143)
 states/Start/position = Vector2(151, 143)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_2x4fn"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_5473c"), "Jump", "Move", SubResource("AnimationNodeStateMachineTransition_7rigw"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_tn0i3"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_yp3nn"), "Fall", "Move", SubResource("AnimationNodeStateMachineTransition_od8yy"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_bg0dk"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_0ij8h")]
-graph_offset = Vector2(-294, 42)
+graph_offset = Vector2(-253, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
 size = Vector2(18, 2.5)
@@ -626,6 +626,7 @@ stream = ExtResource("3_gdg2d")
 [node name="player_jump" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3_laasd")
 
+[connection signal="animation_finished" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_finished"]
 [connection signal="area_entered" from="Mob Collision" to="." method="_on_mob_collision_area_entered"]
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Mob Collision" to="CharacterStateMachine/Air" method="_on_mob_collision_body_entered"]

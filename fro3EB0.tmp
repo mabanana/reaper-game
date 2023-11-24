@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=67 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -727,49 +727,8 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_nhc71"]
-resource_name = "Attack"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_r8l5i")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3i48"]
 _data = {
-"Attack": SubResource("Animation_nhc71"),
 "Death": SubResource("Animation_fejpj"),
 "Fall": SubResource("Animation_6i8g2"),
 "Idle": SubResource("Animation_ke051"),
@@ -868,8 +827,8 @@ script = ExtResource("11_nqbje")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_r8l5i")
-hframes = 3
+texture = ExtResource("2_172nw")
+hframes = 4
 
 [node name="asdAnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_vvkoy")
@@ -878,9 +837,10 @@ parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="FrogSprite" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.211765)
-texture = ExtResource("3_r8l5i")
-hframes = 3
+modulate = Color(1, 1, 1, 0.47451)
+texture = ExtResource("2_172nw")
+hframes = 4
+frame = 2
 
 [node name="FrogAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
