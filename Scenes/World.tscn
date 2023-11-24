@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=13 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
 [ext_resource type="Texture2D" uid="uid://brtmx2325v773" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="3_d6wah"]
 [ext_resource type="PackedScene" uid="uid://bmin8jl4ji6iv" path="res://player.tscn" id="4_8colo"]
+[ext_resource type="Script" path="res://Scenes/PlayerNode.gd" id="4_dn6hn"]
 [ext_resource type="Script" path="res://Mobs.gd" id="5_voxrr"]
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="6_0u63l"]
 [ext_resource type="Script" path="res://Collectables.gd" id="7_pklcw"]
@@ -539,6 +540,7 @@ layer_0/tile_data = PackedInt32Array(1900544, 65536, 1, 1900545, 65536, 1, 19005
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(153, 118)
+script = ExtResource("4_dn6hn")
 
 [node name="Player" parent="Player" instance=ExtResource("4_8colo")]
 position = Vector2(-115, 331)
@@ -605,6 +607,7 @@ autostart = true
 wait_time = 0.15
 one_shot = true
 
+[connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]

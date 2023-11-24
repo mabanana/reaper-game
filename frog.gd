@@ -12,8 +12,11 @@ var wander: bool = false
 #var drop_range: int = 1
 #var attack_damage: int = 1
 @onready var has_gravity: bool = true
-@onready var anim: AnimatedSprite2D = get_node("AnimatedSprite2D")
-@onready var character_state_machine: MobCharacterStateMachine = $MobCharacterStateMachine
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var character_state_machine: CharacterStateMachine = $CharacterStateMachine
+
+var anim : AnimatedSprite2D
 
 #
 #func _ready():
@@ -46,15 +49,12 @@ func _physics_process(delta):
 		if chase and is_spawned:	
 			if direction.x >= 0.5:
 				velocity.x = direction.x + speed
-				anim.play("Jump")
-				anim.flip_h = true
+				sprite_2d.flip_h = true
 			elif direction.x <= -0.5:
 				velocity.x = direction.x - speed
-				anim.play("Jump")
-				anim.flip_h = false		
+				sprite_2d.flip_h = false		
 		else:
-			if anim.animation != "Death":
-				anim.play("Idle")
+			if "Death":
 				velocity.x = 0
 				
 		move_and_slide()

@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://gn75sv2x16ep" path="res://Sunny-land-files/8_Buffs_Heals_SFX/21_Debuff_01.wav" id="4_u1b4q"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="8_83iwg"]
 [ext_resource type="Texture2D" uid="uid://b3jncwsc2chip" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-2.png" id="8_p4gqy"]
-[ext_resource type="Script" path="res://CharacterStates/GroundState.gd" id="9_s804k"]
-[ext_resource type="Script" path="res://CharacterStates/AirState.gd" id="10_gfhmd"]
+[ext_resource type="Script" path="res://CharacterStates/PlayerGroundState.gd" id="9_wfcsp"]
+[ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 
@@ -521,7 +521,7 @@ advance_mode = 2
 states/Attack/node = SubResource("AnimationNodeAnimation_rgiak")
 states/Attack/position = Vector2(268, 224)
 states/Death/node = SubResource("AnimationNodeAnimation_tiyw7")
-states/Death/position = Vector2(493, 134)
+states/Death/position = Vector2(513, 143)
 states/End/position = Vector2(885, 143)
 states/Fall/node = SubResource("AnimationNodeAnimation_y1orl")
 states/Fall/position = Vector2(437, 19)
@@ -595,20 +595,14 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 death_state = NodePath("Death")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
-script = ExtResource("9_s804k")
-air_state = NodePath("../Air")
+[node name="Ground" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("9_wfcsp")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("10_gfhmd")
-ground_state = NodePath("../Ground")
+[node name="Air" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_3vlpb")
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("11_tgcha")
-can_move = false
-
-[node name="Timer" type="Timer" parent="CharacterStateMachine/Death"]
-one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -41.0
@@ -625,4 +619,3 @@ state_machine = NodePath("../CharacterStateMachine")
 [connection signal="area_entered" from="Mob Collision" to="." method="_on_mob_collision_area_entered"]
 [connection signal="body_entered" from="Mob Collision" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Mob Collision" to="CharacterStateMachine/Air" method="_on_mob_collision_body_entered"]
-[connection signal="timeout" from="CharacterStateMachine/Death/Timer" to="CharacterStateMachine/Death" method="_on_timer_timeout"]
