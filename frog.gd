@@ -1,72 +1,39 @@
 extends Mob
 
-const speed = 150.0
-const jump_velocity = -400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var player: CharacterBody2D
-var wander: bool = false
-#var is_spawned: bool = false
-#var health: int = 1
-#var drop_amount: int = 2
-#var drop_range: int = 1
-#var attack_damage: int = 1
+
 @onready var has_gravity: bool = true
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var character_state_machine: CharacterStateMachine = $CharacterStateMachine
 
-var anim : AnimatedSprite2D
-
-#
-#func _ready():
-#	self.modulate.a = 0.3
-#	var tween = get_tree().create_tween()
-#	tween.tween_property(self, "modulate:a", 1, 0.5)
-#	await tween.finished
-#	anim.play("Idle")
-#	is_spawned = true
-	
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	if is_spawned:
-		
-		if can_atk:
-			attack()
-			
-			
-		if has_gravity == true and not is_on_floor():
-			velocity.y += gravity * delta * 0.8
-		else:
-			velocity.y = 0
-			velocity.x = 0
-		player = get_node("../../Player/Player")
-		var direction = (player.global_position - global_position).normalized()
-		
 
-		if chase and is_spawned:	
-			if direction.x >= 0.5:
-				velocity.x = direction.x + speed
-				sprite_2d.flip_h = true
-			elif direction.x <= -0.5:
-				velocity.x = direction.x - speed
-				sprite_2d.flip_h = false		
-		else:
-			if "Death":
-				velocity.x = 0
-				
+	if character_state_machine.current_state.can_move:
+		# Calculate the direction towards the player for chasing
+		var direction = (Game.player_global_position - global_position).normalized()
+
+		if direction.x >= 0.5:
+			velocity.x = direction.x + speed
+			sprite_2d.flip_h = true
+		elif direction.x <= -0.5:
+			velocity.x = direction.x - speed
+			sprite_2d.flip_h = false
+		#Adds gravity if not on the floor
+		if not is_on_floor():
+			velocity.y += gravity * delta
+
+		# Sends movement data to the animation tree
+		animation_tree.set("parameters/Move/blend_position", velocity)
 		move_and_slide()
-	if health <= 0  and character_state_machine.current_state != null and character_state_machine.current_state.name != "Death":
-		print(character_state_machine.current_state.name)
-		$"Hurtbox".set_monitorable(false)
-#		death()
-		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
-	
-	
+
+
+
+
 func _on_player_detection_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death": 
+	if body.name == "Player": 
 		chase = true
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
@@ -74,32 +41,33 @@ func _on_player_detection_body_exited(body):
 
 
 func _on_player_collision_body_entered(body):
-	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
+	if body.name == "Player":
 		can_atk = true
-
 func _on_player_collision_body_exited(body):
-	if body.name == "Player" and anim.animation != "Death" and is_spawned == true:
+	if body.name == "Player":
 		can_atk = false
 
-func attack():
-	var direction = (player.global_position - global_position).normalized()
-	$frog_attack.play()
-	velocity.x += direction.x * -1200
-	velocity.y += direction.y * -100
-#	move_and_collide(velocity)
-	move_and_slide()
-	Game.player_hp -= attack_damage
-	print("Frog: frog deals " + str(attack_damage) + " to player")
 
-func death():
-	has_gravity = false
-	chase = false
-	anim.play("Death")
-	$CollisionShape2D.set_deferred("disabled",true)	
-	await anim.animation_finished
-	print("Frog: frog dies")
-	#Utils.save()
-	self.queue_free()
+#func attack():
+#	var direction = (player.global_position - global_position).normalized()
+#	$frog_attack.play()
+#	velocity.x += direction.x * -1200
+#	velocity.y += direction.y * -100
+##	move_and_collide(velocity)
+#	move_and_slide()
+#	Game.player_hp -= attack_damage
+#	print("Frog: frog deals " + str(attack_damage) + " to player")
+
+
+#func death():
+#	has_gravity = false
+#	chase = false
+#	anim.play("Death")
+#	$CollisionShape2D.set_deferred("disabled",true)	
+#	await anim.animation_finished
+#	print("Frog: frog dies")
+#	#Utils.save()
+#	self.queue_free()
 	
 	
 

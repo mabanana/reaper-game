@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=38 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="7_ypbje"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="8_aikl1"]
 [ext_resource type="Script" path="res://CharacterStates/MobMoveState.gd" id="9_03bk7"]
+[ext_resource type="Script" path="res://CharacterStates/MobAttackState.gd" id="10_jrs1a"]
 [ext_resource type="Script" path="res://CharacterStates/MobSpawnState.gd" id="10_x62h4"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_nqbje"]
 
@@ -373,6 +374,8 @@ health = 1
 drop_amount = 2
 drop_range = 1
 attack_damage = 1
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -394,6 +397,7 @@ parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
 
 [node name="PlayerDetection" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_pfwwa")
@@ -422,16 +426,26 @@ stream = ExtResource("6_nbeqg")
 [node name="CharacterStateMachine" type="Node" parent="."]
 script = ExtResource("7_ypbje")
 
-[node name="Death" type="Node" parent="CharacterStateMachine"]
+[node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("death_sound")]
 script = ExtResource("8_aikl1")
+death_animation = "Death"
+death_sound = NodePath("../../frog_death")
+can_move = false
 
-[node name="Move" type="Node" parent="CharacterStateMachine"]
+[node name="Move" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_state")]
 script = ExtResource("9_03bk7")
+attack_state = NodePath("../Attack")
+move_animation = "Move"
 
 [node name="Attack" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_jrs1a")
 
-[node name="Spawn" type="Node" parent="CharacterStateMachine"]
+[node name="Spawn" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("move_state", "spawn_sound")]
 script = ExtResource("10_x62h4")
+move_state = NodePath("../Move")
+spawn_animation = "Spawn"
+spawn_sound = NodePath("../../frog_death")
+can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -41.0
@@ -447,8 +461,5 @@ state_machine = NodePath("")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
-[connection signal="body_exited" from="PlayerDetection" to="CharacterStateMachine/Move" method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
-[connection signal="body_entered" from="PlayerCollision" to="CharacterStateMachine/Move" method="_on_player_collision_body_entered"]
 [connection signal="body_exited" from="PlayerCollision" to="." method="_on_player_collision_body_exited"]
-[connection signal="body_exited" from="PlayerCollision" to="CharacterStateMachine/Attack" method="_on_player_collision_body_exited"]

@@ -550,21 +550,33 @@ script = ExtResource("5_voxrr")
 
 [node name="Frog" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(188, 259)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Frog2" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(549, 386)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Frog3" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(612, 148)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Frog4" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(1009, 306)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Frog5" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(381, 339)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Frog6" parent="Mobs" instance=ExtResource("6_0u63l")]
 position = Vector2(307, 482)
+speed = 150.0
+jump_velocity = -400.0
 
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("7_pklcw")
