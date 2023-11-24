@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=46 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -6,8 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://cx6yb1eekc7y1" path="res://Sunny-land-files/12_Player_Movement_SFX/08_Step_rock_02.wav" id="3_gdg2d"]
 [ext_resource type="AudioStream" uid="uid://dok617efsjtmb" path="res://Sunny-land-files/12_Player_Movement_SFX/03_Step_grass_03.wav" id="3_laasd"]
 [ext_resource type="AudioStream" uid="uid://gn75sv2x16ep" path="res://Sunny-land-files/8_Buffs_Heals_SFX/21_Debuff_01.wav" id="4_u1b4q"]
+[ext_resource type="Script" path="res://Control.gd" id="8_2s5ur"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="8_83iwg"]
+[ext_resource type="Texture2D" uid="uid://disbwkhp2j8ug" path="res://Sunny-land-files/Graphical Assets/environment/Props/crate.png" id="8_bjctr"]
 [ext_resource type="Texture2D" uid="uid://b3jncwsc2chip" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-2.png" id="8_p4gqy"]
+[ext_resource type="Script" path="res://MessageLabel.gd" id="9_flgqm"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerGroundState.gd" id="9_wfcsp"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
@@ -547,6 +550,9 @@ graph_offset = Vector2(-253, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
 size = Vector2(18, 2.25)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp71e"]
+texture = ExtResource("8_bjctr")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
 collision_mask = 14
 floor_snap_length = 8.0
@@ -614,23 +620,59 @@ death_sound = NodePath("../../SFX/player_death")
 can_move = false
 has_gravity = false
 
-[node name="MessageLabel" type="RichTextLabel" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("despawn_timer")]
+layout_mode = 3
+anchors_preset = 0
 offset_left = -41.0
-offset_top = -27.0
+offset_top = -46.0
 offset_right = -1.0
-offset_bottom = 13.0
+offset_bottom = -6.0
+script = ExtResource("8_2s5ur")
+despawn_timer = NodePath("Timer")
 
-[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-offset_left = -41.0
-offset_top = -27.0
-offset_right = 41.0
-offset_bottom = -7.0
+[node name="MessageLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -51.0
+offset_right = 70.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_gp71e")
+bbcode_enabled = true
+text = "[center] You can now Double Jump!!"
+fit_content = true
+script = ExtResource("9_flgqm")
+
+[node name="StateDebugLabel" type="Label" parent="Control" node_paths=PackedStringArray("state_machine")]
+visible = false
+offset_left = 7.0
+offset_top = 24.0
+offset_right = 89.0
+offset_bottom = 44.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 10
 text = "text"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_m1vsv")
-state_machine = NodePath("../CharacterStateMachine")
+state_machine = NodePath("../../CharacterStateMachine")
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
 [node name="SFX" type="Node" parent="."]
 
@@ -650,3 +692,4 @@ stream = ExtResource("3_laasd")
 [connection signal="animation_started" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_started"]
 [connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]
 [connection signal="body_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_body_entered"]
+[connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]

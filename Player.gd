@@ -12,6 +12,7 @@ var is_jump: bool = false
 var mob_jump: bool = false
 var jump_damage: int = 1
 var bump: bool = false
+var dmg: int
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
@@ -23,7 +24,6 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
-	
 	# Gets movement inputs
 	var direction = Input.get_axis("move_left", "move_right")
 	direction_pressed = direction
@@ -56,7 +56,7 @@ func _physics_process(delta):
 		
 	if not is_on_floor() and character_state_machine.current_state.has_gravity == true:
 		velocity.y += gravity * delta
-	
+	dmg = jump_damage + int(jump_damage + velocity.y / 100)
 	move_and_slide()
 	# Sends player into death state if health drops below 0
 	if Game.player_hp <= 0 and character_state_machine.current_state.name != "Death":
@@ -67,7 +67,6 @@ func _on_mob_jump_collision_body_entered(body):
 	if character_state_machine.current_state.name == "Air":
 		print("Player: " + "landed on an body: " + str(body.name))
 		if body.get_parent().name == "Mobs" and body.health > 0:
-			var dmg = jump_damage + int(jump_damage + velocity.y / 100)
 			body.health -= dmg
 			print("Player: " + "player dealt " + str(dmg) + " to a " + str(body.name))
 			mob_jump = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=74 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -12,17 +12,32 @@
 [ext_resource type="Script" path="res://CharacterStates/MobAttackState.gd" id="10_jrs1a"]
 [ext_resource type="Script" path="res://CharacterStates/MobSpawnState.gd" id="10_x62h4"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_nqbje"]
+[ext_resource type="Script" path="res://TextureProgressBar.gd" id="11_ql0vd"]
+[ext_resource type="Script" path="res://ProgressBar.gd" id="11_sfp5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj2hp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfwwa"]
 radius = 104.043
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oy4sx"]
-size = Vector2(30, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhpf5"]
+radius = 7.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
 size = Vector2(24, 25)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78nex"]
+bg_color = Color(0, 0, 0, 0.164706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyuif"]
+bg_color = Color(0.811765, 0.168627, 0.243137, 1)
+
+[sub_resource type="Gradient" id="Gradient_yo0xm"]
+offsets = PackedFloat32Array(0, 0.300699)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6hmv"]
+gradient = SubResource("Gradient_yo0xm")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji5j5"]
 animation = &"Attack"
@@ -525,7 +540,7 @@ animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
 collision_shape = NodePath("FrogCollisionShape")
-health = 1
+health = 10
 drop_amount = 2
 drop_range = 1
 attack_damage = 1
@@ -547,12 +562,12 @@ collision_layer = 2
 shape = SubResource("CircleShape2D_pfwwa")
 
 [node name="PlayerCollision" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerCollision"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_oy4sx")
+position = Vector2(-1, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hhpf5")
 
 [node name="FrogHurtbox" type="Area2D" parent="."]
 visible = false
@@ -601,15 +616,56 @@ can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -41.0
-offset_top = -27.0
+offset_top = -3.0
 offset_right = 41.0
-offset_bottom = -7.0
-theme_override_font_sizes/font_size = 10
+offset_bottom = 17.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 9
 text = "text"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 script = ExtResource("11_nqbje")
 state_machine = NodePath("../CharacterStateMachine")
+
+[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("character")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_78nex")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gyuif")
+value = 50.0
+show_percentage = false
+script = ExtResource("11_sfp5r")
+character = NodePath("..")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -12.0
+offset_right = 243.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 1)
+texture_progress = SubResource("GradientTexture1D_p6hmv")
+tint_progress = Color(0.784314, 0.207843, 0.137255, 1)
+script = ExtResource("11_ql0vd")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_vvkoy")

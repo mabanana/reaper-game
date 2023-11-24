@@ -50,7 +50,8 @@ func _on_mobs_child_exiting_tree(node):
 
 func _on_child_exiting_tree(node):
 	if node.id == "Gem":
+		Game.show_player_msg = true
 		print("Collectables: display message for " + str(Game.gems_collected) + " gem.")
-		var msg_temp = msg.instantiate()
-		msg_temp.position = self.global_position
-		$"../UI".add_child(msg_temp)
+#		var msg_temp = msg.instantiate()
+#		msg_temp.position = self.global_position
+#		$"../UI".add_child(msg_temp)

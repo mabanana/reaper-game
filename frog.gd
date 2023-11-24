@@ -33,7 +33,7 @@ func _physics_process(delta):
 			velocity.x = 0
 	else:
 		if character_state_machine.current_state.name == "Attack":
-			velocity.x = move_toward(velocity.x, 0, speed/5)
+			velocity.x = move_toward(velocity.x, 0, speed/3)
 		else:
 			velocity.x = 0
 		#Adds gravity to mobs if not on the floor
@@ -54,10 +54,9 @@ func _on_player_detection_body_entered(body):
 	if body.name == "Player": 
 		chase = true
 func _on_player_detection_body_exited(body):
-	print("something left")
 	if body.name == "Player":
 		chase = false
-		print("chase is now false")
+
 
 
 func _on_player_collision_body_entered(body):
