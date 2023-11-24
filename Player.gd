@@ -11,9 +11,9 @@ var direction_pressed: int = 0
 var is_jump: bool = false
 var mob_jump: bool = false
 var jump_damage: int = 1
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var character_state_machine: CharacterStateMachine = $CharacterStateMachine
+@export var animation_tree: AnimationTree
+@export var sprite_2d: Sprite2D
+@export var character_state_machine: CharacterStateMachine
 
 func _ready():
 	animation_tree.active = true
