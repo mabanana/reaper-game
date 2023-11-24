@@ -11,17 +11,20 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
+	# Send parameter data to CharacterStateMachine
+	character_state_machine.state_machine_process(delta)
+	
+	# Moves the chatacter based on input if state allows movement
 	if character_state_machine.current_state.can_move:
 		# Calculate the direction towards the player for chasing
 		var direction = (Game.player_global_position - global_position).normalized()
-
 		if direction.x >= 0.5:
 			velocity.x = direction.x + speed
 			sprite_2d.flip_h = true
 		elif direction.x <= -0.5:
 			velocity.x = direction.x - speed
 			sprite_2d.flip_h = false
-		#Adds gravity if not on the floor
+		#Adds gravity to mobs if not on the floor
 		if not is_on_floor():
 			velocity.y += gravity * delta
 

@@ -26,13 +26,14 @@ func _physics_process(delta):
 	# Gets movement inputs
 	var direction = Input.get_axis("move_left", "move_right")
 	direction_pressed = direction
-	if player_alive == true:
-		# Adds the gravity and plays air animations.
-		# Resets jump counters for when the player is on the ground
-		animation_tree.set("parameters/Move/blend_position", direction)
-		# Get the input direction and handle the movement/deceleration.
-		if direction != 0 and character_state_machine.is_can_move():
-			
+	# Sends parameter data to the animation tree
+	animation_tree.set("parameters/Move/blend_position", direction)
+	# Sends paramenter data to Game state machine and character state machine
+	Game.player_global_position = global_position
+	character_state_machine.state_machine_process(delta)
+	
+	if character_state_machine.is_can_move():
+		if direction != 0:
 			if direction == -1:
 				sprite_2d.flip_h = true
 			elif direction == 1:
@@ -49,22 +50,23 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed/60)
 				else:
 					velocity.x = move_toward(velocity.x, 0, speed/3)
-
+		if not is_on_floor():
+			velocity.y += gravity * delta
 		move_and_slide()
-		Game.player_global_position = global_position
-
-		# Sets player state to dead when HP falls below 0
-		if Game.player_hp <= 0:
-			player_alive = false
-
-	# Calls player death function
-	elif player_alive == false and character_state_machine.current_state.name != "Death":
+	# Sends player into death state if health drops below 0
+	if Game.player_hp <= 0 and character_state_machine.current_state.name != "Death":
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
 
 
+
+
 func _on_area_2d_body_entered(body):
-	if $SFX/player_land_on_ground.playing == false:
-		$SFX/player_land_on_ground.play()
+	print("Player: " + "landed on an body: " + str(body.name))
+	if body.get_parent().name == "Mobs" and velocity.y >= 0:
+		var dmg = jump_damage + int(jump_damage + velocity.y / 100)
+		body.health -= dmg
+		print("Player: " + "player dealt " + str(jump_damage) + " to a " + str(body.name))
+		mob_jump = true
 
 func _on_mob_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
@@ -87,3 +89,7 @@ func _on_mob_collision_area_entered(area):
 
 func _on_player_animation_tree_animation_finished(anim_name):
 	name_animation_finished = anim_name
+
+
+func _on_player_animation_tree_animation_started(anim_name):
+	name_animation_finished = ""
