@@ -532,7 +532,7 @@ _data = {
 "Spawn": SubResource("Animation_ld68c")
 }
 
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine", "collision_shape")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine", "collision_shape", "sfx")]
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_tbwk3")
@@ -546,6 +546,7 @@ drop_range = 1
 attack_damage = 1
 speed = 150
 jump_velocity = -400
+sfx = NodePath("SFX")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_172nw")
@@ -576,12 +577,6 @@ visible = false
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
-[node name="frog_death" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_u3llr")
-
-[node name="frog_attack" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_nbeqg")
-
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree", "death_state")]
 script = ExtResource("7_ypbje")
 current_state = NodePath("Spawn")
@@ -592,7 +587,7 @@ death_state = NodePath("Death")
 [node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("death_sound")]
 script = ExtResource("8_aikl1")
 death_animation = "Death"
-death_sound = NodePath("../../frog_death")
+death_sound = NodePath("../../SFX/frog_death")
 can_move = false
 has_gravity = false
 
@@ -604,14 +599,14 @@ move_animation = "Move"
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("move_state", "attack_sound")]
 script = ExtResource("10_jrs1a")
 move_state = NodePath("../Move")
-attack_sound = NodePath("../../frog_attack")
+attack_sound = NodePath("../../SFX/frog_attack")
 can_move = false
 
 [node name="Spawn" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("move_state", "spawn_sound")]
 script = ExtResource("10_x62h4")
 move_state = NodePath("../Move")
 spawn_animation = "Spawn"
-spawn_sound = NodePath("../../frog_death")
+spawn_sound = NodePath("../../SFX/frog_death")
 can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
@@ -687,6 +682,14 @@ anim_player = NodePath("../BrokenAnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_i3i48")
 }
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="frog_death" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_u3llr")
+
+[node name="frog_attack" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_nbeqg")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

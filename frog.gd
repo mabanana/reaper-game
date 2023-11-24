@@ -49,6 +49,7 @@ func _physics_process(delta):
 	# Sends movement data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
+	sfx.position = global_position
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 

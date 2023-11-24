@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=47 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
+[ext_resource type="Script" path="res://AudioListener2D.gd" id="12_76x2h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv0ru"]
 radius = 8.0
@@ -553,13 +554,14 @@ size = Vector2(18, 2.25)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp71e"]
 texture = ExtResource("8_bjctr")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "character_state_machine", "sfx")]
 collision_mask = 14
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
 animation_tree = NodePath("PlayerAnimationTree")
 sprite_2d = NodePath("PlayerSprite")
 character_state_machine = NodePath("CharacterStateMachine")
+sfx = NodePath("SFX")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
@@ -674,7 +676,11 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[node name="SFX" type="Node" parent="."]
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="SFX"]
+current = true
+script = ExtResource("12_76x2h")
 
 [node name="player_death" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_u1b4q")
