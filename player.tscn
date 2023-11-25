@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=46 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
-[ext_resource type="Script" path="res://AudioListener2D.gd" id="12_76x2h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv0ru"]
 radius = 8.0
@@ -570,6 +569,7 @@ shape = SubResource("CapsuleShape2D_wv0ru")
 [node name="PlayerCamera" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -656,6 +656,7 @@ script = ExtResource("9_flgqm")
 
 [node name="StateDebugLabel" type="Label" parent="Control" node_paths=PackedStringArray("state_machine")]
 visible = false
+layout_mode = 0
 offset_left = 7.0
 offset_top = 24.0
 offset_right = 89.0
@@ -677,10 +678,6 @@ one_shot = true
 autostart = true
 
 [node name="SFX" type="Node2D" parent="."]
-
-[node name="AudioListener2D" type="AudioListener2D" parent="SFX"]
-current = true
-script = ExtResource("12_76x2h")
 
 [node name="player_death" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_u1b4q")
