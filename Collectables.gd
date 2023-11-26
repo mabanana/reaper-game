@@ -6,12 +6,12 @@ var msg = preload("res://UI/player_message.tscn")
 
 
 func _ready():
-	var gem_temp = gem.instantiate()
-	gem_temp.position = Vector2(724,560)
-	add_child(gem_temp)
-	var gem_temp2 = gem.instantiate()
-	gem_temp2.position = Vector2(641,147)
-	add_child(gem_temp2)
+#	var gem_temp = gem.instantiate()
+#	gem_temp.position = Vector2(724,560)
+#	add_child(gem_temp)
+#	var gem_temp2 = gem.instantiate()
+#	gem_temp2.position = Vector2(641,147)
+#	add_child(gem_temp2)
 	pass
 
 func spawn_cherry(int_x, int_y):
