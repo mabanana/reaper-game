@@ -9,7 +9,6 @@ var character : CharacterBody2D
 var next_state: State
 var playback: AnimationNodeStateMachinePlayback
 var death_state: State
-var anim: AnimatedSprite2D
 
 func state_process(delta):
 	pass

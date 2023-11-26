@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=47 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
 [ext_resource type="Texture2D" uid="uid://giuocebl3k1k" path="res://Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_opci6"]
 [ext_resource type="AudioStream" uid="uid://cx6yb1eekc7y1" path="res://Sunny-land-files/12_Player_Movement_SFX/08_Step_rock_02.wav" id="3_gdg2d"]
 [ext_resource type="AudioStream" uid="uid://dok617efsjtmb" path="res://Sunny-land-files/12_Player_Movement_SFX/03_Step_grass_03.wav" id="3_laasd"]
+[ext_resource type="Script" path="res://JumpComponent.gd" id="4_gukvo"]
 [ext_resource type="AudioStream" uid="uid://gn75sv2x16ep" path="res://Sunny-land-files/8_Buffs_Heals_SFX/21_Debuff_01.wav" id="4_u1b4q"]
 [ext_resource type="Script" path="res://Control.gd" id="8_2s5ur"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="8_83iwg"]
@@ -587,6 +588,9 @@ tree_root = SubResource("AnimationNodeStateMachine_wfeoj")
 anim_player = NodePath("../PlayerAnimationPlayer")
 parameters/Jump/blend_position = 0
 parameters/Move/blend_position = 0.0
+
+[node name="JumpComponent" type="Node" parent="."]
+script = ExtResource("4_gukvo")
 
 [node name="MobJumpCollision" type="Area2D" parent="."]
 collision_mask = 10
