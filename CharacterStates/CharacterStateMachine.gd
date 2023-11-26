@@ -6,7 +6,6 @@ class_name CharacterStateMachine
 @export var character: CharacterBody2D
 @export var animation_tree: AnimationTree
 @export var death_state : State
-@export var hurt_state : State
 var states : Array[State]
 
 
@@ -18,7 +17,6 @@ func _ready():
 				child.character = character
 				child.playback = animation_tree["parameters/playback"]
 				child.death_state = death_state
-				child.hurt_state = hurt_state
 		else:
 			push_warning("CharacterStateMachine:  " + child.name + " is not a State for CharacterStateMachine")
 
