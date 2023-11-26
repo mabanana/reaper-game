@@ -5,15 +5,14 @@ class_name GroundState
 @export var jump_velocity: float = -400.0
 @export var jump_animation : String = "Jump"
 @export var ground_deceleration: int = 100
-@export var jump_sound: AudioStreamPlayer
-@export var walk_sound: AudioStreamPlayer
+
 
 
 func on_enter():
 	if Input.is_action_pressed("jump"):
 		jump()
 	if not character.is_on_floor():
-		walk_sound.play()
+		character.walk_sound.play()
 
 func state_process(delta):
 	if not character.is_on_floor():
@@ -32,10 +31,10 @@ func state_input(event : InputEvent):
 			print("GroundState: player jumps")
 
 	if event.is_action_pressed("move_left") or event.is_action_pressed("move_right"):
-		walk_sound.play()
+		character.walk_sound.play()
 
 func jump():
-	jump_sound.play()
+	character.jump_sound.play()
 	character.velocity.y = jump_velocity
 	next_state = state_dict["Air"]
 	playback.travel(jump_animation)

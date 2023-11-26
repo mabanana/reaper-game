@@ -3,6 +3,8 @@ extends Mob
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
+@export var death_sound: AudioStreamPlayer
+@export var attack_sound: AudioStreamPlayer
 
 var name_animation_finished: String = ""
 
@@ -13,9 +15,12 @@ func _physics_process(delta):
 	if health <= 0 and character_state_machine.current_state.name != "Death":
 		collision_shape.set_deferred("disabled", true)
 		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
+
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
 	var blend_position: Vector2
+
+
 	# Moves the chatacter based on input if state allows movement
 	if character_state_machine.current_state.can_move:
 #		animation_tree["parameters/Move/blend_position"] = (Vector2(0, 0))
@@ -49,7 +54,7 @@ func _physics_process(delta):
 	# Sends movement data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
-	sfx.position = global_position
+
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 

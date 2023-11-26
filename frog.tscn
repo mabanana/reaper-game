@@ -583,10 +583,9 @@ current_state = NodePath("Spawn")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("death_sound")]
+[node name="Death" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("8_aikl1")
 death_animation = "Death"
-death_sound = NodePath("../../SFX/frog_death")
 can_move = false
 has_gravity = false
 
@@ -594,9 +593,8 @@ has_gravity = false
 script = ExtResource("9_03bk7")
 move_animation = "Move"
 
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_sound")]
+[node name="Attack" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("10_jrs1a")
-attack_sound = NodePath("../../SFX/frog_attack")
 can_move = false
 
 [node name="Spawn" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("spawn_sound")]

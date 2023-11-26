@@ -13,11 +13,17 @@ var mob_jump: bool = false
 var jump_damage: int = 1
 var bump: bool = false
 var dmg: int
+var name_animation_finished: String = ""
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
-@export var sfx: Node2D
-var name_animation_finished: String = ""
+@export var death_sound: AudioStreamPlayer
+@export var mob_jump_sound: AudioStreamPlayer
+@export var walk_sound: AudioStreamPlayer
+@export var jump_sound: AudioStreamPlayer
+@export var hurt_sound: AudioStreamPlayer
+
+
 
 
 func _ready():
@@ -31,7 +37,6 @@ func _physics_process(delta):
 	animation_tree.set("parameters/Move/blend_position", direction)
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
-	sfx.position = global_position
 	character_state_machine.state_machine_process(delta)
 	
 	if character_state_machine.is_can_move():

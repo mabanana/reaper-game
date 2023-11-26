@@ -10,7 +10,7 @@ var can_atk: bool = false
 @export var attack_damage: int
 @export var speed: int
 @export var jump_velocity: int
-@export var sfx: Node2D
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

@@ -2,10 +2,9 @@ extends State
 
 class_name DeathState
 @export var death_animation: String
-@export var death_sound: AudioStreamPlayer
 
 func on_enter():
-	death_sound.play()
+	character.death_sound.play()
 	playback.travel(death_animation)
 
 
