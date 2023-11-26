@@ -65,13 +65,37 @@ func _physics_process(delta):
 
 
 func _on_mob_jump_collision_body_entered(body):
-	if character_state_machine.current_state.name == "Air":
-		print("Player: " + "landed on an body: " + str(body.name))
-		if body.get_parent().name == "Mobs" and body.health > 0:
+	print("Player: " + "landed on an body: " + str(body.name))
+	if body.get_parent().name == "Mobs" and body.health > 0:
+		if character_state_machine.current_state.name == "Air":	
 			body.health -= dmg
 			print("Player: " + "player dealt " + str(dmg) + " to a " + str(body.name))
 			mob_jump = true
+				
+	if body.name == "TileMap":
+		print("body.name == TileMap")
+		var tile_coords = body.local_to_map(global_position)
+		tile_coords.y += 1
+		var tile_data = body.get_cell_tile_data(0 , tile_coords)
+		if tile_data:
+			print(tile_coords)
+			print(tile_data.z_index)
+			print(tile_data.get_custom_data("is_spike"))
+			if tile_data.get_custom_data("is_spike"):
+				Game.player_hp -= 1
+#		var map_pos = body.world_to_map_position(position)
+#		var cell = body.get_cellv(map_pos)
+#		if body.cell_exists(map_pos):  # Ensure it's a valid cell
+#			var tile_id = body.get_cellv(map_pos)
+#			if body.tile_set.tile_exists(tile_id):
+#				var tile_properties = body.tile_set.tile_get_properties(tile_id)
+#				if "is_spike" in tile_properties and tile_properties["is_spike"] == true:
+#					print("is_spike in tile_properties and tile_properties[is_spike] == true")
+#					Game.player_hp -= 1
+					
 
+
+	
 
 func _on_mob_jump_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
