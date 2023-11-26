@@ -606,7 +606,7 @@ can_move = false
 script = ExtResource("10_x62h4")
 move_state = NodePath("../Move")
 spawn_animation = "Spawn"
-spawn_sound = NodePath("../../SFX/frog_death")
+spawn_sound = NodePath("")
 can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
@@ -685,10 +685,10 @@ libraries = {
 
 [node name="SFX" type="Node2D" parent="."]
 
-[node name="frog_death" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="frog_death" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_u3llr")
 
-[node name="frog_attack" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="frog_attack" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_nbeqg")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

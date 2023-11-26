@@ -572,7 +572,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
 texture = ExtResource("8_p4gqy")
 hframes = 6
 vframes = 6
@@ -679,16 +678,16 @@ autostart = true
 
 [node name="SFX" type="Node2D" parent="."]
 
-[node name="player_death" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="player_death" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_u1b4q")
 
-[node name="player_land_on_mob" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="player_land_on_mob" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("2_6fy74")
 
-[node name="player_land_on_ground" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="player_land_on_ground" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("3_gdg2d")
 
-[node name="player_jump" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="player_jump" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("3_laasd")
 
 [connection signal="animation_finished" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_finished"]

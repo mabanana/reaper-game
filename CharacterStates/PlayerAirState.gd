@@ -7,8 +7,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_animation: String = "Jump"
 @export var running_jump_deceleration: int = 5
 @export var air_deceleration: int = 100
-@export var jump_sound: AudioStreamPlayer2D
-@export var mob_jump_sound: AudioStreamPlayer2D
+@export var jump_sound: AudioStreamPlayer
+@export var mob_jump_sound: AudioStreamPlayer
 
 var has_double_jumped = false
 
@@ -17,6 +17,7 @@ func state_process(delta):
 		double_jump()
 		character.mob_jump = false
 		has_double_jumped = false
+		mob_jump_sound.play()
 	elif character.is_on_floor():
 		next_state = ground_state
 	if character.velocity.y > 0:

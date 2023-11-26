@@ -4,7 +4,7 @@ class_name AttackState
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var move_state: State
 @export var attack_animation: String = "Attack"
-@export var attack_sound: AudioStreamPlayer2D
+@export var attack_sound: AudioStreamPlayer
 
 
 

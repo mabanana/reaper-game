@@ -6,8 +6,8 @@ class_name GroundState
 @export var air_state: State
 @export var jump_animation : String = "Jump"
 @export var ground_deceleration: int = 100
-@export var jump_sound: AudioStreamPlayer2D
-@export var walk_sound: AudioStreamPlayer2D
+@export var jump_sound: AudioStreamPlayer
+@export var walk_sound: AudioStreamPlayer
 
 
 func on_enter():
