@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv0ru"]
-radius = 8.0
+radius = 7.0
 height = 23.0
 
 [sub_resource type="Animation" id="Animation_xvx6m"]

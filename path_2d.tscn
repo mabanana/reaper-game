@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b56gaf74otwo0"]
+
+[ext_resource type="Script" path="res://path_2d.gd" id="1_ks6am"]
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="2_dmjql"]
+[ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="3_xbom1"]
+
+[sub_resource type="Curve2D" id="Curve2D_sr0v5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 71, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_sr0v5")
+script = ExtResource("1_ks6am")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+progress = 183.78
+rotates = false
+script = ExtResource("2_dmjql")
+
+[node name="AnimatableBody2D" parent="PathFollow2D" instance=ExtResource("3_xbom1")]
