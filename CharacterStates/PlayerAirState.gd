@@ -2,13 +2,13 @@ extends State
 
 class_name AirState
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var ground_state: State
 @export var jump_velocity : float = -400
 @export var jump_animation: String = "Jump"
 @export var running_jump_deceleration: int = 5
 @export var air_deceleration: int = 100
 @export var jump_sound: AudioStreamPlayer
 @export var mob_jump_sound: AudioStreamPlayer
+
 
 var has_double_jumped = false
 
@@ -19,7 +19,7 @@ func state_process(delta):
 		has_double_jumped = false
 		mob_jump_sound.play()
 	elif character.is_on_floor():
-		next_state = ground_state
+		next_state = state_dict["Ground"]
 	if character.velocity.y > 0:
 		playback.travel("Fall")
 

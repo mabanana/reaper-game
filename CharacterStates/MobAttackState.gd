@@ -2,7 +2,6 @@ extends State
 
 class_name AttackState
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var move_state: State
 @export var attack_animation: String = "Attack"
 @export var attack_sound: AudioStreamPlayer
 
@@ -10,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func state_process(delta):
 	if character.name_animation_finished == attack_animation:
-		next_state = move_state
+		next_state = state_dict["Move"]
 
 func on_enter():
 #	playback.travel(attack_animation)

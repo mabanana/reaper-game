@@ -3,7 +3,6 @@ extends State
 
 class_name GroundState
 @export var jump_velocity: float = -400.0
-@export var air_state: State
 @export var jump_animation : String = "Jump"
 @export var ground_deceleration: int = 100
 @export var jump_sound: AudioStreamPlayer
@@ -18,7 +17,7 @@ func on_enter():
 
 func state_process(delta):
 	if not character.is_on_floor():
-		next_state = air_state
+		next_state = state_dict["Air"]
 	else:
 		character.jump_direction = 0
 
@@ -38,5 +37,5 @@ func state_input(event : InputEvent):
 func jump():
 	jump_sound.play()
 	character.velocity.y = jump_velocity
-	next_state = air_state
+	next_state = state_dict["Air"]
 	playback.travel(jump_animation)

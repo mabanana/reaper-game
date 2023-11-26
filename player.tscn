@@ -599,24 +599,28 @@ collision_mask = 10
 position = Vector2(-1, 17.125)
 shape = SubResource("RectangleShape2D_5s4n5")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree", "death_state")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
 script = ExtResource("8_83iwg")
 current_state = NodePath("Ground")
 character = NodePath("..")
 animation_tree = NodePath("../PlayerAnimationTree")
-death_state = NodePath("Death")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "jump_sound", "walk_sound")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("jump_sound", "walk_sound")]
 script = ExtResource("9_wfcsp")
-air_state = NodePath("../Air")
 jump_sound = NodePath("../../SFX/player_jump")
 walk_sound = NodePath("../../SFX/player_land_on_ground")
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "jump_sound", "mob_jump_sound")]
 script = ExtResource("10_3vlpb")
 ground_state = NodePath("../Ground")
+jump_velocity = null
+jump_animation = null
+running_jump_deceleration = null
+air_deceleration = null
 jump_sound = NodePath("../../SFX/player_jump")
 mob_jump_sound = NodePath("../../SFX/player_land_on_mob")
+can_move = null
+has_gravity = null
 
 [node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("death_sound")]
 script = ExtResource("11_tgcha")
