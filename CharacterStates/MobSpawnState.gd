@@ -11,7 +11,7 @@ func state_process(delta):
 		playback.travel(spawn_animation)
 		is_spawned = true
 	if character.name_animation_finished == spawn_animation:
-		next_state = state_dict["Move"]
+		next_state = get_parent().states["Move"]
 		
 func on_enter():
 	pass

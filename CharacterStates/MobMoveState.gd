@@ -7,7 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func state_process(delta):
 	if character.can_atk:
-		next_state = state_dict["Attack"]
+		next_state = get_parent().states["Attack"]
 	
 
 func on_enter():
@@ -15,6 +15,6 @@ func on_enter():
 
 
 func on_exit():
-	if next_state == state_dict["Attack"]:
+	if next_state == get_parent().states["Attack"]:
 		playback.travel("Attack")
 

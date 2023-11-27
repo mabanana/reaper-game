@@ -7,3 +7,4 @@ extends Node
 func jump():
 	character.jump_sound.play()
 	character.velocity.y = jump_velocity
+

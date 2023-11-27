@@ -16,7 +16,7 @@ func on_enter():
 
 func state_process(delta):
 	if not character.is_on_floor():
-		next_state = state_dict["Air"]
+		next_state = get_parent().states["Air"]
 	else:
 		character.jump_direction = 0
 
@@ -36,5 +36,5 @@ func state_input(event : InputEvent):
 func jump():
 	character.jump_sound.play()
 	character.velocity.y = jump_velocity
-	next_state = state_dict["Air"]
+	next_state = get_parent().states["Air"]
 	playback.travel(jump_animation)

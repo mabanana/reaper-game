@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func state_process(delta):
 	if character.name_animation_finished == attack_animation:
-		next_state = state_dict["Move"]
+		next_state = get_parent().states["Move"]
 
 func on_enter():
 #	playback.travel(attack_animation)

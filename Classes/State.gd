@@ -8,7 +8,6 @@ class_name State
 var character : CharacterBody2D
 var next_state: State
 var playback: AnimationNodeStateMachinePlayback
-var state_dict: Dictionary = get_parent().states
 
 func state_process(delta):
 	pass
@@ -21,3 +20,6 @@ func on_enter():
 
 func on_exit():
 	pass
+
+func get_state(state_name: String):
+	get_parent().states[state_name]

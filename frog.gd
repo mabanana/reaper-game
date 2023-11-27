@@ -14,7 +14,7 @@ func _ready():
 func _physics_process(delta):
 	if health <= 0 and character_state_machine.current_state.name != "Death":
 		collision_shape.set_deferred("disabled", true)
-		character_state_machine.current_state.next_state = character_state_machine.current_state.death_state
+		character_state_machine.current_state.next_state = character_state_machine.states["Death"]
 
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
