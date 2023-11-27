@@ -15,20 +15,16 @@ func _ready():
 				# Set the state up with what they need to function
 				child.character = character
 				child.playback = animation_tree["parameters/playback"]
-
 		else:
 			push_warning("CharacterStateMachine:  " + child.name + " is not a State for CharacterStateMachine")
-
 
 func state_machine_process(delta):
 	if current_state.next_state != null:
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
 
-
 func is_can_move():
 	return current_state.can_move
-
 
 func switch_states(new_state):
 	if current_state != null:

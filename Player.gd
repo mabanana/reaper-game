@@ -13,9 +13,9 @@ var bump: bool = false
 var dmg: int
 var name_animation_finished: String = ""
 var direction: int
+var idle: bool
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
-@export var character_state_machine: CharacterStateMachine
 @export var death_sound: AudioStreamPlayer
 @export var mob_jump_sound: AudioStreamPlayer
 @export var walk_sound: AudioStreamPlayer
@@ -23,6 +23,8 @@ var direction: int
 @export var hurt_sound: AudioStreamPlayer
 @export var jump_velocity: int = -400
 @export var speed = 300.0
+@export var ground_state_machine: CharacterStateMachine
+@export var action_state_machine: CharacterStateMachine
 
 
 
@@ -33,22 +35,21 @@ func _ready():
 func _physics_process(delta):
 	# Gets movement inputs
 	direction = Input.get_axis("move_left", "move_right")
-	
+	var blend_position: Vector2
 	if jump_counter > 0:
 		if Input.is_action_just_pressed("jump"):
 				jump()
 		elif Input.is_action_pressed("jump") and is_on_floor():
 				jump()
 
-	
-	
-	# Sends parameter data to the animation tree
-	animation_tree.set("parameters/Move/blend_position", direction)
+
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
-	character_state_machine.state_machine_process(delta)
-	
-	if character_state_machine.is_can_move():
+	action_state_machine.state_machine_process(delta)
+	ground_state_machine.state_machine_process(delta)
+
+
+	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
 		if direction != 0:
 			if direction == -1:
 				sprite_2d.flip_h = true
@@ -59,32 +60,38 @@ func _physics_process(delta):
 			velocity.x = direction * speed
 		# Changes deceleration depending on whether the player is in the air
 		else:
-			if character_state_machine.current_state.name == "Ground":
+			if ground_state_machine.current_state.name == "Ground":
 				velocity.x = move_toward(velocity.x, 0, speed/3)
-			elif character_state_machine.current_state.name == "Air":
+			elif ground_state_machine.current_state.name == "Air":
 				if jump_direction != 0:
 					velocity.x = move_toward(velocity.x, 0, speed/60)
 				else:
 					velocity.x = move_toward(velocity.x, 0, speed/3)
-
+		blend_position.x = direction
 		
-	if not is_on_floor(): 
-		if character_state_machine.current_state.has_gravity == true:
+	if ground_state_machine.current_state.name == "Air":
+		blend_position.x = 0
+		if ground_state_machine.current_state.has_gravity == true and action_state_machine.current_state.has_gravity == true:
 			velocity.y += Game.gravity * delta
-	else: 
+	elif ground_state_machine.current_state.name == "Air":
+		blend_position.y = 0
+	else:
 		jump_reset()
-			
+	blend_position.y = -velocity.y
+	blend_position = blend_position.normalized()
+	# Sends parameter data to the animation tree
+	animation_tree.set("parameters/Move/blend_position", blend_position)
 	dmg = jump_damage + int(jump_damage + velocity.y / 100)
 	move_and_slide()
 
 	# Sends player into death state if health drops below 0
-	if Game.player_hp <= 0 and character_state_machine.current_state.name != "Death":
-		character_state_machine.current_state.next_state = character_state_machine.states["Death"]
+	if Game.player_hp <= 0 and action_state_machine.current_state.name != "Death":
+		action_state_machine.current_state.next_state = action_state_machine.states["Death"]
 
 func jump():
 	jump_sound.play()
 	velocity.y = jump_velocity
-	character_state_machine.current_state.next_state = character_state_machine.states["Air"]
+	ground_state_machine.current_state.next_state = ground_state_machine.states["Air"]
 	jump_direction = direction
 	jump_counter -= 1
 
@@ -97,7 +104,7 @@ func jump_reset():
 func _on_mob_jump_collision_body_entered(body):
 	print("Player: " + "landed on an body: " + str(body.name))
 	if body.get_parent().name == "Mobs" and body.health > 0:
-		if character_state_machine.current_state.name == "Air":	
+		if ground_state_machine.current_state.name == "Air":	
 			body.health -= dmg
 			print("Player: " + "player dealt " + str(dmg) + " to a " + str(body.name))
 			jump_counter += 1

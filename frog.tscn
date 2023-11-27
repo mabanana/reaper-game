@@ -578,9 +578,8 @@ visible = false
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree")]
 script = ExtResource("7_ypbje")
-current_state = NodePath("Spawn")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
