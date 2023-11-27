@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=46 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -11,9 +11,11 @@
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="8_83iwg"]
 [ext_resource type="Texture2D" uid="uid://disbwkhp2j8ug" path="res://Sunny-land-files/Graphical Assets/environment/Props/crate.png" id="8_bjctr"]
 [ext_resource type="Texture2D" uid="uid://b3jncwsc2chip" path="res://Sunny-land-files/Graphical Assets/sprites/player/jump/player-jump-2.png" id="8_p4gqy"]
+[ext_resource type="Script" path="res://CharacterStates/HurtState.gd" id="9_7wvs3"]
 [ext_resource type="Script" path="res://MessageLabel.gd" id="9_flgqm"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerGroundState.gd" id="9_wfcsp"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
+[ext_resource type="Script" path="res://CharacterStates/Idle.gd" id="10_owyrq"]
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
@@ -465,22 +467,88 @@ tracks/4/keys = {
 "values": [6]
 }
 
+[sub_resource type="Animation" id="Animation_t18yk"]
+resource_name = "Hurt"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_opci6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 24, 25]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerSprite:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerSprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.47451, 0.427451, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh5bq"]
 _data = {
 "Attack": SubResource("Animation_xvx6m"),
 "Death": SubResource("Animation_cgppq"),
 "Fall": SubResource("Animation_js5y2"),
+"Hurt": SubResource("Animation_t18yk"),
 "Idle": SubResource("Animation_0fo2f"),
 "Jump": SubResource("Animation_tdynk"),
 "RESET": SubResource("Animation_8attm"),
 "Run": SubResource("Animation_p6rlf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rgiak"]
-animation = &"Attack"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tiyw7"]
 animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f7bko"]
+animation = &"Hurt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e057d"]
 animation = &"Idle"
@@ -512,26 +580,27 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7tdl"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0misl"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wyvy6"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b8nly"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jfev1"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4trro"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yyw5u"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wfeoj"]
-states/Attack/node = SubResource("AnimationNodeAnimation_rgiak")
-states/Attack/position = Vector2(292, 250)
 states/Death/node = SubResource("AnimationNodeAnimation_tiyw7")
 states/Death/position = Vector2(513, 143)
 states/End/position = Vector2(885, 143)
+states/Hurt/node = SubResource("AnimationNodeAnimation_f7bko")
+states/Hurt/position = Vector2(292, 249)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_1xajj")
 states/Move/position = Vector2(292, 143)
 states/Start/position = Vector2(52, 143)
-transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_d7tdl"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_0misl"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_wyvy6"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_b8nly"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_jfev1")]
-graph_offset = Vector2(-163, 80)
+transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_d7tdl"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_b8nly"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_jfev1"), "Move", "Hurt", SubResource("AnimationNodeStateMachineTransition_4trro"), "Hurt", "Move", SubResource("AnimationNodeStateMachineTransition_yyw5u")]
+graph_offset = Vector2(-143, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s4n5"]
 size = Vector2(18, 2.25)
@@ -605,6 +674,13 @@ script = ExtResource("11_tgcha")
 death_animation = "Death"
 can_move = false
 has_gravity = false
+
+[node name="Hurt" type="Node" parent="ActionStateMachine"]
+script = ExtResource("9_7wvs3")
+hurt_animation = "Hurt"
+
+[node name="Idle" type="Node" parent="ActionStateMachine"]
+script = ExtResource("10_owyrq")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("despawn_timer")]
 layout_mode = 3

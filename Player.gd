@@ -23,6 +23,7 @@ var idle: bool
 @export var hurt_sound: AudioStreamPlayer
 @export var jump_velocity: int = -400
 @export var speed = 300.0
+@export var hit_stun_length = 0.1
 @export var ground_state_machine: CharacterStateMachine
 @export var action_state_machine: CharacterStateMachine
 
@@ -71,9 +72,11 @@ func _physics_process(delta):
 		
 	if ground_state_machine.current_state.name == "Air":
 		blend_position.x = 0
-		if ground_state_machine.current_state.has_gravity == true and action_state_machine.current_state.has_gravity == true:
+		if ground_state_machine.current_state.has_gravity and action_state_machine.current_state.has_gravity:
 			velocity.y += Game.gravity * delta
-	elif ground_state_machine.current_state.name == "Air":
+		if velocity.y == 0:
+			velocity.y += 1
+	elif ground_state_machine.current_state.name == "Ground":
 		blend_position.y = 0
 	else:
 		jump_reset()
@@ -83,6 +86,8 @@ func _physics_process(delta):
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	dmg = jump_damage + int(jump_damage + velocity.y / 100)
 	move_and_slide()
+
+
 
 	# Sends player into death state if health drops below 0
 	if Game.player_hp <= 0 and action_state_machine.current_state.name != "Death":
@@ -100,7 +105,11 @@ func jump_reset():
 		jump_counter = 2
 	else:
 		jump_counter = 1
-		
+
+func take_damage(int = 1):
+	pass
+
+
 func _on_mob_jump_collision_body_entered(body):
 	print("Player: " + "landed on an body: " + str(body.name))
 	if body.get_parent().name == "Mobs" and body.health > 0:

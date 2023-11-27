@@ -1,6 +1,4 @@
 extends State
-
-
 class_name GroundState
 
 func on_enter():

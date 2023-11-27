@@ -4,6 +4,7 @@ class_name State
 
 @export var can_move: bool = true
 @export var has_gravity: bool = true
+@export var can_attack: bool = true
 
 var character : CharacterBody2D
 var next_state: State
@@ -20,6 +21,3 @@ func on_enter():
 
 func on_exit():
 	pass
-
-func get_state(state_name: String):
-	get_parent().states[state_name]
