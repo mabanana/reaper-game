@@ -11,6 +11,7 @@ func state_process(delta):
 	var timer := Timer.new()
 	add_child(timer)
 	timer.start(character.hit_stun_length)
+	timer.paused = false
 	timer.connect("timeout", _on_timer_timeout)
 
 func _on_timer_timeout():

@@ -78,8 +78,8 @@ func _physics_process(delta):
 			velocity.y += 1
 	elif ground_state_machine.current_state.name == "Ground":
 		blend_position.y = 0
-	else:
 		jump_reset()
+		
 	blend_position.y = -velocity.y
 	blend_position = blend_position.normalized()
 	# Sends parameter data to the animation tree
@@ -106,8 +106,10 @@ func jump_reset():
 	else:
 		jump_counter = 1
 
-func take_damage(int = 1):
-	pass
+func take_damage(dmg: int = 1):
+	Game.player_hp -= dmg
+	if action_state_machine.current_state.name != "Death":
+		action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
 
 
 func _on_mob_jump_collision_body_entered(body):
@@ -126,7 +128,7 @@ func _on_mob_jump_collision_body_entered(body):
 		var tile_data = body.get_cell_tile_data(0 , tile_coords)
 		if tile_data:
 			if tile_data.get_custom_data("is_spike"):
-				Game.player_hp -= 1
+				take_damage()
 
 
 
@@ -141,4 +143,15 @@ func _on_player_animation_tree_animation_started(anim_name):
 	name_animation_finished = ""
 
 
+func _on_hurtbox_body_entered(body):
+	print("Player: a " + str(body.name) + " has collided with the player's hitbox")
+	if body.has_method("deal_damage"):
+		take_damage(body.deal_damage())
 
+
+func _on_animation_tree_animation_finished(anim_name):
+	name_animation_finished = anim_name
+
+
+func _on_animation_tree_animation_started(anim_name):
+	name_animation_finished = ""

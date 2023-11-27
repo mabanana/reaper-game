@@ -1,7 +1,6 @@
 extends State
 
 class_name MoveState
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var move_animation: String
 
 

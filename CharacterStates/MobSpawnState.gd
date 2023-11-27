@@ -1,9 +1,7 @@
 extends State
 
 class_name SpawnState
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var spawn_animation: String
-@export var spawn_sound: AudioStreamPlayer2D
 var is_spawned = false
 
 func state_process(delta):

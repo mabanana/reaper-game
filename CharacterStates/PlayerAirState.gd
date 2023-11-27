@@ -7,6 +7,6 @@ func state_process(delta):
 		next_state = get_parent().states["Ground"]
 
 
-func on_exit():
+func on_enter():
 	pass
 

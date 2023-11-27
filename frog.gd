@@ -6,6 +6,9 @@ extends Mob
 @export var death_sound: AudioStreamPlayer
 @export var attack_sound: AudioStreamPlayer
 
+
+var ground_state_machine = CharacterStateMachine
+var action_state_machine = CharacterStateMachine
 var name_animation_finished: String = ""
 
 func _ready():
@@ -55,6 +58,11 @@ func _physics_process(delta):
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
 
+func deal_damage():
+	attack_sound.play()
+	print("Frog: frog deals " + str(attack_damage) + " to player")
+	return attack_damage
+
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 
@@ -68,6 +76,7 @@ func _on_player_detection_body_exited(body):
 func _on_player_collision_body_entered(body):
 	if body.name == "Player":
 		can_atk = true
+		
 func _on_player_collision_body_exited(body):
 	if body.name == "Player":
 		can_atk = false

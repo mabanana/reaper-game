@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=73 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
 [ext_resource type="Script" path="res://frog.gd" id="1_tbwk3"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://CharacterStates/MobMoveState.gd" id="9_03bk7"]
 [ext_resource type="Script" path="res://CharacterStates/MobAttackState.gd" id="10_jrs1a"]
 [ext_resource type="Script" path="res://CharacterStates/MobSpawnState.gd" id="10_x62h4"]
-[ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_nqbje"]
 [ext_resource type="Script" path="res://TextureProgressBar.gd" id="11_ql0vd"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="11_sfp5r"]
 
@@ -578,8 +577,9 @@ visible = false
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
 script = ExtResource("7_ypbje")
+current_state = NodePath("Spawn")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
@@ -597,13 +597,12 @@ move_animation = "Move"
 script = ExtResource("10_jrs1a")
 can_move = false
 
-[node name="Spawn" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("spawn_sound")]
+[node name="Spawn" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("10_x62h4")
 spawn_animation = "Spawn"
-spawn_sound = NodePath("")
 can_move = false
 
-[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+[node name="StateDebugLabel" type="Label" parent="."]
 offset_left = -41.0
 offset_top = -3.0
 offset_right = 41.0
@@ -615,8 +614,6 @@ text = "text"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-script = ExtResource("11_nqbje")
-state_machine = NodePath("../CharacterStateMachine")
 
 [node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("character")]
 anchors_preset = 7

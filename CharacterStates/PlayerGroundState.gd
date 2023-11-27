@@ -4,6 +4,7 @@ class_name GroundState
 func on_enter():
 	if character.is_on_floor():
 		character.walk_sound.play()
+	pass
 
 func state_process(delta):
 	if not character.is_on_floor():

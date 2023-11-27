@@ -20,8 +20,10 @@ func _ready():
 
 func state_machine_process(delta):
 	if current_state.next_state != null:
+		print(str(character.name) + " has entered " + str(current_state.next_state) + " from " + str(current_state))
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
+	print("Current Animation Node: "+str(current_state.playback.get_current_node()))
 
 func is_can_move():
 	return current_state.can_move
@@ -32,6 +34,7 @@ func switch_states(new_state):
 		current_state.next_state = null
 	current_state = new_state
 	current_state.on_enter()
+	
 
 func _input(event : InputEvent):
 	current_state.state_input(event)
