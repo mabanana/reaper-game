@@ -23,7 +23,7 @@ func state_machine_process(delta):
 		print(str(character.name) + " has entered " + str(current_state.next_state) + " from " + str(current_state))
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
-	print("Current Animation Node: "+str(current_state.playback.get_current_node()))
+
 
 func is_can_move():
 	return current_state.can_move

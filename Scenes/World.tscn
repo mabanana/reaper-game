@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=48 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://path_2d.gd" id="12_3pck4"]
 [ext_resource type="Script" path="res://PathFollow2D.gd" id="13_6ioy6"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
+[ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvk7w"]
 texture = ExtResource("3_d6wah")
@@ -1621,6 +1622,12 @@ wait_time = 0.15
 one_shot = true
 
 [node name="Blocks" type="Node" parent="."]
+
+[node name="DestructBlock" parent="Blocks" instance=ExtResource("16_ip8ql")]
+position = Vector2(-34, 408)
+
+[node name="DestructBlock2" parent="Blocks" instance=ExtResource("16_ip8ql")]
+position = Vector2(109, 411)
 
 [node name="Node2D" type="Node2D" parent="Blocks"]
 
