@@ -1552,21 +1552,6 @@ position = Vector2(-115, 331)
 [node name="Mobs" type="Node2D" parent="."]
 script = ExtResource("5_voxrr")
 
-[node name="Frog" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(188, 259)
-
-[node name="Frog2" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(549, 386)
-
-[node name="Frog3" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(612, 148)
-
-[node name="Frog4" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(1009, 306)
-
-[node name="Frog5" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(381, 339)
-
 [node name="Collectables" type="Node2D" parent="."]
 script = ExtResource("7_pklcw")
 
@@ -1680,6 +1665,21 @@ rotates = false
 script = ExtResource("13_6ioy6")
 
 [node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D5/PathFollow2D" instance=ExtResource("14_gp7d6")]
+
+[node name="Frog" parent="." instance=ExtResource("6_0u63l")]
+position = Vector2(302, 324)
+
+[node name="Frog2" parent="." instance=ExtResource("6_0u63l")]
+position = Vector2(784, 185)
+
+[node name="Frog3" parent="." instance=ExtResource("6_0u63l")]
+position = Vector2(803, 501)
+
+[node name="Frog4" parent="." instance=ExtResource("6_0u63l")]
+position = Vector2(604, 724)
+
+[node name="Frog5" parent="." instance=ExtResource("6_0u63l")]
+position = Vector2(-394, 227)
 
 [connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]

@@ -37,12 +37,6 @@ func _physics_process(delta):
 	# Gets movement inputs
 	direction = Input.get_axis("move_left", "move_right")
 	var blend_position: Vector2
-	if jump_counter > 0:
-		if Input.is_action_just_pressed("jump"):
-				jump()
-		elif Input.is_action_pressed("jump") and is_on_floor():
-				jump()
-
 
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
@@ -51,6 +45,11 @@ func _physics_process(delta):
 
 
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
+		if jump_counter > 0:
+			if Input.is_action_just_pressed("jump"):
+					jump()
+			elif Input.is_action_pressed("jump") and is_on_floor():
+					jump()
 		if direction != 0:
 			if direction == -1:
 				sprite_2d.flip_h = true
@@ -107,9 +106,10 @@ func jump_reset():
 		jump_counter = 1
 
 func take_damage(dmg: int = 1):
-	Game.player_hp -= dmg
-	if action_state_machine.current_state.name != "Death":
-		action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
+	if dmg > 0:
+		Game.player_hp -= dmg
+		if action_state_machine.current_state.name != "Death":
+			action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
 
 
 func _on_mob_jump_collision_body_entered(body):
@@ -145,8 +145,7 @@ func _on_player_animation_tree_animation_started(anim_name):
 
 func _on_hurtbox_body_entered(body):
 	print("Player: a " + str(body.name) + " has collided with the player's hitbox")
-	if body.has_method("deal_damage"):
-		take_damage(body.deal_damage())
+
 
 
 func _on_animation_tree_animation_finished(anim_name):

@@ -2,13 +2,11 @@ extends Mob
 
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
-@export var character_state_machine: CharacterStateMachine
 @export var death_sound: AudioStreamPlayer
 @export var attack_sound: AudioStreamPlayer
+@export var character_state_machine: CharacterStateMachine
 
-
-var ground_state_machine = CharacterStateMachine
-var action_state_machine = CharacterStateMachine
+var atk_target
 var name_animation_finished: String = ""
 
 func _ready():
@@ -22,8 +20,7 @@ func _physics_process(delta):
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
 	var blend_position: Vector2
-
-
+	
 	# Moves the chatacter based on input if state allows movement
 	if character_state_machine.current_state.can_move:
 #		animation_tree["parameters/Move/blend_position"] = (Vector2(0, 0))
@@ -45,7 +42,7 @@ func _physics_process(delta):
 		else:
 			velocity.x = 0
 		#Adds gravity to mobs if not on the floor
-	if not is_on_floor() and character_state_machine.current_state.has_gravity == true:
+	if not is_on_floor() and character_state_machine.current_state.has_gravity:
 		velocity.y += gravity * delta
 		blend_position.y = velocity.y
 		blend_position = blend_position.normalized()
@@ -58,10 +55,12 @@ func _physics_process(delta):
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
 
-func deal_damage():
-	attack_sound.play()
-	print("Frog: frog deals " + str(attack_damage) + " to player")
-	return attack_damage
+func deal_damage(target):
+	if can_atk:
+		if target.has_method("take_damage"):
+			attack_sound.play()
+			print("Frog: frog deals " + str(attack_damage) + " to player")
+			target.take_damage(attack_damage)	
 
 
 func _on_player_detection_body_entered(body):
@@ -74,23 +73,20 @@ func _on_player_detection_body_exited(body):
 
 
 func _on_player_collision_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and character_state_machine.current_state.can_attack:
+		atk_target = body
 		can_atk = true
-		
+
+
 func _on_player_collision_body_exited(body):
 	if body.name == "Player":
 		can_atk = false
 	
 
-
-func _on_frog_animation_tree_animation_finished(anim_name):
-	name_animation_finished = anim_name
-
-
-
 func _on_animation_tree_animation_started(anim_name):
-	pass
+	name_animation_finished = ""
 
 
-func _on_asd_animation_tree_animation_finished(anim_name):
+
+func _on_animation_tree_animation_finished(anim_name):
 	name_animation_finished = anim_name

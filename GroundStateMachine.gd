@@ -1,0 +1,2 @@
+extends CharacterStateMachine
+class_name GroundStateMachine

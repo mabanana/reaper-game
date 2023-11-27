@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://CharacterStates/PlayerGroundState.gd" id="9_wfcsp"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://CharacterStates/Idle.gd" id="10_owyrq"]
-[ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="11_m1vsv"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
 
@@ -696,6 +695,21 @@ graph_offset = Vector2(-143, 104)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp71e"]
 texture = ExtResource("8_bjctr")
 
+[sub_resource type="GDScript" id="GDScript_822bb"]
+script/source = "extends Label
+
+@export var character: CharacterBody2D
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"State : \" + character.action_state_machine.current_state.name + \", \" + character.ground_state_machine.current_state.name
+	pass
+"
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "ground_state_machine", "action_state_machine")]
 collision_mask = 14
 floor_snap_length = 8.0
@@ -832,7 +846,7 @@ theme_override_font_sizes/font_size = 10
 text = "text"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("11_m1vsv")
+script = SubResource("GDScript_822bb")
 character = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="Control"]

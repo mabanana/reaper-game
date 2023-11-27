@@ -15,5 +15,5 @@ func on_enter():
 	pass
 
 func on_exit():
-	character.name_animation_finished = ""
-	playback.travel("Move")
+	#	character.name_animation_finished = ""
+		playback.travel("Move")

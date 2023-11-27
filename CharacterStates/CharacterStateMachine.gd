@@ -35,6 +35,3 @@ func switch_states(new_state):
 	current_state = new_state
 	current_state.on_enter()
 	
-
-func _input(event : InputEvent):
-	current_state.state_input(event)
