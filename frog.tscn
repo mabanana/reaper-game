@@ -20,7 +20,8 @@
 radius = 104.043
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhpf5"]
-radius = 7.0
+radius = 5.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
 size = Vector2(24, 25)
@@ -566,7 +567,7 @@ shape = SubResource("CircleShape2D_pfwwa")
 collision_layer = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerCollision"]
-position = Vector2(-1, 4)
+position = Vector2(-1, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hhpf5")
 
@@ -603,6 +604,7 @@ spawn_animation = "Spawn"
 can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -41.0
 offset_top = -3.0
 offset_right = 41.0
