@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=51 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -1515,6 +1515,9 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pqqx"]
+size = Vector2(64, 47)
+
 [node name="World" type="Node2D"]
 
 [node name="BG" type="ParallaxBackground" parent="."]
@@ -1686,6 +1689,15 @@ script = ExtResource("13_6ioy6")
 [node name="Swinging Object" parent="Blocks" instance=ExtResource("17_u0dge")]
 position = Vector2(82, 103)
 hazard_sprite = ExtResource("18_qo1p8")
+
+[node name="Triggers" type="Node" parent="."]
+
+[node name="DialogueTrigger" type="Area2D" parent="Triggers"]
+position = Vector2(-576, -291)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/DialogueTrigger"]
+position = Vector2(372, 603)
+shape = SubResource("RectangleShape2D_1pqqx")
 
 [connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
