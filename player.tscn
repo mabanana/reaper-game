@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=48 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://CharacterStates/PlayerGroundState.gd" id="9_wfcsp"]
 [ext_resource type="Script" path="res://CharacterStates/PlayerAirState.gd" id="10_3vlpb"]
 [ext_resource type="Script" path="res://CharacterStates/Idle.gd" id="10_owyrq"]
+[ext_resource type="Script" path="res://BusyState.gd" id="11_nhp7y"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
 
@@ -799,6 +800,12 @@ script = ExtResource("10_owyrq")
 [node name="Hurt" type="Node" parent="ActionStateMachine"]
 script = ExtResource("9_7wvs3")
 hurt_animation = "Hurt"
+
+[node name="Busy" type="Node" parent="ActionStateMachine"]
+script = ExtResource("11_nhp7y")
+can_move = false
+has_gravity = false
+can_attack = false
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("despawn_timer")]
 layout_mode = 3
