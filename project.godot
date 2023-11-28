@@ -21,6 +21,10 @@ Game="*res://Global/Game.gd"
 Utils="*res://Global/Utils.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[dialogue_manager]
+
+general/balloon_path="res://UI/balloon.tscn"
+
 [display]
 
 window/size/viewport_width=1920
