@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://DestructBlock.gd" id="1_thfq0"]
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="2_58srq"]
 [ext_resource type="Texture2D" uid="uid://cam15nnk8in05" path="res://Sunny-land-files/Graphical Assets/environment/Props/block.png" id="3_l810p"]
-[ext_resource type="AudioStream" uid="uid://dg3bv4ccdfs8p" path="res://Sunny-land-files/10_UI_Menu_SFX/071_Unequip_01.wav" id="4_kmu0g"]
+[ext_resource type="AudioStream" uid="uid://df5aipl5la2w" path="res://Sunny-land-files/8_Atk_Magic_SFX/30_Earth_02.wav" id="4_aa0wl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bedup"]
 size = Vector2(16, 16)
@@ -55,7 +55,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Death",
-"speed": 15.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -66,11 +66,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DestructBlock" type="RigidBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "death_sound")]
+[node name="DestructBlock" type="StaticBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "death_sound")]
 collision_layer = 8
 collision_mask = 7
-gravity_scale = 0.0
-lock_rotation = true
 script = ExtResource("1_thfq0")
 animated_sprite = NodePath("AnimatedSprite2D")
 trigger_body_name = "Player"
@@ -92,6 +90,6 @@ frame_progress = 1.0
 polygon = PackedVector2Array(0, 0, 8, 9, -8, 9)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_kmu0g")
+stream = ExtResource("4_aa0wl")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

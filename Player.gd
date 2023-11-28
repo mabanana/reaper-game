@@ -75,7 +75,7 @@ func _physics_process(delta):
 			velocity.y += Game.gravity * delta
 		if velocity.y == 0:
 			velocity.y += 1
-	elif ground_state_machine.current_state.name == "Ground":
+	elif ground_state_machine.current_state.name == "Ground" and ground_state_machine.current_state.next_state == null:
 		blend_position.y = 0
 		jump_reset()
 		
@@ -100,7 +100,7 @@ func jump():
 	jump_counter -= 1
 
 func jump_reset():
-	if Game.gems_collected > 1:
+	if Game.gems_collected >= 1:
 		jump_counter = 2
 	else:
 		jump_counter = 1
