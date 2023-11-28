@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm0h4hjbeyvf8"]
+
+[ext_resource type="Script" path="res://swinging_object.gd" id="1_lvqru"]
+[ext_resource type="Texture2D" uid="uid://ds1yfnk5vpg6t" path="res://Sunny-land-files/Graphical Assets/sprites/frog/idle/frog-idle-3.png" id="2_mmuqb"]
+[ext_resource type="Texture2D" uid="uid://b3so2nejk7jre" path="res://Sunny-land-files/Graphical Assets/environment/Props/pine.png" id="3_jyxxx"]
+[ext_resource type="AudioStream" uid="uid://kugsh87aljot" path="res://Sunny-land-files/10_Battle_SFX/77_flesh_02.wav" id="4_6tasa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bsqy"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6054t"]
+b = Vector2(0, 100)
+
+[node name="Swinging Object" type="Node2D" node_paths=PackedStringArray("rope", "hazard_sprite2d", "hit_sound")]
+script = ExtResource("1_lvqru")
+rope = NodePath("Rope")
+angular_speed = 1
+initial_angle = 0.5
+reverse_angle_radians = 0.5
+hazard_sprite = ExtResource("2_mmuqb")
+hazard_sprite2d = NodePath("Hazard/Sprite2D")
+damage = 1
+hit_sound = NodePath("hit_sound")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, 100)
+node_a = NodePath("../Rope")
+node_b = NodePath("../Hazard")
+
+[node name="Hazard" type="RigidBody2D" parent="."]
+position = Vector2(0, 100)
+collision_layer = 16
+collision_mask = 18
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Hazard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+shape = SubResource("CircleShape2D_3bsqy")
+
+[node name="Hitbox" type="Area2D" parent="Hazard"]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hazard/Hitbox"]
+shape = SubResource("CircleShape2D_3bsqy")
+
+[node name="Rope" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope"]
+shape = SubResource("SegmentShape2D_6054t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rope"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jyxxx")
+
+[node name="hit_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6tasa")
+
+[connection signal="body_entered" from="Hazard/Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=50 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://PathFollow2D.gd" id="13_6ioy6"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
+[ext_resource type="PackedScene" uid="uid://bm0h4hjbeyvf8" path="res://swinging_object.tscn" id="17_u0dge"]
+[ext_resource type="Texture2D" uid="uid://cam15nnk8in05" path="res://Sunny-land-files/Graphical Assets/environment/Props/block.png" id="18_qo1p8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvk7w"]
 texture = ExtResource("3_d6wah")
@@ -1680,6 +1682,10 @@ rotates = false
 script = ExtResource("13_6ioy6")
 
 [node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D5/PathFollow2D" instance=ExtResource("14_gp7d6")]
+
+[node name="Swinging Object" parent="Blocks" instance=ExtResource("17_u0dge")]
+position = Vector2(82, 103)
+hazard_sprite = ExtResource("18_qo1p8")
 
 [connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
