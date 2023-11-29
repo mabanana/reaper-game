@@ -34,11 +34,12 @@ func _physics_process(delta):
 				velocity.x = direction.x - speed
 				sprite_2d.flip_h = false
 			blend_position.x = velocity.x
-	else:
-		if character_state_machine.current_state.name == "Attack":
-			velocity.x = move_toward(velocity.x, 0, speed/5)
+			
 		else:
-			velocity.x = 0
+			if character_state_machine.current_state.name == "Attack":
+				velocity.x = move_toward(velocity.x, 0, speed/5)
+			else:
+				velocity.x = 0
 		#Adds gravity to mobs if not on the floor
 	if not is_on_floor() and character_state_machine.current_state.has_gravity:
 		velocity.y += gravity * delta
