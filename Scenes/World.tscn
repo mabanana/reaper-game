@@ -1634,57 +1634,57 @@ position = Vector2(-34, 408)
 [node name="DestructBlock2" parent="Blocks" instance=ExtResource("16_ip8ql")]
 position = Vector2(109, 411)
 
-[node name="Node2D" type="Node2D" parent="Blocks"]
+[node name="MovingPlarforms" type="Node2D" parent="Blocks"]
 
-[node name="Path2D" type="Path2D" parent="Blocks/Node2D"]
+[node name="Path2D" type="Path2D" parent="Blocks/MovingPlarforms"]
 position = Vector2(1104, 1098)
 curve = SubResource("Curve2D_sr0v5")
 script = ExtResource("12_3pck4")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/Node2D/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/MovingPlarforms/Path2D"]
 rotates = false
 script = ExtResource("13_6ioy6")
 
-[node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D/PathFollow2D" instance=ExtResource("14_gp7d6")]
+[node name="AnimatableBody2D" parent="Blocks/MovingPlarforms/Path2D/PathFollow2D" instance=ExtResource("14_gp7d6")]
 
-[node name="Path2D2" type="Path2D" parent="Blocks/Node2D"]
+[node name="Path2D2" type="Path2D" parent="Blocks/MovingPlarforms"]
 position = Vector2(1210, 1145)
 curve = SubResource("Curve2D_sr0v5")
 script = ExtResource("12_3pck4")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/Node2D/Path2D2"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/MovingPlarforms/Path2D2"]
 position = Vector2(100, 0)
 progress = 100.0
 rotates = false
 script = ExtResource("13_6ioy6")
 
-[node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D2/PathFollow2D" instance=ExtResource("14_gp7d6")]
+[node name="AnimatableBody2D" parent="Blocks/MovingPlarforms/Path2D2/PathFollow2D" instance=ExtResource("14_gp7d6")]
 
-[node name="Path2D4" type="Path2D" parent="Blocks/Node2D"]
+[node name="Path2D4" type="Path2D" parent="Blocks/MovingPlarforms"]
 position = Vector2(1002, 1145)
 curve = SubResource("Curve2D_sr0v5")
 script = ExtResource("12_3pck4")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/Node2D/Path2D4"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/MovingPlarforms/Path2D4"]
 position = Vector2(50, 0)
 progress = 50.0
 rotates = false
 script = ExtResource("13_6ioy6")
 
-[node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D4/PathFollow2D" instance=ExtResource("14_gp7d6")]
+[node name="AnimatableBody2D" parent="Blocks/MovingPlarforms/Path2D4/PathFollow2D" instance=ExtResource("14_gp7d6")]
 
-[node name="Path2D5" type="Path2D" parent="Blocks/Node2D"]
+[node name="Path2D5" type="Path2D" parent="Blocks/MovingPlarforms"]
 position = Vector2(787, 1207)
 curve = SubResource("Curve2D_mh524")
 script = ExtResource("12_3pck4")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/Node2D/Path2D5"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Blocks/MovingPlarforms/Path2D5"]
 position = Vector2(49.9948, 0)
 progress = 50.0
 rotates = false
 script = ExtResource("13_6ioy6")
 
-[node name="AnimatableBody2D" parent="Blocks/Node2D/Path2D5/PathFollow2D" instance=ExtResource("14_gp7d6")]
+[node name="AnimatableBody2D" parent="Blocks/MovingPlarforms/Path2D5/PathFollow2D" instance=ExtResource("14_gp7d6")]
 
 [node name="Swinging Object" parent="Blocks" instance=ExtResource("17_u0dge")]
 position = Vector2(82, 103)

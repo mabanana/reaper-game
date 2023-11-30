@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xg4tqu7kshnl"
+path="res://.godot/imported/summer nights.ogg-e95cc31c8dde292f61148c54c921fd57.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sunny-land-files/Music by Ansimuz/summer nights.ogg"
+dest_files=["res://.godot/imported/summer nights.ogg-e95cc31c8dde292f61148c54c921fd57.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -111,7 +111,6 @@ func take_damage(dmg: int = 1):
 		if action_state_machine.current_state.name != "Death":
 			action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
 
-
 func _on_mob_jump_collision_body_entered(body):
 	print("Player: " + "landed on an body: " + str(body.name))
 	if body.get_parent().name == "Mobs" and body.health > 0:
@@ -121,7 +120,7 @@ func _on_mob_jump_collision_body_entered(body):
 			jump_counter += 1
 			jump()
 			mob_jump_sound.play()
-				
+
 	if body.name == "TileMap":
 		var tile_coords = body.local_to_map(global_position)
 		tile_coords.y += 1
@@ -129,8 +128,6 @@ func _on_mob_jump_collision_body_entered(body):
 		if tile_data:
 			if tile_data.get_custom_data("is_spike"):
 				take_damage()
-
-
 
 func _on_mob_jump_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))
