@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=53 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
 [ext_resource type="PackedScene" uid="uid://bm0h4hjbeyvf8" path="res://swinging_object.tscn" id="17_u0dge"]
 [ext_resource type="Texture2D" uid="uid://cam15nnk8in05" path="res://Sunny-land-files/Graphical Assets/environment/Props/block.png" id="18_qo1p8"]
+[ext_resource type="Texture2D" uid="uid://bwueaivtk4at2" path="res://PXUI-Basic/panel_Example1.png" id="19_1wo2p"]
 [ext_resource type="Script" path="res://Scenes/DialogueTrigger.gd" id="19_s5edy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cvk7w"]
@@ -1693,8 +1694,13 @@ hazard_sprite = ExtResource("18_qo1p8")
 
 [node name="Triggers" type="Node" parent="."]
 
+[node name="ArrowExample" type="Sprite2D" parent="Triggers"]
+position = Vector2(-276, 415.5)
+scale = Vector2(0.16, 0.473333)
+texture = ExtResource("19_1wo2p")
+
 [node name="DialogueTrigger" type="Area2D" parent="Triggers"]
-position = Vector2(-576, -291)
+position = Vector2(-648, -187)
 script = ExtResource("19_s5edy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/DialogueTrigger"]
