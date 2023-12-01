@@ -19,5 +19,5 @@ func _process(delta):
 		elif Game.gems_collected == 2:
 			text_temp = bb_style + "Jumps do more Damage!!"
 		else:
-			Game.show_player_message = false
+			Game.show_player_msg = false
 		text = text_temp

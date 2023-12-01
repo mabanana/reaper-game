@@ -5,19 +5,18 @@
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_e7lqy")
 
+[node name="Play" type="Button" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+text = "Click to return to Main Menu"
+
 [node name="Label" type="Label" parent="."]
-offset_left = 297.0
-offset_top = 211.0
-offset_right = 842.0
-offset_bottom = 356.0
+offset_left = 640.0
+offset_top = 320.0
+offset_right = 1280.0
+offset_bottom = 465.0
 theme_override_font_sizes/font_size = 100
 text = "Game Over"
-
-[node name="Play" type="Button" parent="."]
-offset_left = 476.0
-offset_top = 395.0
-offset_right = 683.0
-offset_bottom = 447.0
-text = "Return To Main Menu"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

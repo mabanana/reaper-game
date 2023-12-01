@@ -1708,3 +1708,4 @@ shape = SubResource("RectangleShape2D_1pqqx")
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Triggers/DialogueTrigger" to="Triggers/DialogueTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/DialogueTrigger" to="Triggers/DialogueTrigger" method="_on_body_exited"]

@@ -1,0 +1,16 @@
+~ this_is_a_node_title
+
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- set HP to 5
+	Nathan: you are healed
+	set player_hp = 5
+- increase gem number
+	Nathan: you have one more gem
+	set gems_collected += 1
+	Nathan: you have gems_collected gems
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information see the online documentation.
+
+=> END
