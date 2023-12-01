@@ -4,7 +4,7 @@ extends State
 class_name BusyState
 
 func on_enter():
-	pass
+	character.velocity.x = 0
 
 
 func state_process(delta):

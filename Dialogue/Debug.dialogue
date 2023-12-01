@@ -11,6 +11,6 @@ Nathan: Here are some choices.
 	Nathan: you have gems_collected gems
 - Start again => this_is_a_node_title
 - End the conversation => END
-Nathan: For more information see the online documentation.
+
 
 => END

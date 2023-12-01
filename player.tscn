@@ -804,7 +804,6 @@ hurt_animation = "Hurt"
 [node name="Busy" type="Node" parent="ActionStateMachine"]
 script = ExtResource("11_nhp7y")
 can_move = false
-has_gravity = false
 can_attack = false
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("despawn_timer")]
