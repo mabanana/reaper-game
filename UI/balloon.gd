@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var balloon: Panel = %Balloon
+@onready var balloon: NinePatchRect = %Balloon
 @onready var character_label: RichTextLabel = %CharacterLabel
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
