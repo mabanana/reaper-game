@@ -15,6 +15,8 @@ var name_animation_finished: String = ""
 var direction: int
 var idle: bool
 var is_fast_fall: bool
+var is_float: bool
+
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
@@ -44,8 +46,16 @@ func _physics_process(delta):
 	action_state_machine.state_machine_process(delta)
 	ground_state_machine.state_machine_process(delta)
 
-
+	if action_state_machine.current_state.name == "Float":
+		if Input.is_action_just_released("float"):
+			is_float = false
+		if Input.is_action_just_pressed("jump") and jump_counter > 0:
+			is_float = false
+			jump()
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
+		if Input.is_action_just_pressed("float"):
+			is_float = true
+			action_state_machine.current_state.next_state = action_state_machine.states["Float"]
 		if Input.is_action_just_pressed("fast_fall"):
 			is_fast_fall = true
 		if jump_counter > 0:
@@ -129,7 +139,7 @@ func _on_mob_jump_collision_body_entered(body):
 			if body.has_method("take_damage"):
 				print("Player: " + "player dealt " + str(jump_damage_to_mob) + " to a " + str(body.name))
 				body.take_damage(jump_damage_to_mob)
-				
+
 
 	if body.name == "TileMap":
 		var tile_coords = body.local_to_map(global_position)
