@@ -47,11 +47,20 @@ func _physics_process(delta):
 	ground_state_machine.state_machine_process(delta)
 
 	if action_state_machine.current_state.name == "Float":
+		if velocity.x < 0:
+				sprite_2d.flip_h = true
+		elif velocity.x > 0:
+				sprite_2d.flip_h = false
 		if Input.is_action_just_released("float"):
 			is_float = false
 		if Input.is_action_just_pressed("jump") and jump_counter > 0:
 			is_float = false
 			jump()
+		if Input.is_action_pressed("left_click"):
+			var mouse_pos = get_global_mouse_position()
+			mouse_pos = (mouse_pos - global_position).normalized()
+			velocity = mouse_pos * speed
+			
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
 		if Input.is_action_just_pressed("float"):
 			is_float = true
@@ -95,6 +104,7 @@ func _physics_process(delta):
 		blend_position.y = 0
 		jump_reset()
 		is_fast_fall = false
+		is_float = false
 		
 	blend_position.y = -velocity.y
 	blend_position = blend_position.normalized()
