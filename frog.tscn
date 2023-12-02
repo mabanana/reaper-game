@@ -631,7 +631,7 @@ health = 10
 drop_amount = 2
 drop_range = 1
 attack_damage = 1
-speed = 150
+speed = 100
 jump_velocity = -400
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

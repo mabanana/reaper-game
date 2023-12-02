@@ -61,6 +61,9 @@ func deal_damage(target):
 			print("Frog: frog deals " + str(attack_damage) + " to player")
 			target.take_damage(attack_damage)	
 
+func take_damage(dmg: int = 1):
+	if dmg > 0:
+		health -= dmg
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 

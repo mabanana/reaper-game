@@ -10,10 +10,11 @@ var is_jump: bool = false
 var mob_jump: bool = false
 var jump_damage: int = 1
 var bump: bool = false
-var dmg: int
+var jump_damage_to_mob: int
 var name_animation_finished: String = ""
 var direction: int
 var idle: bool
+var is_fast_fall: bool
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
@@ -45,6 +46,8 @@ func _physics_process(delta):
 
 
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
+		if Input.is_action_just_pressed("fast_fall"):
+			is_fast_fall = true
 		if jump_counter > 0:
 			if Input.is_action_just_pressed("jump"):
 					jump()
@@ -72,18 +75,22 @@ func _physics_process(delta):
 	if ground_state_machine.current_state.name == "Air":
 		blend_position.x = 0
 		if ground_state_machine.current_state.has_gravity and action_state_machine.current_state.has_gravity:
-			velocity.y += Game.gravity * delta
+			if is_fast_fall:
+				velocity.y += Game.gravity * delta + speed
+			else:
+				velocity.y += Game.gravity * delta
 		if velocity.y == 0:
 			velocity.y += 1
 	elif ground_state_machine.current_state.name == "Ground" and ground_state_machine.current_state.next_state == null:
 		blend_position.y = 0
 		jump_reset()
+		is_fast_fall = false
 		
 	blend_position.y = -velocity.y
 	blend_position = blend_position.normalized()
 	# Sends parameter data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
-	dmg = jump_damage + int(jump_damage + velocity.y / 100)
+	jump_damage_to_mob = jump_damage + int(jump_damage + velocity.y / 100)
 	move_and_slide()
 
 
@@ -115,11 +122,14 @@ func _on_mob_jump_collision_body_entered(body):
 	print("Player: " + "landed on an body: " + str(body.name))
 	if body.get_parent().name == "Mobs" and body.health > 0:
 		if ground_state_machine.current_state.name == "Air":	
-			body.health -= dmg
-			print("Player: " + "player dealt " + str(dmg) + " to a " + str(body.name))
 			jump_counter += 1
+			is_fast_fall = false
 			jump()
 			mob_jump_sound.play()
+			if body.has_method("take_damage"):
+				print("Player: " + "player dealt " + str(jump_damage_to_mob) + " to a " + str(body.name))
+				body.take_damage(jump_damage_to_mob)
+				
 
 	if body.name == "TileMap":
 		var tile_coords = body.local_to_map(global_position)
