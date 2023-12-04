@@ -16,3 +16,5 @@ func state_process(delta):
 
 func _on_timer_timeout():
 	next_state = get_parent().states["Idle"]
+	for timer in get_children():
+		timer.queue_free()
