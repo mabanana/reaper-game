@@ -67,7 +67,7 @@ func _physics_process(delta):
 			action_state_machine.current_state.next_state = action_state_machine.states["Float"]
 		if Input.is_action_just_pressed("fast_fall"):
 			is_fast_fall = true
-		if jump_counter > 0:
+		if jump_counter > 0 or ground_state_machine.current_state.name == "Ground":
 			if Input.is_action_just_pressed("jump"):
 					jump()
 			elif Input.is_action_pressed("jump") and is_on_floor():
@@ -124,13 +124,14 @@ func jump():
 	velocity.y = jump_velocity
 	ground_state_machine.current_state.next_state = ground_state_machine.states["Air"]
 	jump_direction = direction
-	jump_counter -= 1
+	if ground_state_machine.current_state.name == "Air":
+		jump_counter -= 1
 
 func jump_reset():
 	if Game.gems_collected >= 1:
-		jump_counter = 2
-	else:
 		jump_counter = 1
+	else:
+		jump_counter = 0
 
 func take_damage(dmg: int = 1):
 	if dmg > 0:

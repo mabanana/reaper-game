@@ -9,4 +9,3 @@ func state_process(delta):
 
 func on_enter():
 	pass
-
