@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=53 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://BusyState.gd" id="11_nhp7y"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="11_tgcha"]
 [ext_resource type="Script" path="res://CharacterStates/FloatState.gd" id="12_rb4ya"]
+[ext_resource type="Script" path="res://FlyState.gd" id="13_l733c"]
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv0ru"]
@@ -819,6 +820,12 @@ can_attack = false
 
 [node name="Float" type="Node" parent="ActionStateMachine"]
 script = ExtResource("12_rb4ya")
+can_move = false
+has_gravity = false
+can_attack = false
+
+[node name="Fly" type="Node" parent="ActionStateMachine"]
+script = ExtResource("13_l733c")
 can_move = false
 has_gravity = false
 can_attack = false

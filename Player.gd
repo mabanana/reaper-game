@@ -16,6 +16,8 @@ var direction: int
 var idle: bool
 var is_fast_fall: bool
 var is_float: bool
+var flight_direction : Vector2
+
 
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
@@ -27,6 +29,8 @@ var is_float: bool
 @export var jump_velocity: int = -400
 @export var speed = 300.0
 @export var hit_stun_length = 0.1
+@export var flight_time = 0.3
+@export var flight_speed = 1000
 @export var ground_state_machine: CharacterStateMachine
 @export var action_state_machine: CharacterStateMachine
 
@@ -58,9 +62,9 @@ func _physics_process(delta):
 			jump()
 		if Input.is_action_pressed("left_click"):
 			var mouse_pos = get_global_mouse_position()
-			mouse_pos = (mouse_pos - global_position).normalized()
-			velocity = mouse_pos * speed
-			
+			flight_direction = (mouse_pos - global_position).normalized()
+			velocity = flight_direction * flight_speed
+			action_state_machine.current_state.next_state = action_state_machine.states["Fly"]
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
 		if Input.is_action_just_pressed("float"):
 			is_float = true
@@ -91,7 +95,10 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed/3)
 		blend_position.x = direction
 		
-	if ground_state_machine.current_state.name == "Air":
+	if action_state_machine.current_state.name == "Fly":
+		velocity.x = move_toward(velocity.x, speed * flight_direction.x, speed/10)
+		velocity.y = move_toward(velocity.y, speed * flight_direction.y, speed/10)
+	elif ground_state_machine.current_state.name == "Air":
 		blend_position.x = 0
 		if ground_state_machine.current_state.has_gravity and action_state_machine.current_state.has_gravity:
 			if is_fast_fall:
