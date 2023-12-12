@@ -116,7 +116,7 @@ left_click={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/TestDialogue.dialogue", "res://Dialogue/Debug.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/TestDialogue.dialogue", "res://Dialogue/Debug.dialogue", "res://Dialogue/PetFound.dialogue")
 
 [layer_names]
 

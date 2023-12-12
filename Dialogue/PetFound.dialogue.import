@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://u3goylfs3oku"
+path="res://.godot/imported/PetFound.dialogue-976e47e85a78c59fbf69758bda9b887c.tres"
+
+[deps]
+
+source_file="res://Dialogue/PetFound.dialogue"
+dest_files=["res://.godot/imported/PetFound.dialogue-976e47e85a78c59fbf69758bda9b887c.tres"]
+
+[params]
+
+defaults=true

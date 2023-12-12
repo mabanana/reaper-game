@@ -61,6 +61,8 @@ func _physics_process(delta):
 			is_float = false
 			jump()
 		if Input.is_action_pressed("left_click"):
+			#Does not work as intended when using touch screen
+			#Take mouse position from event instead of global position
 			var mouse_pos = get_global_mouse_position()
 			flight_direction = (mouse_pos - global_position).normalized()
 			velocity = flight_direction * flight_speed

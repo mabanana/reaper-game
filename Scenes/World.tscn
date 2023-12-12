@@ -1,5 +1,6 @@
-[gd_scene load_steps=109 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=111 format=3 uid="uid://cucrj7qo0r8rq"]
 
+[ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
 [ext_resource type="Texture2D" uid="uid://brtmx2325v773" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="3_d6wah"]
@@ -2018,6 +2019,9 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pqqx"]
 size = Vector2(64, 47)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_847hl"]
+size = Vector2(359, 138)
+
 [sub_resource type="Gradient" id="Gradient_6n62h"]
 offsets = PackedFloat32Array(0, 0.709677)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -2029,6 +2033,7 @@ fill_from = Vector2(0.522936, 0.518349)
 fill_to = Vector2(0.821101, 0.279817)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_uoiiq")
 
 [node name="BG" type="ParallaxBackground" parent="."]
 script = ExtResource("1_vubnl")
@@ -2252,6 +2257,13 @@ script = ExtResource("19_s5edy")
 position = Vector2(372, 603)
 shape = SubResource("RectangleShape2D_1pqqx")
 
+[node name="Area2D" type="Area2D" parent="Triggers"]
+position = Vector2(-101, 260)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Area2D"]
+position = Vector2(169.5, -59)
+shape = SubResource("RectangleShape2D_847hl")
+
 [node name="Lights" type="Node" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights"]
@@ -2357,7 +2369,6 @@ script = ExtResource("4_dn6hn")
 position = Vector2(-115, 331)
 
 [node name="Floater" parent="Player" instance=ExtResource("22_i15ib")]
-position = Vector2(-149, 323)
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
@@ -2367,4 +2378,5 @@ position = Vector2(-149, 323)
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Triggers/DialogueTrigger" to="Triggers/DialogueTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="Triggers/DialogueTrigger" to="Triggers/DialogueTrigger" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
