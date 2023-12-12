@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=109 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cam15nnk8in05" path="res://Sunny-land-files/Graphical Assets/environment/Props/block.png" id="18_qo1p8"]
 [ext_resource type="Texture2D" uid="uid://bwueaivtk4at2" path="res://PXUI-Basic/panel_Example1.png" id="19_1wo2p"]
 [ext_resource type="Script" path="res://Scenes/DialogueTrigger.gd" id="19_s5edy"]
+[ext_resource type="PackedScene" uid="uid://bj0ew2f8uq33l" path="res://floater.tscn" id="22_i15ib"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x7nys"]
 load_path = "res://.godot/imported/middle.png-a80ccf76994f0184467d2a696541f677.ctex"
@@ -2354,6 +2355,9 @@ script = ExtResource("4_dn6hn")
 
 [node name="Player" parent="Player" instance=ExtResource("4_8colo")]
 position = Vector2(-115, 331)
+
+[node name="Floater" parent="Player" instance=ExtResource("22_i15ib")]
+position = Vector2(-149, 323)
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]

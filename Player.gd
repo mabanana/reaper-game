@@ -18,7 +18,7 @@ var is_fast_fall: bool
 var is_float: bool
 var flight_direction : Vector2
 
-
+@export var float_joint: GrooveJoint2D
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
@@ -79,6 +79,7 @@ func _physics_process(delta):
 		if direction != 0:
 			if direction == -1:
 				sprite_2d.flip_h = true
+
 			elif direction == 1:
 				sprite_2d.flip_h = false
 			if jump_direction != direction:
