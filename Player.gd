@@ -103,7 +103,7 @@ func _physics_process(delta):
 		velocity.y = move_toward(velocity.y, speed * flight_direction.y, speed/10)
 	elif ground_state_machine.current_state.name == "Air":
 		blend_position.x = 0
-		if ground_state_machine.current_state.has_gravity and action_state_machine.current_state.has_gravity:
+		if ground_state_machine.has_gravity() and action_state_machine.has_gravity():
 			if is_fast_fall:
 				velocity.y += Game.gravity * delta + speed
 			else:

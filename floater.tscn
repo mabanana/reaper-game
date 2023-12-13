@@ -1,14 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bj0ew2f8uq33l"]
+[gd_scene load_steps=18 format=3 uid="uid://bj0ew2f8uq33l"]
 
-[ext_resource type="Texture2D" uid="uid://calw2en6wcjeb" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-4.png" id="1_ocvu0"]
 [ext_resource type="Script" path="res://Floater.gd" id="2_sfp10"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="3_babdi"]
+[ext_resource type="Script" path="res://CharacterStates/FloaterChaseState.gd" id="3_cwp3c"]
+[ext_resource type="Script" path="res://IdleState.gd" id="4_3xoie"]
 [ext_resource type="Texture2D" uid="uid://c401qt0obc5bn" path="res://Sunny-land-files/Sorceror/flying-head.png" id="4_o5tcg"]
+[ext_resource type="Script" path="res://PickupState.gd" id="5_dnef4"]
+[ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="7_30s4p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kuwvg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npjbp"]
-radius = 20.0
+radius = 30.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewga6"]
 atlas = ExtResource("4_o5tcg")
@@ -65,12 +68,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Floater" type="CharacterBody2D" node_paths=PackedStringArray("sprite_2d")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a03yb"]
+
+[node name="Floater" type="CharacterBody2D" node_paths=PackedStringArray("sprite_2d", "character_state_machine")]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("2_sfp10")
 sprite_2d = NodePath("AnimatedSprite2D")
+character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kuwvg")
@@ -80,20 +86,40 @@ shape = SubResource("CircleShape2D_kuwvg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_npjbp")
 
-[node name="CharacterStateMachine" type="Node" parent="."]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
 script = ExtResource("3_babdi")
+current_state = NodePath("Chase")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
 
-[node name="ChaseState" type="Node" parent="CharacterStateMachine"]
+[node name="Chase" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("3_cwp3c")
 
-[node name="Floater" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_ocvu0")
+[node name="Idle" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("4_3xoie")
+
+[node name="Pickup" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_dnef4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pd3mk")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.129832
+frame_progress = 0.331386
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_a03yb")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("character")]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "boop"
+script = ExtResource("7_30s4p")
+character = NodePath("..")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

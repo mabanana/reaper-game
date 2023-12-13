@@ -20,13 +20,19 @@ func _ready():
 
 func state_machine_process(delta):
 	if current_state.next_state != null:
-		print(str(character.name) + " has entered " + str(current_state.next_state) + " from " + str(current_state))
+		print(str(character.name) + " has entered " + str(current_state.next_state.name) + " from " + str(current_state.name))
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
 
 
 func is_can_move():
 	return current_state.can_move
+
+func has_gravity():
+	return current_state.has_gravity
+	
+func is_can_attack():
+	return current_state.can_attack
 
 func switch_states(new_state):
 	if current_state != null:
