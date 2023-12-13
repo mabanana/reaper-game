@@ -1,15 +1,26 @@
-extends Sprite2D
+extends CharacterBody2D
 var chase: bool = true
-var speed: int = 3
+var speed: int = 300
+var max_speed: int = 500
+var min_speed: int = 100
+var offset_x: int = 15
+var offset: Vector2 = Vector2(15,-10)
 
-func _process(delta):
-	var distance = min(max((Game.player_global_position - global_position).length(),1),100)
+func _physics_process(delta):
+	var displac = (Game.player_global_position + offset - global_position)
+	if displac.x > 0:
+		offset.x = -offset_x
+	elif displac.x < 0:
+		offset.x = offset_x
+
 	if Game.pet_acquired:
 		if chase:
-			global_position.x = move_toward(global_position.x, Game.player_global_position.x, speed*delta*distance)
-			global_position.y = move_toward(global_position.y, Game.player_global_position.y-10, speed*delta*distance)
+			velocity = (delta * speed * displac).limit_length(max_speed)
+			
 		else:
-			global_position.y = move_toward(global_position.y, Game.player_global_position.y-10, delta*distance)
+			velocity = (delta * speed * displac).limit_length(min_speed)
+		move_and_slide()
+
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
 #		global_position = Game.player_global_position + Vector2(0,-10)

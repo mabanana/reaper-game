@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj0ew2f8uq33l"]
+[gd_scene load_steps=6 format=3 uid="uid://bj0ew2f8uq33l"]
 
 [ext_resource type="Texture2D" uid="uid://calw2en6wcjeb" path="res://Sunny-land-files/Graphical Assets/sprites/cherry/cherry-4.png" id="1_ocvu0"]
 [ext_resource type="Script" path="res://Floater.gd" id="2_sfp10"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="3_babdi"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kuwvg"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_npjbp"]
 radius = 20.0
 
-[node name="Floater" type="Sprite2D"]
-texture = ExtResource("1_ocvu0")
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
 script = ExtResource("2_sfp10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kuwvg")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -20,6 +27,9 @@ shape = SubResource("CircleShape2D_npjbp")
 script = ExtResource("3_babdi")
 
 [node name="ChaseState" type="Node" parent="CharacterStateMachine"]
+
+[node name="Floater" type="Sprite2D" parent="."]
+texture = ExtResource("1_ocvu0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
