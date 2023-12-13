@@ -93,7 +93,7 @@ texture = ExtResource("1_ocvu0")
 sprite_frames = SubResource("SpriteFrames_pd3mk")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.0392659
+frame_progress = 0.129832
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

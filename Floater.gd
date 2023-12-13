@@ -3,9 +3,13 @@ var chase: bool = true
 var speed: int = 300
 var max_speed: int = 500
 var min_speed: int = 100
-var offset_x: int = 15
-var offset: Vector2 = Vector2(15,-10)
+var offset_x: int = 20
+var offset_y: int = -10
+var offset: Vector2
 @export var sprite_2d: AnimatedSprite2D
+
+func _ready():
+	offset = Vector2(offset_x,offset_y)
 
 func _physics_process(delta):
 	var displac = (Game.player_global_position + offset - global_position)
