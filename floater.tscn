@@ -115,6 +115,7 @@ tree_root = SubResource("AnimationNodeStateMachine_a03yb")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Label" type="Label" parent="." node_paths=PackedStringArray("character")]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "boop"

@@ -40,10 +40,9 @@ func _physics_process(delta):
 		character_state_machine.state_machine_process(delta)
 
 func _on_area_2d_body_entered(body):
-	print("Floater: Body Entered")
-	if body.id == "Cherry":
-		print("Floater: Cherry Detected")
-	#	character_state_machine.current_state.next_state = character_state_machine.states["Idle"]
+	if body.name == "Player":
+		pass
+#		character_state_machine.current_state.next_state = character_state_machine.states["Idle"]
 
 
 
