@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "Player" and not $pickup_gem.playing:
+	if body.get_parent().name == "Player" and not $pickup_gem.playing:
 		print("Gem: player picks up a gem")
 		$pickup_gem.play()
 		Game.gems_collected += 1

@@ -633,6 +633,7 @@ drop_range = 1
 attack_damage = 1
 speed = 100
 jump_velocity = -400
+id = "Frog"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

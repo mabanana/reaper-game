@@ -1,7 +1,7 @@
 extends Area2D
 var is_on_floor: bool = false
 var is_picked: bool = false
-var id: String
+var id: String = "Cherry"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$spawn_cherry.play()
@@ -15,8 +15,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "Player" and not is_picked:
-		print("Cherry: player picks up a Cherry")
+	if body.get_parent().name == "Player" and not is_picked:
+		print("Cherry: " + body.name + " picks up a Cherry")
 		is_picked = true
 		$pickup_cherry.play()
 		Game.player_gold += 5

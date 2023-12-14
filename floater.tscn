@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_kuwvg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npjbp"]
-radius = 30.0
+radius = 100.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewga6"]
 atlas = ExtResource("4_o5tcg")
@@ -71,8 +71,7 @@ animations = [{
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a03yb"]
 
 [node name="Floater" type="CharacterBody2D" node_paths=PackedStringArray("sprite_2d", "character_state_machine")]
-collision_layer = 0
-collision_mask = 0
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("2_sfp10")
 sprite_2d = NodePath("AnimatedSprite2D")
@@ -82,6 +81,7 @@ character_state_machine = NodePath("CharacterStateMachine")
 shape = SubResource("CircleShape2D_kuwvg")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_npjbp")
@@ -121,5 +121,6 @@ text = "boop"
 script = ExtResource("7_30s4p")
 character = NodePath("..")
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
