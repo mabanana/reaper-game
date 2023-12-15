@@ -17,6 +17,7 @@ var idle: bool
 var is_fast_fall: bool
 var is_float: bool
 var flight_direction : Vector2
+var id: String = "Player"
 
 @export var float_joint: GrooveJoint2D
 @export var animation_tree: AnimationTree

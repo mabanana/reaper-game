@@ -12,11 +12,21 @@ func _ready():
 func _process(delta):
 	if not is_on_floor:
 		position.y += 50 * delta
+		pass
 
 
 func _on_body_entered(body):
 	if body.get_parent().name == "Player" and not is_picked:
-		print("Cherry: " + body.name + " picks up a Cherry")
+		
+		if body.has_method("pickup"):
+			for cherry in get_parent().get_children():
+				if cherry.id == "Cherry" and (Game.player_global_position - cherry.global_position).length():
+					if cherry.global_position != global_position:
+						body.pickup(cherry.global_position)
+						print("Cherry: cherry location given by cherry at " + str(cherry.global_position) )
+
+
+		print("Cherry: " + body.name + " picks up a Cherry at " + str(global_position))
 		is_picked = true
 		$pickup_cherry.play()
 		Game.player_gold += 5
@@ -31,6 +41,9 @@ func _on_body_entered(body):
 		tween.tween_callback(queue_free)
 	elif body.name == "TileMap":
 		is_on_floor = true
+		
+	
+	
 
 func _on_body_exited(body):
 	if body.name == "TileMap":

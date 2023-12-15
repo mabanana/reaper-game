@@ -8,3 +8,6 @@ func on_enter():
 	
 func state_process(delta):
 	pass
+
+func on_exit():
+	pass
