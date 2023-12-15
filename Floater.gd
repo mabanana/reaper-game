@@ -16,16 +16,17 @@ func _ready():
 
 func _physics_process(delta):
 	var displac = (Game.player_global_position + offset - global_position)
-
+	var character_direction = Input.get_axis("move_left", "move_right")
 	if Game.pet_acquired:
 		if velocity.x > 0:
-			offset.x = -offset_x
 			sprite_2d.flip_h = false
-		else:
-			offset.x = offset_x
+		elif velocity.x < 0:
 			sprite_2d.flip_h = true
-			
 
+		if character_direction == -1:
+			offset.x = offset_x
+		elif character_direction == 1:
+			offset.x = -offset_x
 
 		if character_state_machine.current_state.name == "Chase":
 			velocity = (delta * speed * displac).limit_length(max_speed)
@@ -42,15 +43,15 @@ func _physics_process(delta):
 		move_and_slide()
 		character_state_machine.state_machine_process(delta)
 
-func _on_area_2d_body_entered(body):
-	if body.name == "Player":
-		character_state_machine.current_state.next_state = character_state_machine.states["Idle"]
-
-
-
-func _on_area_2d_body_exited(body):
-	if body.name == "Player":
-		character_state_machine.current_state.next_state = character_state_machine.states["Chase"]
+#func _on_area_2d_body_entered(body):
+#	if body.name == "Player":
+#		character_state_machine.current_state.next_state = character_state_machine.states["Idle"]
+#
+#
+#
+#func _on_area_2d_body_exited(body):
+#	if body.name == "Player":
+#		character_state_machine.current_state.next_state = character_state_machine.states["Chase"]
 
 
 func _on_area_2d_area_entered(area):
