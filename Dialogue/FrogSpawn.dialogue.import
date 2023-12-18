@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dkwu6dkfcab7v"
+path="res://.godot/imported/FrogSpawn.dialogue-6a8a450d7ab9192214856fa26f0308f4.tres"
+
+[deps]
+
+source_file="res://Dialogue/FrogSpawn.dialogue"
+dest_files=["res://.godot/imported/FrogSpawn.dialogue-6a8a450d7ab9192214856fa26f0308f4.tres"]
+
+[params]
+
+defaults=true
