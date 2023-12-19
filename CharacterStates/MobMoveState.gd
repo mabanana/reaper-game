@@ -5,11 +5,11 @@ class_name MoveState
 
 
 func state_process(delta):
-	if character.can_atk:
-		next_state = get_parent().states["Attack"]
+	pass
 
 
 func on_enter():
+	character.velocity.x = 0
 	playback.travel(move_animation)
 
 

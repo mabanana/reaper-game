@@ -7,7 +7,7 @@ class_name AttackState
 
 func state_process(delta):
 	if character.name_animation_finished == attack_animation:
-		next_state = get_parent().states["Move"]
+		next_state = get_parent().states["Idle"]
 
 func on_enter():
 	playback.travel(attack_animation)

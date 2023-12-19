@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=75 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Script" path="res://frog.gd" id="1_i50yc"]
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d3nmayu6axbrh" path="res://Sunny-land-files/Graphical Assets/spritesheets/frog-jump.png" id="3_r8l5i"]
 [ext_resource type="AudioStream" uid="uid://gagnlvnycj3p" path="res://Sunny-land-files/Custom/frog_hurt.wav" id="5_u3llr"]
 [ext_resource type="AudioStream" uid="uid://ccvsdaeu884j5" path="res://Sunny-land-files/10_Battle_SFX/08_Bite_04.wav" id="6_nbeqg"]
+[ext_resource type="Script" path="res://MoveToPointState.gd" id="7_357w0"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="7_ypbje"]
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="8_aikl1"]
 [ext_resource type="Script" path="res://MobsStateDebugLabel.gd" id="8_cmfbh"]
@@ -671,24 +672,31 @@ current_state = NodePath("Spawn")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Move" type="Node" parent="CharacterStateMachine"]
+[node name="Idle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("9_03bk7")
 move_animation = "Move"
+can_move = false
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("8_aikl1")
 death_animation = "Death"
 can_move = false
 has_gravity = false
+can_attack = false
 
 [node name="Attack" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("10_jrs1a")
 can_move = false
+can_attack = false
+
+[node name="MoveToPoint" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("7_357w0")
 
 [node name="Spawn" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("10_x62h4")
 spawn_animation = "Spawn"
 can_move = false
+can_attack = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("character")]
 offset_left = -41.0
