@@ -31,8 +31,6 @@ func _physics_process(delta):
 
 		var direction = (chase_location - global_position).normalized()
 		
-		if (chase_location-global_position).length() < position_snap_range:
-			change_state("Idle")
 
 		if direction.x >= 0.5:
 			velocity.x = direction.x + speed
@@ -54,7 +52,7 @@ func _physics_process(delta):
 		velocity.y = 0
 
 	if current_state().name == "MoveToPoint":
-		if velocity.x == 0:
+		if velocity.x == 0 or (chase_location-global_position).length() < position_snap_range:
 			change_state("Idle")
 
 	# Sends movement data to the animation tree
