@@ -11,10 +11,11 @@ func _on_body_entered(body):
 		DialogueManager.show_dialogue_balloon(dialogue_file)
 		await DialogueManager.dialogue_ended
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
+		if is_one_time:
+			queue_free()
 		return
 
 
 func _on_body_exited(body):
 	if body.name == "Player" and body.action_state_machine.current_state.name != "Busy":
-		if is_one_time:
-			queue_free()
+		pass
