@@ -78,7 +78,7 @@ func death():
 	current_state().next_state = character_state_machine.states["Death"]
 
 func change_state(state:String):
-		character_state_machine.current_state.next_state = character_state_machine.states[state]
+		current_state().next_state = character_state_machine.states[state]
 
 func current_state():
 	return character_state_machine.current_state
