@@ -79,17 +79,18 @@ blend_mode = 1
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fllje"]
 animation = &"Spawn"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6wp1n"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eulny"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fkjje"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52ida"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x7ttk"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kla7w"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6wp1n"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fkjje"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vvkoy"]
 states/Attack/node = SubResource("AnimationNodeAnimation_ji5j5")
@@ -100,7 +101,7 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_bwnl1")
 states/Move/position = Vector2(518, 89)
 states/Spawn/node = SubResource("AnimationNodeAnimation_fllje")
 states/Spawn/position = Vector2(320, 116)
-transitions = ["Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_6wp1n"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_eulny"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_fkjje"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_52ida"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_x7ttk"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_kla7w")]
+transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_eulny"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_52ida"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_x7ttk"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_kla7w"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_6wp1n"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_fkjje")]
 graph_offset = Vector2(3, 16)
 
 [sub_resource type="Animation" id="Animation_biimr"]
@@ -617,16 +618,13 @@ _data = {
 "Spawn": SubResource("Animation_ld68c")
 }
 
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "attack_sound", "character_state_machine", "collision_shape")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("death_sound", "attack_sound", "collision_shape", "animation_tree", "sprite_2d", "character_state_machine")]
 collision_layer = 2
 collision_mask = 8
 floor_snap_length = 11.0
 script = ExtResource("1_i50yc")
-animation_tree = NodePath("AnimationTree")
-sprite_2d = NodePath("Sprite2D")
 death_sound = NodePath("SFX/frog_death")
 attack_sound = NodePath("SFX/frog_attack")
-character_state_machine = NodePath("CharacterStateMachine")
 collision_shape = NodePath("FrogCollisionShape")
 health = 10
 drop_amount = 2
@@ -635,11 +633,13 @@ attack_damage = 1
 speed = 100
 jump_velocity = -400
 id = "Frog"
+animation_tree = NodePath("AnimationTree")
+sprite_2d = NodePath("Sprite2D")
+character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("2_172nw")
-hframes = 4
+texture = ExtResource("1_rq300")
+hframes = 6
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")

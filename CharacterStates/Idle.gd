@@ -1,7 +1,7 @@
 extends State
 
 
-class_name IdleState
+class_name MoveState
 
 func on_enter():
 	playback.travel("Move")

@@ -1,10 +1,7 @@
 extends Mob
 const position_snap_range: int = 2
-@export var animation_tree: AnimationTree
-@export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
 @export var attack_sound: AudioStreamPlayer
-@export var character_state_machine: CharacterStateMachine
 
 var chase_distance: int
 var chase_location: Vector2
@@ -69,14 +66,16 @@ func deal_damage(target):
 
 
 func death():
+	velocity.x = 0
+	velocity.y = 0
+	death_sound.play()
 	collision_shape.set_deferred("disabled", true)
 	current_state().next_state = character_state_machine.states["Death"]
 
 func change_state(state:String):
 		current_state().next_state = character_state_machine.states[state]
 
-func current_state():
-	return character_state_machine.current_state
+
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 

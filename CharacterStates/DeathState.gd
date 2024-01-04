@@ -4,9 +4,7 @@ class_name DeathState
 @export var death_animation: String
 
 func on_enter():
-	character.velocity.x = 0
-	character.velocity.y = 0
-	character.death_sound.play()
+	character.velocity = Vector2(0,0)
 	playback.travel(death_animation)
 
 

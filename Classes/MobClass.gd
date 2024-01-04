@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Mob
 
+
 var chase = false
 var can_atk: bool = false
 @export var collision_shape: CollisionShape2D
@@ -11,6 +12,9 @@ var can_atk: bool = false
 @export var speed: int
 @export var jump_velocity: int
 @export var id: String
+@export var animation_tree: AnimationTree
+@export var sprite_2d: Sprite2D
+@export var character_state_machine: CharacterStateMachine
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -27,7 +31,11 @@ func take_damage(dmg: int = 1):
 	if health <= 0:
 		death()
 
+func current_state():
+	return character_state_machine.current_state
+
 
 func death():
-	pass
+	collision_shape.set_deferred("disabled", true)
+	current_state().next_state = character_state_machine.states["Death"]
 

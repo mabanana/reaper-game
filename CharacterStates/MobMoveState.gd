@@ -1,6 +1,6 @@
 extends State
 
-class_name MoveState
+class_name IdleState
 @export var move_animation: String
 
 
