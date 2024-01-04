@@ -21,6 +21,13 @@ func _ready():
 func _physics_process(delta):
 	pass
 
+func take_damage(dmg: int = 1):
+	if dmg > 0:
+		health -= dmg
+	if health <= 0:
+		death()
 
 
+func death():
+	pass
 

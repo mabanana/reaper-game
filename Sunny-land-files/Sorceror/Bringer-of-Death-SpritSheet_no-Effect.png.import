@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmkat7ty5qkyh"
-path="res://.godot/imported/sorcerer attack_Animation 1_0.png-b3b7f73a5a1166713acd710488f325b6.ctex"
+uid="uid://b0vjadhw7j206"
+path="res://.godot/imported/Bringer-of-Death-SpritSheet_no-Effect.png-99a3357dcccfdf4dd9868612c76bd563.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sunny-land-files/Sorceror/sorcerer attack_Animation 1_0.png"
-dest_files=["res://.godot/imported/sorcerer attack_Animation 1_0.png-b3b7f73a5a1166713acd710488f325b6.ctex"]
+source_file="res://Sunny-land-files/Sorceror/Bringer-of-Death-SpritSheet_no-Effect.png"
+dest_files=["res://.godot/imported/Bringer-of-Death-SpritSheet_no-Effect.png-99a3357dcccfdf4dd9868612c76bd563.ctex"]
 
 [params]
 

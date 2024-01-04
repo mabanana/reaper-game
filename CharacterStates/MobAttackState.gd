@@ -3,8 +3,6 @@ extends State
 class_name AttackState
 @export var attack_animation: String = "Attack"
 
-
-
 func state_process(delta):
 	if character.name_animation_finished == attack_animation:
 		next_state = get_parent().states["Idle"]
