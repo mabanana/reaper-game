@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bfu6lrspk862c"
+path="res://.godot/imported/BossReaperRoom.dialogue-4b1cc3dbd233c8cc233b930ebf93aef5.tres"
+
+[deps]
+
+source_file="res://Dialogue/BossReaperRoom.dialogue"
+dest_files=["res://.godot/imported/BossReaperRoom.dialogue-4b1cc3dbd233c8cc233b930ebf93aef5.tres"]
+
+[params]
+
+defaults=true

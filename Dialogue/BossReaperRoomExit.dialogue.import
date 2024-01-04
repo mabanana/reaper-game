@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://cp18wir4xmd3g"
+path="res://.godot/imported/BossReaperRoomExit.dialogue-70b61532a60238de98e584e689adc8d3.tres"
+
+[deps]
+
+source_file="res://Dialogue/BossReaperRoomExit.dialogue"
+dest_files=["res://.godot/imported/BossReaperRoomExit.dialogue-70b61532a60238de98e584e689adc8d3.tres"]
+
+[params]
+
+defaults=true

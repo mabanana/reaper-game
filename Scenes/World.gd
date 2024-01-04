@@ -14,3 +14,13 @@ func _on_frog_dungeon_body_entered(body):
 	
 func on_dialogue_manager_dialogue_ended():
 	pass
+
+
+func _on_boss_reaper_room_body_entered(body):
+	await DialogueManager.dialogue_ended
+	Game.boss_reaper_room = true
+
+
+func _on_boss_reaper_room_exit_body_entered(body):
+	await DialogueManager.dialogue_ended
+	Game.boss_reaper_room_exit = true
