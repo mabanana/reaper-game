@@ -11,11 +11,11 @@ func _process(delta):
 	pass
 
 
-func _on_spawn_timer_timeout():
-	var rng = RandomNumberGenerator.new()
-	var rand_int_x = rng.randi_range(850, 1150)
-	var int_y = 310
-	spawn_frog(Vector2(rand_int_x,int_y))# Replace with function body.
+#func _on_spawn_timer_timeout():
+#	var rng = RandomNumberGenerator.new()
+#	var rand_int_x = rng.randi_range(850, 1150)
+#	var int_y = 310
+#	spawn_frog(Vector2(rand_int_x,int_y))# Replace with function body.
 
 func spawn_frog(spawn_position: Vector2):
 	var frog_temp = frog.instantiate()

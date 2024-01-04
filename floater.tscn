@@ -106,6 +106,7 @@ sprite_frames = SubResource("SpriteFrames_pd3mk")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.331386
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")

@@ -647,12 +647,14 @@ shape = SubResource("RectangleShape2D_kj2hp")
 [node name="PlayerDetection" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
+monitoring = false
 
 [node name="PlayerDetection" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_pfwwa")
 
 [node name="PlayerCollision" type="Area2D" parent="."]
 collision_layer = 2
+monitoring = false
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="PlayerCollision"]
 position = Vector2(-1, 7)
