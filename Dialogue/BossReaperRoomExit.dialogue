@@ -1,13 +1,16 @@
 ~ this_is_a_node_title
 
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => this_is_a_node_title
-- End the conversation => END
-Nathan: For more information see the online documentation.
+Flyer: Aren't you excited? your first task! 
+Reaper: Hell no! 100 frogs!?! I thought i was gonna do more important things like deciding the fate of human's who have strayed too far from god
+Reaper: Not whatever this is.
+Reaper: This task doesnt even make sense. Do frogs even have souls?
+Flyer: Can't say I've ever thought about that. Honestly I have not been trained to handle a newbie immediately having a mental breakdown on the job.
+- Just tell me what to do
+	Flyer: Thats the spirit!
+- I was wrong to expect anything from you.
+	Flyer: Likewise, now quit yapping, we got work to do
+	Flyer: There are souls to reap, and I'm only gonna teach you once.
+Flyer: First, go scooch up a to a frog and I'll tell you what to do next.
+Reaper: Ugh, this is gonna suck.
 
 => END
