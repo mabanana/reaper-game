@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=63 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" path="res://CharacterStates/FloatState.gd" id="12_rb4ya"]
 [ext_resource type="Script" path="res://FlyState.gd" id="13_l733c"]
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
-[ext_resource type="Script" path="res://ScareState.gd" id="20_jh1e7"]
 [ext_resource type="AudioStream" uid="uid://buxslupd5m517" path="res://Sunny-land-files/10_UI_Menu_SFX/029_Decline_09.wav" id="24_kpedh"]
 [ext_resource type="Texture2D" uid="uid://u8l8b0nuiu33" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-1.png" id="25_kmww5"]
 [ext_resource type="Script" path="res://ScareHitBox.gd" id="25_ooefb"]
@@ -129,18 +128,6 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprite:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_js5y2"]
 resource_name = "Fall"
@@ -217,18 +204,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xvx6m"]
@@ -307,18 +282,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_t18yk"]
 resource_name = "Hurt"
@@ -383,18 +346,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0.47451, 0.427451, 1), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprite:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_0fo2f"]
@@ -473,18 +424,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_tdynk"]
 resource_name = "Jump"
@@ -561,18 +500,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_8attm"]
@@ -703,130 +630,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_p36h1"]
-resource_name = "Scare"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_a1xqn")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("PlayerSprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprite:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprite:vframes")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprite:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.980392), Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("ScareHitBox:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprite:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("ScareHitBox/ScareSprite:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("25_kmww5"), ExtResource("26_4ks13"), ExtResource("27_61fte"), ExtResource("28_q2otg"), null]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh5bq"]
 _data = {
@@ -837,8 +640,7 @@ _data = {
 "Idle": SubResource("Animation_0fo2f"),
 "Jump": SubResource("Animation_tdynk"),
 "RESET": SubResource("Animation_8attm"),
-"Run": SubResource("Animation_p6rlf"),
-"Scare": SubResource("Animation_p36h1")
+"Run": SubResource("Animation_p6rlf")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tiyw7"]
@@ -878,9 +680,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_eyqkf")
 blend_point_4/pos = Vector2(0, -1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3hcy"]
-animation = &"Scare"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7tdl"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b8nly"]
@@ -899,12 +698,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h6vkb"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7icms"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q8ts7"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wfeoj"]
 states/Death/node = SubResource("AnimationNodeAnimation_tiyw7")
 states/Death/position = Vector2(513, 143)
@@ -915,10 +708,8 @@ states/Hurt/node = SubResource("AnimationNodeAnimation_f7bko")
 states/Hurt/position = Vector2(292, 249)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_1xajj")
 states/Move/position = Vector2(292, 143)
-states/Scare/node = SubResource("AnimationNodeAnimation_c3hcy")
-states/Scare/position = Vector2(403, 216)
-states/Start/position = Vector2(99, 143)
-transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_d7tdl"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_b8nly"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_jfev1"), "Move", "Hurt", SubResource("AnimationNodeStateMachineTransition_4trro"), "Hurt", "Move", SubResource("AnimationNodeStateMachineTransition_yyw5u"), "Move", "Float", SubResource("AnimationNodeStateMachineTransition_gsu6q"), "Float", "Move", SubResource("AnimationNodeStateMachineTransition_h6vkb"), "Move", "Scare", SubResource("AnimationNodeStateMachineTransition_7icms"), "Scare", "Move", SubResource("AnimationNodeStateMachineTransition_q8ts7")]
+states/Start/position = Vector2(52, 143)
+transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_d7tdl"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_b8nly"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_jfev1"), "Move", "Hurt", SubResource("AnimationNodeStateMachineTransition_4trro"), "Hurt", "Move", SubResource("AnimationNodeStateMachineTransition_yyw5u"), "Move", "Float", SubResource("AnimationNodeStateMachineTransition_gsu6q"), "Float", "Move", SubResource("AnimationNodeStateMachineTransition_h6vkb")]
 graph_offset = Vector2(-185, 56)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp71e"]
@@ -940,9 +731,29 @@ func _process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0m7e"]
-size = Vector2(40, 30)
+size = Vector2(48, 33)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "scare_sound", "ground_state_machine", "action_state_machine", "scare_hitbox")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8kglj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_kmww5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_4ks13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_61fte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_q2otg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "ground_state_machine", "action_state_machine", "scare_hitbox")]
 collision_mask = 14
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
@@ -953,7 +764,6 @@ mob_jump_sound = NodePath("SFX/player_mob_jump")
 walk_sound = NodePath("SFX/player_walk")
 jump_sound = NodePath("SFX/player_jump")
 hurt_sound = NodePath("SFX/player_hurt")
-scare_sound = NodePath("SFX/player_scare")
 ground_state_machine = NodePath("GroundStateMachine")
 action_state_machine = NodePath("ActionStateMachine")
 scare_hitbox = NodePath("ScareHitBox")
@@ -986,7 +796,6 @@ modulate = Color(1, 1, 1, 0.980392)
 y_sort_enabled = true
 texture = ExtResource("8_p4gqy")
 hframes = 5
-frame = 4
 
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -994,7 +803,6 @@ libraries = {
 }
 
 [node name="PlayerAnimationPlayer2" type="AnimationPlayer" parent="."]
-reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_dh5bq")
 }
@@ -1054,11 +862,6 @@ can_attack = false
 script = ExtResource("13_l733c")
 can_move = false
 has_gravity = false
-can_attack = false
-
-[node name="Scare" type="Node" parent="ActionStateMachine"]
-script = ExtResource("20_jh1e7")
-can_move = false
 can_attack = false
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("despawn_timer")]
@@ -1136,17 +939,22 @@ stream = ExtResource("17_e6ydq")
 stream = ExtResource("24_kpedh")
 
 [node name="ScareHitBox" type="Area2D" parent="." node_paths=PackedStringArray("sprite2d")]
-collision_layer = 16
-collision_mask = 2
+visible = false
 monitoring = false
+monitorable = false
 script = ExtResource("25_ooefb")
-sprite2d = NodePath("ScareSprite")
+sprite2d = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScareHitBox"]
-position = Vector2(1, 0)
+position = Vector2(14, 1.5)
 shape = SubResource("RectangleShape2D_l0m7e")
 
-[node name="ScareSprite" type="Sprite2D" parent="ScareHitBox"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ScareHitBox"]
+position = Vector2(22, 2)
+sprite_frames = SubResource("SpriteFrames_8kglj")
+autoplay = "default"
+frame = 1
+frame_progress = 0.416705
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]

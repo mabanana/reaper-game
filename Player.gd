@@ -19,7 +19,6 @@ var is_float: bool
 var flight_direction : Vector2
 var id: String = "Player"
 
-@export var float_joint: GrooveJoint2D
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
@@ -27,6 +26,7 @@ var id: String = "Player"
 @export var walk_sound: AudioStreamPlayer
 @export var jump_sound: AudioStreamPlayer
 @export var hurt_sound: AudioStreamPlayer
+@export var scare_sound: AudioStreamPlayer
 @export var jump_velocity: int = -400
 @export var speed = 300.0
 @export var hit_stun_length = 0.1
@@ -34,7 +34,7 @@ var id: String = "Player"
 @export var flight_speed = 1000
 @export var ground_state_machine: CharacterStateMachine
 @export var action_state_machine: CharacterStateMachine
-
+@export var scare_hitbox: Area2D
 
 
 
@@ -51,6 +51,19 @@ func _physics_process(delta):
 	action_state_machine.state_machine_process(delta)
 	ground_state_machine.state_machine_process(delta)
 
+	if action_state_machine.current_state.can_attack:
+		if Input.is_action_just_pressed("scare"):
+			print("Player: Scare action button pressed")
+#			scare_hitbox.monitoring = true
+#			scare_hitbox.visible = true
+			scare_hitbox.flip_sprite(sprite_2d.flip_h)
+			action_state_machine.current_state.next_state = action_state_machine.states["Scare"]
+		if Input.is_action_just_released("scare"):
+			print("Player: Scare action button released")
+#			scare_hitbox.monitoring = false
+#			scare_hitbox.visible = false
+#			action_state_machine.current_state.next_state = action_state_machine.states["Idle"]
+			
 	if action_state_machine.current_state.name == "Float":
 		if velocity.x < 0:
 				sprite_2d.flip_h = true
@@ -68,6 +81,7 @@ func _physics_process(delta):
 			flight_direction = (mouse_pos - global_position).normalized()
 			velocity = flight_direction * flight_speed
 			action_state_machine.current_state.next_state = action_state_machine.states["Fly"]
+	
 	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
 		if Input.is_action_just_pressed("float"):
 			is_float = true
@@ -184,8 +198,7 @@ func _on_player_animation_tree_animation_started(anim_name):
 
 func _on_hurtbox_body_entered(body):
 	print("Player: a " + str(body.name) + " has collided with the player's hitbox")
-
-
+	
 
 func _on_animation_tree_animation_finished(anim_name):
 	name_animation_finished = anim_name
@@ -193,3 +206,8 @@ func _on_animation_tree_animation_finished(anim_name):
 
 func _on_animation_tree_animation_started(anim_name):
 	name_animation_finished = ""
+
+
+func _on_scare_hit_box_body_entered(body):
+	if body.has_method("scare"):
+		body.scare(self)

@@ -5,6 +5,7 @@ const position_snap_range: int = 2
 
 var chase_distance: int
 var chase_location: Vector2
+var position_mtp: Vector2
 var atk_target
 var name_animation_finished: String = ""
 
@@ -49,12 +50,14 @@ func _physics_process(delta):
 		velocity.y = 0
 
 	if current_state().name == "MoveToPoint":
-		if velocity.x == 0 or (chase_location-global_position).length() < position_snap_range:
+		if velocity.x == 0 or (chase_location-global_position).length() < position_snap_range or chase_distance < 0:
 			change_state("Idle")
+			chase_distance = 0
 
 	# Sends movement data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
+	chase_distance -= speed*delta
 
 func deal_damage(target):
 	if atk_target != null:
@@ -75,6 +78,12 @@ func death():
 func change_state(state:String):
 		current_state().next_state = character_state_machine.states[state]
 
+func scare(body: CharacterBody2D, dist: int = 50):
+	var scare_movement = global_position + (dist*(global_position - body.global_position).normalized())
+	chase_location.x = scare_movement.x
+	chase_location.y = global_position.y
+	chase_distance = dist
+	change_state("MoveToPoint")
 
 
 func _on_player_detection_body_entered(body):
