@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://UI/HP.gd" id="9_wgko5"]
 [ext_resource type="Script" path="res://Scenes/MenuButton.gd" id="10_rpxi5"]
 [ext_resource type="Script" path="res://Scenes/ResetButton.gd" id="11_bdj65"]
-[ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://gem.tscn" id="11_ntgtc"]
+[ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://Gem.tscn" id="11_ntgtc"]
 [ext_resource type="Script" path="res://path_2d.gd" id="12_3pck4"]
 [ext_resource type="Script" path="res://PathFollow2D.gd" id="13_6ioy6"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]

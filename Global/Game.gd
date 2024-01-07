@@ -19,3 +19,6 @@ func reset_state():
 	gems_collected = 0
 	show_player_msg = false
 	pet_acquired =false
+
+func test_func(text: String):
+	print(text)
