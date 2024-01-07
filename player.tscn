@@ -986,7 +986,6 @@ modulate = Color(1, 1, 1, 0.980392)
 y_sort_enabled = true
 texture = ExtResource("8_p4gqy")
 hframes = 5
-frame = 4
 
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1138,7 +1137,6 @@ stream = ExtResource("24_kpedh")
 [node name="ScareHitBox" type="Area2D" parent="." node_paths=PackedStringArray("sprite2d")]
 collision_layer = 16
 collision_mask = 2
-monitoring = false
 script = ExtResource("25_ooefb")
 sprite2d = NodePath("ScareSprite")
 
@@ -1147,6 +1145,7 @@ position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_l0m7e")
 
 [node name="ScareSprite" type="Sprite2D" parent="ScareHitBox"]
+texture = ExtResource("25_kmww5")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]

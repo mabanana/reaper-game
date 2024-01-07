@@ -5,6 +5,7 @@ extends Area2D
 func _ready():
 	monitorable = false
 	monitoring = false
+	sprite2d.texture = null
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
