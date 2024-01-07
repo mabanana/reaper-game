@@ -332,14 +332,13 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1i53l"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xk1ex"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ybs67"]
 states/Attack/node = SubResource("AnimationNodeAnimation_nto4r")
 states/Attack/position = Vector2(593, 161)
 states/Cast/node = SubResource("AnimationNodeAnimation_rhr6h")
-states/Cast/position = Vector2(387, 208)
+states/Cast/position = Vector2(407, 208)
 states/Death/node = SubResource("AnimationNodeAnimation_yx7n0")
 states/Death/position = Vector2(587, 43)
 states/Idle/node = SubResource("AnimationNodeAnimation_lreyi")

@@ -1,6 +1,7 @@
 extends Node2D
 
 
+
 func _on_find_pet_body_entered(body):
 	await DialogueManager.dialogue_ended
 	Game.pet_acquired = true

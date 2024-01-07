@@ -1,6 +1,5 @@
 extends Mob
-var name_animation_finished: String
-
+@export var cast_sound: AudioStreamPlayer2D
 func _ready():
 	animation_tree.active = true
 
@@ -14,9 +13,3 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_animation_tree_animation_started(anim_name):
-	name_animation_finished = ""
-
-
-func _on_animation_tree_animation_finished(anim_name):
-	name_animation_finished = anim_name

@@ -7,7 +7,7 @@ var chase_distance: int
 var chase_location: Vector2
 var position_mtp: Vector2
 var atk_target
-var name_animation_finished: String = ""
+
 
 func _ready():
 	animation_tree.active = true
@@ -107,12 +107,4 @@ func _on_player_collision_body_exited(body):
 	if body.name == "Player":
 		atk_target = null
 	
-
-func _on_animation_tree_animation_started(anim_name):
-	name_animation_finished = ""
-
-
-
-func _on_animation_tree_animation_finished(anim_name):
-	name_animation_finished = anim_name
 

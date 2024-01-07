@@ -4,6 +4,7 @@ class_name Mob
 
 var chase = false
 var can_atk: bool = false
+var name_animation_finished: String
 @export var collision_shape: CollisionShape2D
 @export var health: int
 @export var drop_amount: int
@@ -31,6 +32,9 @@ func take_damage(dmg: int = 1):
 	if health <= 0:
 		death()
 
+func change_state(nextstate: String):
+	current_state().next_state = character_state_machine.states[nextstate]
+
 func current_state():
 	return character_state_machine.current_state
 
@@ -39,3 +43,10 @@ func death():
 	collision_shape.set_deferred("disabled", true)
 	current_state().next_state = character_state_machine.states["Death"]
 
+
+func _on_animation_tree_animation_started(anim_name):
+	name_animation_finished = ""
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	name_animation_finished = anim_name

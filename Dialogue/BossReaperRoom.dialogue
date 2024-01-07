@@ -1,7 +1,6 @@
 ~ BossReaperRoom
 
-...
-...
+
 Boss Reaper: I see you have arrived in one piece. Good.
 Reaper: uh, I guess the bar for this job is walking short distances.
 Reaper: I'm pretty good at that.
@@ -9,9 +8,10 @@ Boss Reaper: These Forests are full of vile creatures, I need you to kill them, 
 Reaper: Vile creatures? You mean like frogs?
 Boss Reaper: You're quick to catch on, I like that...
 Reaper: Thank you sir- wait YOU WANT ME TO KILL FROGS?
+set Game.set_animation_body("root/World/Mobs/ReaperBoss")
+set Game.play_dialogue_animation("Cast")
 Boss Reaper: Do I sense insubordination?
 - OF COURSE NOT SIR, YES SIR!
-	set Game.test_func("adflk;ajsdfliajsroij")
 	Boss Reaper: That's what I thought
 - But they're so cuuute~
 	Boss Reaper: Im going to pretend you never said that, as you cannot be any more wrong.
