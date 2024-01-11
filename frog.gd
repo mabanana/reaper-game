@@ -1,4 +1,6 @@
 extends Mob
+class_name Frog
+
 const position_snap_range: int = 2
 @export var death_sound: AudioStreamPlayer
 @export var attack_sound: AudioStreamPlayer
@@ -49,7 +51,7 @@ func _physics_process(delta):
 	else:
 		velocity.y = 0
 
-	if current_state().name == "MoveToPoint":
+	if current_state().name == "MoveToPoint" or current_state().name == "Scared":
 		if velocity.x == 0 or (chase_location-global_position).length() < position_snap_range or chase_distance < 0:
 			change_state("Idle")
 			chase_distance = 0
@@ -83,7 +85,7 @@ func scare(body: CharacterBody2D, dist: int = 50):
 	chase_location.x = scare_movement.x
 	chase_location.y = global_position.y
 	chase_distance = dist
-	change_state("MoveToPoint")
+	change_state("Scared")
 
 
 func _on_player_detection_body_entered(body):
@@ -91,7 +93,7 @@ func _on_player_detection_body_entered(body):
 		chase_location = Game.player_global_position
 		chase_distance = (chase_location - global_position).x
 		change_state("MoveToPoint")
-		
+
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
 		chase_location = Game.player_global_position

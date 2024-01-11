@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=78 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Script" path="res://frog.gd" id="1_i50yc"]
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://CharacterStates/DeathState.gd" id="8_aikl1"]
 [ext_resource type="Script" path="res://MobsStateDebugLabel.gd" id="8_cmfbh"]
 [ext_resource type="Script" path="res://CharacterStates/MobMoveState.gd" id="9_03bk7"]
+[ext_resource type="Script" path="res://ScaredState.gd" id="9_thrqy"]
 [ext_resource type="Script" path="res://CharacterStates/MobAttackState.gd" id="10_jrs1a"]
 [ext_resource type="Script" path="res://CharacterStates/MobSpawnState.gd" id="10_x62h4"]
 [ext_resource type="Script" path="res://TextureProgressBar.gd" id="11_ql0vd"]
@@ -76,6 +77,9 @@ blend_point_4/pos = Vector2(-1, 0)
 snap = Vector2(1, 1)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hffji"]
+animation = &"Scared"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fllje"]
 animation = &"Spawn"
 
@@ -99,6 +103,8 @@ states/Death/node = SubResource("AnimationNodeAnimation_etnsf")
 states/Death/position = Vector2(700, 116)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_bwnl1")
 states/Move/position = Vector2(518, 89)
+states/Scared/node = SubResource("AnimationNodeAnimation_hffji")
+states/Scared/position = Vector2(518, 36)
 states/Spawn/node = SubResource("AnimationNodeAnimation_fllje")
 states/Spawn/position = Vector2(320, 116)
 transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_eulny"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_52ida"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_x7ttk"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_kla7w"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_6wp1n"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_fkjje")]
@@ -555,6 +561,59 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ce3ua"]
+resource_name = "Scared"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_r8l5i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_ld68c"]
 resource_name = "Spawn"
 tracks/0/type = "value"
@@ -615,6 +674,7 @@ _data = {
 "Jump": SubResource("Animation_74ve2"),
 "RESET": SubResource("Animation_yohue"),
 "Run": SubResource("Animation_qrgsx"),
+"Scared": SubResource("Animation_ce3ua"),
 "Spawn": SubResource("Animation_ld68c")
 }
 
@@ -639,8 +699,8 @@ character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-texture = ExtResource("1_rq300")
-hframes = 6
+texture = ExtResource("3_r8l5i")
+hframes = 3
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")
@@ -699,6 +759,11 @@ script = ExtResource("7_357w0")
 script = ExtResource("10_x62h4")
 spawn_animation = "Spawn"
 can_move = false
+can_attack = false
+
+[node name="Scared" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("9_thrqy")
+scared_animation = "Scared"
 can_attack = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("character")]
