@@ -39,7 +39,7 @@ func _physics_process(delta):
 			velocity.x = direction.x - speed
 			sprite_2d.flip_h = false
 		else:
-			velocity = Vector2(0,0)
+			velocity.x = 0
 		blend_position.x = velocity.x
 
 		#Adds gravity to mobs if not on the floor
@@ -51,11 +51,14 @@ func _physics_process(delta):
 	else:
 		velocity.y = 0
 
-	if current_state().name == "MoveToPoint" or current_state().name == "Scared":
+	if current_state().name == "MoveToPoint":
 		if velocity.x == 0 or (chase_location-global_position).length() < position_snap_range or chase_distance < 0:
 			change_state("Idle")
 			chase_distance = 0
-
+	elif current_state().name == "Scared":
+		if chase_distance < 0 and is_on_floor():
+			change_state("Idle")
+			chase_distance = 0
 	# Sends movement data to the animation tree
 	animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
@@ -67,7 +70,6 @@ func deal_damage(target):
 			attack_sound.play()
 			print("Frog: frog deals " + str(attack_damage) + " to player")
 			target.take_damage(attack_damage)	
-
 
 
 func death():
@@ -108,5 +110,11 @@ func _on_player_collision_body_entered(body):
 func _on_player_collision_body_exited(body):
 	if body.name == "Player":
 		atk_target = null
-	
 
+
+func _on_frog_hurtbox_body_entered(body):
+	if current_state().name == "Scared":
+		var fall_damage = velocity.y/30
+		take_damage(fall_damage)
+		if body.has_method("take_damage"):
+			body.take_damage(fall_damage)

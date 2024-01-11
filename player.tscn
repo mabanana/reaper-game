@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=61 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -25,11 +25,6 @@
 [ext_resource type="AudioStream" uid="uid://bj6fdeynoxa0i" path="res://Sunny-land-files/Custom/hitHurt.wav" id="17_e6ydq"]
 [ext_resource type="Script" path="res://ScareState.gd" id="20_jh1e7"]
 [ext_resource type="AudioStream" uid="uid://buxslupd5m517" path="res://Sunny-land-files/10_UI_Menu_SFX/029_Decline_09.wav" id="24_kpedh"]
-[ext_resource type="Texture2D" uid="uid://u8l8b0nuiu33" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-1.png" id="25_kmww5"]
-[ext_resource type="Script" path="res://ScareHitBox.gd" id="25_ooefb"]
-[ext_resource type="Texture2D" uid="uid://lfls6grxfoax" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-2.png" id="26_4ks13"]
-[ext_resource type="Texture2D" uid="uid://b6qvdgh7qrx2h" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-3.png" id="27_61fte"]
-[ext_resource type="Texture2D" uid="uid://byjtdnk146gaj" path="res://Sunny-land-files/Graphical Assets/sprites/item-feedback/item-feedback-4.png" id="28_q2otg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv0ru"]
 radius = 7.0
@@ -794,38 +789,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ScareHitBox:monitoring")
+tracks/6/path = NodePath("PlayerSprite:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprite:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("ScareHitBox/ScareSprite:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("25_kmww5"), ExtResource("26_4ks13"), ExtResource("27_61fte"), ExtResource("28_q2otg"), null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh5bq"]
@@ -939,10 +910,7 @@ func _process(delta):
 	pass
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0m7e"]
-size = Vector2(40, 30)
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "scare_sound", "ground_state_machine", "action_state_machine", "scare_hitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "scare_sound", "ground_state_machine", "action_state_machine")]
 collision_mask = 14
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
@@ -956,7 +924,6 @@ hurt_sound = NodePath("SFX/player_hurt")
 scare_sound = NodePath("SFX/player_scare")
 ground_state_machine = NodePath("GroundStateMachine")
 action_state_machine = NodePath("ActionStateMachine")
-scare_hitbox = NodePath("ScareHitBox")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
@@ -1134,23 +1101,9 @@ stream = ExtResource("17_e6ydq")
 [node name="player_scare" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("24_kpedh")
 
-[node name="ScareHitBox" type="Area2D" parent="." node_paths=PackedStringArray("sprite2d")]
-collision_layer = 16
-collision_mask = 2
-script = ExtResource("25_ooefb")
-sprite2d = NodePath("ScareSprite")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScareHitBox"]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_l0m7e")
-
-[node name="ScareSprite" type="Sprite2D" parent="ScareHitBox"]
-texture = ExtResource("25_kmww5")
-
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_area_entered"]
 [connection signal="body_entered" from="MobJumpCollision" to="." method="_on_mob_jump_collision_body_entered"]
 [connection signal="animation_finished" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_finished"]
 [connection signal="animation_started" from="PlayerAnimationTree" to="." method="_on_player_animation_tree_animation_started"]
 [connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
-[connection signal="body_entered" from="ScareHitBox" to="." method="_on_scare_hit_box_body_entered"]

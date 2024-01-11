@@ -4,16 +4,17 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	monitorable = false
-	monitoring = false
-	sprite2d.texture = null
-	pass
+	monitoring = true
+	print("ScareAbility: Ready")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if self.monitoring:
-		print("ScareSprite: Area2D is monitoring")
+	pass
 
-func flip_sprite(is_flip: bool):
-	print("ScareSprite: The player is facing " + str(is_flip))
-	sprite2d.flip_h = is_flip
-#	sprite2d.set_transform(Vector2(22*int(is_flip),2))
+
+func _on_scare_sprite_animation_finished():
+	queue_free()
+
+func _on_body_entered(body):
+	if body.has_method("scare"):
+		body.scare(get_parent())

@@ -27,7 +27,7 @@ radius = 5.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
-size = Vector2(24, 25)
+size = Vector2(27, 27)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78nex"]
 bg_color = Color(0, 0, 0, 0.164706)
@@ -723,10 +723,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hhpf5")
 
 [node name="FrogHurtbox" type="Area2D" parent="."]
-visible = false
+collision_layer = 2
+collision_mask = 26
 
 [node name="Hurtbox" type="CollisionShape2D" parent="FrogHurtbox"]
-position = Vector2(0, -2.5)
+position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
@@ -852,5 +853,6 @@ stream = ExtResource("6_nbeqg")
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
 [connection signal="body_exited" from="PlayerCollision" to="." method="_on_player_collision_body_exited"]
+[connection signal="body_entered" from="FrogHurtbox" to="." method="_on_frog_hurtbox_body_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]

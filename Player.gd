@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const scare_offset: int = 20
+var scare_ability = load("res://scare_ability.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var jump_counter: int = 1
@@ -18,6 +20,7 @@ var is_fast_fall: bool
 var is_float: bool
 var flight_direction : Vector2
 var id: String = "Player"
+var facing: int = 1
 
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
@@ -34,7 +37,7 @@ var id: String = "Player"
 @export var flight_speed = 1000
 @export var ground_state_machine: CharacterStateMachine
 @export var action_state_machine: CharacterStateMachine
-@export var scare_hitbox: Area2D
+
 
 
 
@@ -54,21 +57,14 @@ func _physics_process(delta):
 	if action_state_machine.current_state.can_attack:
 		if Input.is_action_just_pressed("scare"):
 			print("Player: Scare action button pressed")
-#			scare_hitbox.monitoring = true
-#			scare_hitbox.visible = true
-			scare_hitbox.flip_sprite(sprite_2d.flip_h)
 			action_state_machine.current_state.next_state = action_state_machine.states["Scare"]
+			scare_attack()
 		if Input.is_action_just_released("scare"):
 			print("Player: Scare action button released")
-#			scare_hitbox.monitoring = false
-#			scare_hitbox.visible = false
 #			action_state_machine.current_state.next_state = action_state_machine.states["Idle"]
-			
+
 	if action_state_machine.current_state.name == "Float":
-		if velocity.x < 0:
-				sprite_2d.flip_h = true
-		elif velocity.x > 0:
-				sprite_2d.flip_h = false
+		check_facing()
 		if Input.is_action_just_released("float"):
 			is_float = false
 		if Input.is_action_just_pressed("jump") and jump_counter > 0:
@@ -94,11 +90,7 @@ func _physics_process(delta):
 			elif Input.is_action_pressed("jump") and is_on_floor():
 					jump()
 		if direction != 0:
-			if direction == -1:
-				sprite_2d.flip_h = true
-
-			elif direction == 1:
-				sprite_2d.flip_h = false
+			check_facing()
 			if jump_direction != direction:
 				jump_direction = 0
 			velocity.x = direction * speed
@@ -152,6 +144,13 @@ func jump():
 	if ground_state_machine.current_state.name == "Air":
 		jump_counter -= 1
 
+func scare_attack():
+	scare_sound.play()
+	var scare_hitbox : Area2D = scare_ability.instantiate()
+#	scare_hitbox.global_position = global_position
+	scare_hitbox.position.x = scare_offset * facing
+	add_child(scare_hitbox)
+
 func jump_reset():
 	if Game.gems_collected >= 1:
 		jump_counter = 1
@@ -163,6 +162,15 @@ func take_damage(dmg: int = 1):
 		Game.player_hp -= dmg
 		if action_state_machine.current_state.name != "Death":
 			action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
+
+func check_facing():
+	if velocity.x < 0:
+		sprite_2d.flip_h = true
+		facing = -1
+	elif velocity.x > 0:
+		sprite_2d.flip_h = false
+		facing = 1
+
 
 func _on_mob_jump_collision_body_entered(body):
 	print("Player: " + "landed on an body: " + str(body.name))
@@ -208,6 +216,4 @@ func _on_animation_tree_animation_started(anim_name):
 	name_animation_finished = ""
 
 
-func _on_scare_hit_box_body_entered(body):
-	if body.has_method("scare"):
-		body.scare(self)
+
