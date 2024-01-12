@@ -3,6 +3,9 @@ extends Node
 var player_hp: int = 10
 var player_gold: int = 0
 var player_alive: bool = true
+var jump_has_dmg: bool = false
+var jump_has_dbl: bool = false
+var unlocked_scare: bool = false
 var gems_collected: int = 0
 var player_global_position: Vector2
 var show_player_msg: bool = false
@@ -29,3 +32,11 @@ func reset_state():
 
 func test_func(text: String):
 	print(text)
+
+func gem_collected(n:int = 1):
+	for i in n:
+		Game.gems_collected += 1
+		if Game.gems_collected == 1:
+			Game.jump_has_dbl = true 
+		if Game.gems_collected == 2:
+			Game.jump_has_dmg = true

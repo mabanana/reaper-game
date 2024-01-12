@@ -12,7 +12,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	visible = Game.show_player_msg
-	
 	if Game.show_player_msg:
 		if Game.gems_collected == 1:
 			text_temp = bb_style + "You can now Double Jump!!"

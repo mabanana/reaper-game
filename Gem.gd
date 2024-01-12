@@ -16,9 +16,7 @@ func _on_body_entered(body):
 	if body.get_parent().name == "Player" and not $pickup_gem.playing:
 		print("Gem: player picks up a gem")
 		$pickup_gem.play()
-		Game.gems_collected += 1
-		if Game.gems_collected == 2:
-			body.jump_damage = 3
+		Game.gem_collected()
 		var tween = get_tree().create_tween()
 		var tween1 = get_tree().create_tween()
 		tween.tween_property(self, "position", position - Vector2 (0 , 25), 0.2)

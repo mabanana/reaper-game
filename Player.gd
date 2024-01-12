@@ -44,27 +44,21 @@ var facing: int = 1
 func _ready():
 	animation_tree.active = true
 
+
 func _physics_process(delta):
 	# Gets movement inputs
 	direction = Input.get_axis("move_left", "move_right")
 	var blend_position: Vector2
-
+	check_facing(direction)
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
 	action_state_machine.state_machine_process(delta)
 	ground_state_machine.state_machine_process(delta)
 
-	if action_state_machine.current_state.can_attack:
-		if Input.is_action_just_pressed("scare"):
-			print("Player: Scare action button pressed")
-			action_state_machine.current_state.next_state = action_state_machine.states["Scare"]
-			scare_attack()
-		if Input.is_action_just_released("scare"):
-			print("Player: Scare action button released")
-#			action_state_machine.current_state.next_state = action_state_machine.states["Idle"]
+	
+
 
 	if action_state_machine.current_state.name == "Float":
-		check_facing()
 		if Input.is_action_just_released("float"):
 			is_float = false
 		if Input.is_action_just_pressed("jump") and jump_counter > 0:
@@ -73,24 +67,40 @@ func _physics_process(delta):
 		if Input.is_action_pressed("left_click"):
 			#Does not work as intended when using touch screen
 			#Take mouse position from event instead of global position
+			is_float = false
 			var mouse_pos = get_global_mouse_position()
 			flight_direction = (mouse_pos - global_position).normalized()
 			velocity = flight_direction * flight_speed
 			action_state_machine.current_state.next_state = action_state_machine.states["Fly"]
 	
-	if ground_state_machine.is_can_move() and action_state_machine.is_can_move():
-		if Input.is_action_just_pressed("float"):
-			is_float = true
-			action_state_machine.current_state.next_state = action_state_machine.states["Float"]
-		if Input.is_action_just_pressed("fast_fall"):
-			is_fast_fall = true
+	elif action_state_machine.current_state.name == "Fly":
+		velocity.x = move_toward(velocity.x, speed * flight_direction.x, speed/10)
+		velocity.y = move_toward(velocity.y, speed * flight_direction.y, speed/10)
+
+
+	if action_state_machine.current_state.can_attack:
+		if Input.is_action_just_pressed("scare") and Game.unlocked_scare:
+			print("Player: Scare action button pressed")
+			action_state_machine.current_state.next_state = action_state_machine.states["Scare"]
+			scare_attack()
+
+	if action_state_machine.is_can_move():
+		blend_position.x = direction
+
+		if ground_state_machine.current_state.name == "Air":
+			if Input.is_action_just_pressed("float"):
+				is_float = true
+				action_state_machine.current_state.next_state = action_state_machine.states["Float"]
+			if Input.is_action_just_pressed("fast_fall"):
+				is_fast_fall = true
+	
 		if jump_counter > 0 or ground_state_machine.current_state.name == "Ground":
 			if Input.is_action_just_pressed("jump"):
 					jump()
 			elif Input.is_action_pressed("jump") and is_on_floor():
 					jump()
+	
 		if direction != 0:
-			check_facing()
 			if jump_direction != direction:
 				jump_direction = 0
 			velocity.x = direction * speed
@@ -103,26 +113,25 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed/60)
 				else:
 					velocity.x = move_toward(velocity.x, 0, speed/3)
-		blend_position.x = direction
-		
-	if action_state_machine.current_state.name == "Fly":
-		velocity.x = move_toward(velocity.x, speed * flight_direction.x, speed/10)
-		velocity.y = move_toward(velocity.y, speed * flight_direction.y, speed/10)
-	elif ground_state_machine.current_state.name == "Air":
+
+
+	if ground_state_machine.current_state.name == "Air":
 		blend_position.x = 0
-		if ground_state_machine.has_gravity() and action_state_machine.has_gravity():
+		if action_state_machine.has_gravity():
 			if is_fast_fall:
 				velocity.y += Game.gravity * delta + speed
 			else:
 				velocity.y += Game.gravity * delta
-		if velocity.y == 0:
-			velocity.y += 1
+		#TODO: What is this for below.
+#		if velocity.y == 0:
+#			velocity.y += 1
 	elif ground_state_machine.current_state.name == "Ground" and ground_state_machine.current_state.next_state == null:
 		blend_position.y = 0
 		jump_reset()
 		is_fast_fall = false
 		is_float = false
-		
+
+
 	blend_position.y = -velocity.y
 	blend_position = blend_position.normalized()
 	# Sends parameter data to the animation tree
@@ -163,11 +172,16 @@ func take_damage(dmg: int = 1):
 		if action_state_machine.current_state.name != "Death":
 			action_state_machine.current_state.next_state = action_state_machine.states["Hurt"]
 
-func check_facing():
-	if velocity.x < 0:
+func check_facing(input_dir: int = 0):
+	var dir: int
+	if input_dir != 0:
+		dir = input_dir
+	else: 
+		dir = velocity.x
+	if dir < 0:
 		sprite_2d.flip_h = true
 		facing = -1
-	elif velocity.x > 0:
+	elif dir > 0:
 		sprite_2d.flip_h = false
 		facing = 1
 
@@ -180,7 +194,7 @@ func _on_mob_jump_collision_body_entered(body):
 			is_fast_fall = false
 			jump()
 			mob_jump_sound.play()
-			if body.has_method("take_damage"):
+			if body.has_method("take_damage") and Game.jump_has_dmg:
 				print("Player: " + "player dealt " + str(jump_damage_to_mob) + " to a " + str(body.name))
 				body.take_damage(jump_damage_to_mob)
 

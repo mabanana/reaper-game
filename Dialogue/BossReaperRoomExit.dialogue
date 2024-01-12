@@ -12,5 +12,5 @@ Flyer: Can't say I've ever thought about that. Honestly I have not been trained 
 	Flyer: There are souls to reap, and I'm only gonna teach you once.
 Flyer: First, go scooch up a to a frog and I'll tell you what to do next.
 Reaper: Ugh, this is gonna suck.
-
+set unlocked_scare = true
 => END
