@@ -43,17 +43,20 @@ var facing: int = 1
 
 func _ready():
 	animation_tree.active = true
-
-
+	print("Player: " + str(InputMap.action_get_events("scare")[0].as_text()))
+	
+	
 func _physics_process(delta):
 	# Gets movement inputs
 	direction = Input.get_axis("move_left", "move_right")
+	
 	var blend_position: Vector2
 	check_facing(direction)
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
 	action_state_machine.state_machine_process(delta)
 	ground_state_machine.state_machine_process(delta)
+	
 
 	
 
@@ -206,6 +209,7 @@ func _on_mob_jump_collision_body_entered(body):
 		if tile_data:
 			if tile_data.get_custom_data("is_spike"):
 				take_damage()
+
 
 func _on_mob_jump_collision_area_entered(area):
 	print("Player: " + "landed on an area: " + str(area.name))

@@ -9,7 +9,7 @@ Reaper: Vile creatures? You mean like frogs?
 Boss Reaper: You're quick to catch on, I like that...
 Reaper: Thank you sir- wait YOU WANT ME TO KILL FROGS?
 set Game.set_animation_body("root/World/Mobs/ReaperBoss")
-set Game.play_dialogue_animation("Cast")
+do Game.play_dialogue_animation("Cast")
 Boss Reaper: Do I sense insubordination?
 - OF COURSE NOT SIR, YES SIR!
 	Boss Reaper: That's what I thought

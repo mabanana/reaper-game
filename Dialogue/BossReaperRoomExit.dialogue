@@ -10,7 +10,7 @@ Flyer: Can't say I've ever thought about that. Honestly I have not been trained 
 - I was wrong to expect anything from you.
 	Flyer: Likewise, now quit yapping, we got work to do
 	Flyer: There are souls to reap, and I'm only gonna teach you once.
-Flyer: First, go scooch up a to a frog and I'll tell you what to do next.
+Flyer: First, go scooch up a to that frog right in front of you, and then press {{get_input_key("scare")}}
 Reaper: Ugh, this is gonna suck.
 set unlocked_scare = true
 => END

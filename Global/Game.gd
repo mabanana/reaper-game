@@ -40,3 +40,6 @@ func gem_collected(n:int = 1):
 			Game.jump_has_dbl = true 
 		if Game.gems_collected == 2:
 			Game.jump_has_dmg = true
+
+func get_input_key(name: String):
+	return str(InputMap.action_get_events(name)[0].as_text().split(" ")[0])
