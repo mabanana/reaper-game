@@ -6,7 +6,7 @@ Nathan: Here are some choices.
 	set player_hp = 10
 - increase gem number
 	Nathan: you have one more gem
-	set gems_collected += 1
+	do gem_collected(1)
 	set show_player_msg = true
 	Nathan: you have {{gems_collected}} gems.
 - Start again => this_is_a_node_title
