@@ -956,7 +956,7 @@ modulate = Color(1, 1, 1, 0.980392)
 y_sort_enabled = true
 texture = ExtResource("8_p4gqy")
 hframes = 6
-frame = 4
+frame = 2
 
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

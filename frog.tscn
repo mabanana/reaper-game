@@ -94,7 +94,6 @@ animation = &"Spawn"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6wp1n"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fkjje"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vvkoy"]
 states/Attack/node = SubResource("AnimationNodeAnimation_ji5j5")
@@ -698,9 +697,8 @@ sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("3_r8l5i")
-hframes = 3
+texture = ExtResource("2_172nw")
+hframes = 4
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")
