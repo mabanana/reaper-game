@@ -2,6 +2,8 @@
 
 This is a game prototype for a story based platformer. This prototype includes the base gameplay and a small level to explore.
 
+![demo](demo.gif)
+
 
 ## Gameplay
 
