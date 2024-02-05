@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=122 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://Scenes/SpawnMarker.gd" id="28_dmf8a"]
 [ext_resource type="Resource" uid="uid://dq44iuf1p2kq3" path="res://Dialogue/BossReaperRoomExit2.dialogue" id="28_luqvr"]
 [ext_resource type="AudioStream" uid="uid://mbabmjwe2igt" path="res://Sunny-land-files/10_UI_Menu_SFX/013_Confirm_03.wav" id="31_d1bs3"]
+[ext_resource type="AudioStream" uid="uid://b8h4261tn7dmq" path="res://Sunny-land-files/Music by Ansimuz/happywalking.ogg" id="32_vqj1h"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x7nys"]
 load_path = "res://.godot/imported/middle.png-a80ccf76994f0184467d2a696541f677.ctex"
@@ -1824,9 +1825,10 @@ fill = 1
 fill_from = Vector2(0.522936, 0.518349)
 fill_to = Vector2(0.821101, 0.279817)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("win_sound")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("win_sound", "bgm")]
 script = ExtResource("1_uoiiq")
 win_sound = NodePath("AudioStreamPlayer")
+bgm = NodePath("AudioStreamPlayer2")
 
 [node name="BG" type="ParallaxBackground" parent="."]
 script = ExtResource("1_vubnl")
@@ -2210,6 +2212,9 @@ trigger = NodePath("../../Triggers/FrogDungeon")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_d1bs3")
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_vqj1h")
+
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="UI/Button" to="UI/Button" method="_on_pressed"]
@@ -2227,3 +2232,4 @@ stream = ExtResource("31_d1bs3")
 [connection signal="body_entered" from="Triggers/BossReaperRoomExit2" to="Triggers/BossReaperRoomExit2" method="_on_body_entered"]
 [connection signal="body_entered" from="Triggers/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
+[connection signal="finished" from="AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]

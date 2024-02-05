@@ -1,8 +1,13 @@
 extends Node2D
 @export var win_sound: AudioStreamPlayer
+@export var bgm: AudioStreamPlayer
+
+func _ready():
+	bgm.play()
+
 func _process(delta):
 	if Game.gems_collected == 2 and get_node("Mobs").get_child_count() == 1:
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		win_sound.play()
 func _on_find_pet_body_entered(body):
 	await DialogueManager.dialogue_ended
@@ -36,3 +41,7 @@ func _on_boss_reaper_room_exit_2_body_entered(body):
 func _on_area_2d_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(100)
+
+
+func _on_audio_stream_player_2_finished():
+	bgm.play()
