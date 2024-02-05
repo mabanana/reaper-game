@@ -9,7 +9,7 @@ var unlocked_scare: bool = false
 var gems_collected: int = 0
 var player_global_position: Vector2
 var show_player_msg: bool = false
-var pet_acquired: bool = false
+var pet_acquired: bool = true
 var boss_reaper_room: bool = false
 var boss_reaper_room_exit: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

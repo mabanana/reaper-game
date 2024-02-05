@@ -196,10 +196,10 @@ func _on_mob_jump_collision_body_entered(body):
 			jump_counter += 1
 			is_fast_fall = false
 			jump()
-			mob_jump_sound.play()
 			if body.has_method("take_damage") and Game.jump_has_dmg:
 				print("Player: " + "player dealt " + str(jump_damage_to_mob) + " to a " + str(body.name))
 				body.take_damage(jump_damage_to_mob)
+				mob_jump_sound.play()
 
 
 	if body.name == "TileMap":

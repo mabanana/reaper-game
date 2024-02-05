@@ -1,9 +1,8 @@
 ~ this_is_a_node_title
 
 Flyer: Aren't you excited? your first task! 
-Reaper: Hell no! 100 frogs!?! I thought i was gonna do more important things like deciding the fate of human's who have strayed too far from god
-Reaper: Not whatever this is.
-Reaper: This task doesnt even make sense. Do frogs even have souls?
+Reaper: Hell no! 1000 frogs!?! I thought i was gonna do more important things like deciding the fate of humans who have strayed too far from god or something. Not whatever this is.
+Reaper: This task doesnt even make sense. What do frogs even drop when they die?
 Flyer: Can't say I've ever thought about that. Honestly I have not been trained to handle a newbie immediately having a mental breakdown on the job.
 - Just tell me what to do
 	Flyer: Thats the spirit!
@@ -14,3 +13,5 @@ Flyer: First, go scooch up a to that frog right in front of you, and then press 
 Reaper: Ugh, this is gonna suck.
 set unlocked_scare = true
 => END
+
+

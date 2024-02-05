@@ -411,6 +411,7 @@ script = ExtResource("7_vh2h4")
 cast_animation = "Cast"
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("character")]
+visible = false
 offset_left = -41.0
 offset_top = -3.0
 offset_right = 41.0

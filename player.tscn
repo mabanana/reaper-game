@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bmin8jl4ji6iv"]
+[gd_scene load_steps=61 format=3 uid="uid://bmin8jl4ji6iv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_6qtnx"]
 [ext_resource type="AudioStream" uid="uid://btmxryfob1fg0" path="res://Sunny-land-files/12_Player_Movement_SFX/61_Hit_03.wav" id="2_6fy74"]
@@ -7,10 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dok617efsjtmb" path="res://Sunny-land-files/12_Player_Movement_SFX/03_Step_grass_03.wav" id="3_laasd"]
 [ext_resource type="Script" path="res://JumpComponent.gd" id="4_gukvo"]
 [ext_resource type="AudioStream" uid="uid://gn75sv2x16ep" path="res://Sunny-land-files/8_Buffs_Heals_SFX/21_Debuff_01.wav" id="4_u1b4q"]
-[ext_resource type="Texture2D" uid="uid://brfmqh711g8vp" path="res://Sunny-land-files/characterReaper/HostileIdleReaper-Sheet.png" id="5_a1xqn"]
 [ext_resource type="Texture2D" uid="uid://s4jaix222ory" path="res://Sunny-land-files/Graphical Assets/spritesheets/reaper-player-idle-Sheet.png" id="5_qddtp"]
 [ext_resource type="Texture2D" uid="uid://28hjrblfs2y" path="res://Sunny-land-files/Graphical Assets/spritesheets/reaper-player-run-Sheet.png" id="7_3yi2n"]
-[ext_resource type="Texture2D" uid="uid://bkc23a8l84yd4" path="res://Sunny-land-files/characterReaper/HostileRunningReaper-Sheet.png" id="7_ap5pu"]
 [ext_resource type="Script" path="res://Control.gd" id="8_2s5ur"]
 [ext_resource type="Script" path="res://CharacterStates/CharacterStateMachine.gd" id="8_83iwg"]
 [ext_resource type="Texture2D" uid="uid://disbwkhp2j8ug" path="res://Sunny-land-files/Graphical Assets/environment/Props/crate.png" id="8_bjctr"]
@@ -141,7 +139,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_js5y2"]
 resource_name = "Fall"
-length = 0.35
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -153,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_ap5pu")]
+"values": [ExtResource("7_3yi2n")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -174,10 +172,10 @@ tracks/2/path = NodePath("PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3, 1]
+"values": [3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -189,7 +187,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [6]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -498,7 +496,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_a1xqn")]
+"values": [ExtResource("7_3yi2n")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -522,7 +520,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -534,7 +532,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [6]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -726,7 +724,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_a1xqn")]
+"values": [ExtResource("5_qddtp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -747,10 +745,10 @@ tracks/2/path = NodePath("PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -762,7 +760,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [4]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -892,7 +890,7 @@ states/Scare/node = SubResource("AnimationNodeAnimation_c3hcy")
 states/Scare/position = Vector2(403, 216)
 states/Start/position = Vector2(99, 143)
 transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_d7tdl"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_b8nly"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_jfev1"), "Move", "Hurt", SubResource("AnimationNodeStateMachineTransition_4trro"), "Hurt", "Move", SubResource("AnimationNodeStateMachineTransition_yyw5u"), "Move", "Float", SubResource("AnimationNodeStateMachineTransition_gsu6q"), "Float", "Move", SubResource("AnimationNodeStateMachineTransition_h6vkb"), "Move", "Scare", SubResource("AnimationNodeStateMachineTransition_7icms"), "Scare", "Move", SubResource("AnimationNodeStateMachineTransition_q8ts7")]
-graph_offset = Vector2(-185, 56)
+graph_offset = Vector2(-186, 71)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp71e"]
 texture = ExtResource("8_bjctr")
@@ -956,7 +954,7 @@ modulate = Color(1, 1, 1, 0.980392)
 y_sort_enabled = true
 texture = ExtResource("8_p4gqy")
 hframes = 6
-frame = 2
+frame = 3
 
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

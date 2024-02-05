@@ -697,8 +697,9 @@ sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_172nw")
-hframes = 4
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_r8l5i")
+hframes = 3
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kj2hp")
@@ -766,6 +767,7 @@ scared_animation = "Scared"
 can_attack = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("character")]
+visible = false
 offset_left = -41.0
 offset_top = -3.0
 offset_right = 41.0
