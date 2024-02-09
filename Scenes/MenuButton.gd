@@ -7,9 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Game.gems_collected == 2 and get_node("Mobs").get_child_count() == 1:
-		text = "End Game"
+
 
 
 func _on_pressed():
