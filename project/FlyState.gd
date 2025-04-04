@@ -3,12 +3,8 @@ extends State
 class_name FlyState
 
 func on_enter():
-	#TODO: get_tree().create_timer(character.flight_time)
-	var timer := Timer.new()
-	add_child(timer)
-	timer.start(character.flight_time)
-	timer.paused = false
-	timer.connect("timeout", _on_timer_timeout)
+	get_tree().create_timer(character.flight_time).timeout.connect(_on_timer_timeout)
+
 
 func state_process(delta): 
 	pass
