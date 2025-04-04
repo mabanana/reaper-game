@@ -5,9 +5,11 @@ class_name CastState
 
 func on_enter():
 	playback.play(cast_animation)
+	playback.animation_finished.connect(func(anim_name):
+		if anim_name == cast_animation:
+			next_state = get_parent().states["Idle"]
+	)
 	character.cast_sound.play()
 
 func state_process(delta):
-	if character.name_animation_finished == cast_animation:
-		next_state = get_parent().states["Idle"]
-	character.name_animation_finished = ""
+	pass
