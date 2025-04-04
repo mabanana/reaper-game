@@ -3,7 +3,7 @@ class_name ScareState
 
 func on_enter():
 	character.velocity.x = 0
-	playback.travel("Scare")
+	playback.play("Scare")
 	
 func state_process(delta):
 	if character.name_animation_finished == "Scare":

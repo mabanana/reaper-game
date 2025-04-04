@@ -10,10 +10,10 @@ func state_process(delta):
 
 func on_enter():
 	character.velocity.x = 0
-	playback.travel(move_animation)
+	playback.play(move_animation)
 
 
 #func on_exit():
 #	if next_state == get_parent().states["Attack"]:
-#		playback.travel("Attack")
+#		playback.play("Attack")
 

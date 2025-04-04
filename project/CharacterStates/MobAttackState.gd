@@ -8,7 +8,7 @@ func state_process(delta):
 		next_state = get_parent().states["Idle"]
 
 func on_enter():
-	playback.travel(attack_animation)
+	playback.play(attack_animation)
 	character.deal_damage(character.atk_target)
 #	var direction = (Game.player_global_position - character.global_position).normalized()
 #	character.velocity.x += direction.x * -character.speed*3

@@ -12,7 +12,6 @@ var atk_target
 
 
 func _ready():
-	animation_tree.active = true
 	chase_location = global_position
 	
 func _physics_process(delta):
@@ -60,7 +59,7 @@ func _physics_process(delta):
 			change_state("Idle")
 			chase_distance = 0
 	# Sends movement data to the animation tree
-	animation_tree.set("parameters/Move/blend_position", blend_position)
+	#animation_tree.set("parameters/Move/blend_position", blend_position)
 	move_and_slide()
 	chase_distance -= speed*delta
 

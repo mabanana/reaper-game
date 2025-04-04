@@ -13,7 +13,7 @@ var name_animation_finished: String
 @export var speed: int
 @export var jump_velocity: int
 @export var id: String
-@export var animation_tree: AnimationTree
+@export var anim: AnimationPlayer
 @export var sprite_2d: Sprite2D
 @export var character_state_machine: CharacterStateMachine
 

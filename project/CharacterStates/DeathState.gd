@@ -5,7 +5,7 @@ class_name DeathState
 
 func on_enter():
 	character.velocity = Vector2(0,0)
-	playback.travel(death_animation)
+	playback.play(death_animation)
 
 
 func state_process(delta):

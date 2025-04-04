@@ -4,7 +4,7 @@ class_name CharacterStateMachine
 
 @export var current_state : State
 @export var character: CharacterBody2D
-@export var animation_tree: AnimationTree
+@export var animation_player: AnimationPlayer
 var states : Dictionary = {}
 
 
@@ -14,7 +14,7 @@ func _ready():
 				states[child.name] = child
 				# Set the state up with what they need to function
 				child.character = character
-				child.playback = animation_tree["parameters/playback"]
+				child.playback = animation_player
 		else:
 			push_warning("CharacterStateMachine:  " + child.name + " is not a State for CharacterStateMachine")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cs0kay877rrbv"]
+[gd_scene load_steps=35 format=3 uid="uid://cs0kay877rrbv"]
 
 [ext_resource type="Script" path="res://frog.gd" id="1_i50yc"]
 [ext_resource type="Texture2D" uid="uid://dpwne58plfjq0" path="res://Sunny-land-files/Graphical Assets/spritesheets/enemy-deadth.png" id="1_rq300"]
@@ -41,190 +41,6 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_p6hmv"]
 gradient = SubResource("Gradient_yo0xm")
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji5j5"]
-animation = &"Attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_etnsf"]
-animation = &"Death"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5waw6"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vagyr"]
-animation = &"Jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6xmu"]
-animation = &"Fall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2tvqt"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjans"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bwnl1"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_5waw6")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_vagyr")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_k6xmu")
-blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_2tvqt")
-blend_point_3/pos = Vector2(1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_fjans")
-blend_point_4/pos = Vector2(-1, 0)
-snap = Vector2(1, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hffji"]
-animation = &"Scared"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fllje"]
-animation = &"Spawn"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eulny"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52ida"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x7ttk"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kla7w"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6wp1n"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fkjje"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vvkoy"]
-states/Attack/node = SubResource("AnimationNodeAnimation_ji5j5")
-states/Attack/position = Vector2(518, 171)
-states/Death/node = SubResource("AnimationNodeAnimation_etnsf")
-states/Death/position = Vector2(700, 116)
-states/Move/node = SubResource("AnimationNodeBlendSpace2D_bwnl1")
-states/Move/position = Vector2(518, 89)
-states/Scared/node = SubResource("AnimationNodeAnimation_hffji")
-states/Scared/position = Vector2(518, 36)
-states/Spawn/node = SubResource("AnimationNodeAnimation_fllje")
-states/Spawn/position = Vector2(320, 116)
-transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_eulny"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_52ida"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_x7ttk"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_kla7w"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_6wp1n"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_fkjje")]
-graph_offset = Vector2(3, 16)
-
-[sub_resource type="Animation" id="Animation_biimr"]
-resource_name = "Attack"
-length = 0.4
-
-[sub_resource type="Animation" id="Animation_fscf5"]
-resource_name = "Death"
-length = 0.6
-
-[sub_resource type="Animation" id="Animation_wuxpt"]
-resource_name = "Fall"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_beojv"]
-resource_name = "Idle"
-length = 0.4
-loop_mode = 2
-step = 0.2
-
-[sub_resource type="Animation" id="Animation_s14lf"]
-resource_name = "Jump"
-length = 0.4
-step = 0.2
-
-[sub_resource type="Animation" id="Animation_yfh8c"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_a37ro"]
-resource_name = "Run"
-length = 0.55
-loop_mode = 1
-step = 0.2
-
-[sub_resource type="Animation" id="Animation_j6fbt"]
-resource_name = "Spawn"
-length = 0.6
-step = 0.2
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dja4"]
-_data = {
-"Attack": SubResource("Animation_biimr"),
-"Death": SubResource("Animation_fscf5"),
-"Fall": SubResource("Animation_wuxpt"),
-"Idle": SubResource("Animation_beojv"),
-"Jump": SubResource("Animation_s14lf"),
-"RESET": SubResource("Animation_yfh8c"),
-"Run": SubResource("Animation_a37ro"),
-"Spawn": SubResource("Animation_j6fbt")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jd7h"]
-animation = &"Attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wiixc"]
-animation = &"Death"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6t1ye"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owwfs"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dtx2l"]
-animation = &"Run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gusw3"]
-animation = &"Jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3851l"]
-animation = &"Fall"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yr37h"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_6t1ye")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_owwfs")
-blend_point_1/pos = Vector2(1.1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_dtx2l")
-blend_point_2/pos = Vector2(-1.1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_gusw3")
-blend_point_3/pos = Vector2(0, 1)
-blend_point_4/node = SubResource("AnimationNodeAnimation_3851l")
-blend_point_4/pos = Vector2(0, -1)
-min_space = Vector2(-1.1, -1)
-max_space = Vector2(1.1, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g07v1"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ew6qo"]
-animation = &"Spawn"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wc56n"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phqym"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2320a"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a2rfc"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_41p6r"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2cesb"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mhlu6"]
-states/Attack/node = SubResource("AnimationNodeAnimation_7jd7h")
-states/Attack/position = Vector2(558, 151)
-states/Death/node = SubResource("AnimationNodeAnimation_wiixc")
-states/Death/position = Vector2(735, 100)
-states/Move/node = SubResource("AnimationNodeAnimation_g07v1")
-states/Move/position = Vector2(558, 61)
-"states/Move Copy/node" = SubResource("AnimationNodeBlendSpace2D_yr37h")
-"states/Move Copy/position" = Vector2(271, 169)
-states/Spawn/node = SubResource("AnimationNodeAnimation_ew6qo")
-states/Spawn/position = Vector2(369, 100)
-states/Start/position = Vector2(202, 100)
-transitions = ["Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_wc56n"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_phqym"), "Move", "Death", SubResource("AnimationNodeStateMachineTransition_2320a"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_a2rfc"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_41p6r"), "Spawn", "Move", SubResource("AnimationNodeStateMachineTransition_2cesb")]
 
 [sub_resource type="Animation" id="Animation_nhc71"]
 resource_name = "Attack"
@@ -677,7 +493,7 @@ _data = {
 "Spawn": SubResource("Animation_ld68c")
 }
 
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("death_sound", "attack_sound", "collision_shape", "animation_tree", "sprite_2d", "character_state_machine")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("death_sound", "attack_sound", "collision_shape", "anim", "sprite_2d", "character_state_machine")]
 collision_layer = 2
 collision_mask = 8
 floor_snap_length = 11.0
@@ -692,13 +508,12 @@ attack_damage = 1
 speed = 100
 jump_velocity = -400
 id = "Frog"
-animation_tree = NodePath("AnimationTree")
+anim = NodePath("AnimationPlayer")
 sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-texture = ExtResource("3_r8l5i")
 hframes = 3
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
@@ -729,11 +544,11 @@ collision_mask = 26
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_player")]
 script = ExtResource("7_ypbje")
 current_state = NodePath("Spawn")
 character = NodePath("..")
-animation_tree = NodePath("../AnimationTree")
+animation_player = NodePath("../AnimationPlayer")
 
 [node name="Idle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("9_03bk7")
@@ -820,22 +635,6 @@ texture_progress = SubResource("GradientTexture1D_p6hmv")
 tint_progress = Color(0.784314, 0.207843, 0.137255, 1)
 script = ExtResource("11_ql0vd")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_vvkoy")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/Move/blend_position = Vector2(0, 0)
-
-[node name="BrokenAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_3dja4")
-}
-
-[node name="BrokenFrogAnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_mhlu6")
-anim_player = NodePath("../BrokenAnimationPlayer")
-"parameters/Move Copy/blend_position" = Vector2(0, 0)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_i3i48")
@@ -854,5 +653,3 @@ stream = ExtResource("6_nbeqg")
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
 [connection signal="body_exited" from="PlayerCollision" to="." method="_on_player_collision_body_exited"]
 [connection signal="body_entered" from="FrogHurtbox" to="." method="_on_frog_hurtbox_body_entered"]
-[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]

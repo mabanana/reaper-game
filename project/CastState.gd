@@ -4,7 +4,7 @@ class_name CastState
 @export var cast_animation: String
 
 func on_enter():
-	playback.travel(cast_animation)
+	playback.play(cast_animation)
 	character.cast_sound.play()
 
 func state_process(delta):

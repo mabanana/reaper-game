@@ -9,4 +9,3 @@ func on_enter():
 func state_process(delta):
 	if not character.is_on_floor():
 		next_state = get_parent().states["Air"]
-

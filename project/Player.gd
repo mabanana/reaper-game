@@ -21,8 +21,9 @@ var is_float: bool
 var flight_direction : Vector2
 var id: String = "Player"
 var facing: int = 1
+var blend_position: Vector2 = Vector2(0,0)
 
-@export var animation_tree: AnimationTree
+@export var anim: AnimationPlayer
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
 @export var mob_jump_sound: AudioStreamPlayer
@@ -39,18 +40,17 @@ var facing: int = 1
 @export var action_state_machine: CharacterStateMachine
 
 
-
-
 func _ready():
-	animation_tree.active = true
 	print("Player: " + str(InputMap.action_get_events("scare")[0].as_text()))
+	anim.animation_finished.connect(_on_player_animation_tree_animation_finished)
+	anim.animation_started.connect(_on_player_animation_tree_animation_started)
+	anim.play("Idle")
 	
 	
 func _physics_process(delta):
 	# Gets movement inputs
 	direction = Input.get_axis("move_left", "move_right")
 	
-	var blend_position: Vector2
 	check_facing(direction)
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
@@ -137,8 +137,6 @@ func _physics_process(delta):
 
 	blend_position.y = -velocity.y
 	blend_position = blend_position.normalized()
-	# Sends parameter data to the animation tree
-	animation_tree.set("parameters/Move/blend_position", blend_position)
 	jump_damage_to_mob = jump_damage + int(jump_damage + velocity.y / 100)
 	move_and_slide()
 
@@ -225,13 +223,3 @@ func _on_player_animation_tree_animation_started(anim_name):
 func _on_hurtbox_body_entered(body):
 	print("Player: a " + str(body.name) + " has collided with the player's hitbox")
 	
-
-func _on_animation_tree_animation_finished(anim_name):
-	name_animation_finished = anim_name
-
-
-func _on_animation_tree_animation_started(anim_name):
-	name_animation_finished = ""
-
-
-

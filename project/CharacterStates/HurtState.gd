@@ -5,7 +5,7 @@ class_name HurtState
 @export var hurt_animation: String
 
 func on_enter():
-	playback.travel(hurt_animation)
+	playback.play(hurt_animation)
 
 func state_process(delta): 
 	var timer := Timer.new()

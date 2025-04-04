@@ -9,5 +9,5 @@ func state_process(delta):
 
 
 func on_enter():
-	playback.travel(move_animation)
+	playback.play(move_animation)
 
