@@ -4,8 +4,8 @@ extends State
 class_name BusyState
 
 func on_enter():
-	character.velocity.x = 0
+	playback.play("Idle")
 
 
 func state_process(delta):
-	pass
+	character.velocity.x = 0
