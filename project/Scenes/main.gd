@@ -1,13 +1,24 @@
 extends Node2D
+class_name Main
+
+@export var play_button: Button
+@export var controls_button: Button
+@export var quit_button: Button
+
 
 func _ready():
 	#Utils.saveGame()
 	#Utils.loadGame()
-	pass
-
-func _on_button_2_pressed():
+	play_button.pressed.connect(_on_play_pressed)
+	controls_button.pressed.connect(_on_control_pressed)
+	quit_button.pressed.connect(_on_quit_pressed)
+	
+func _on_quit_pressed():
 	get_tree().quit() # Replace with function body.
 
 
-func _on_button_pressed():
+func _on_play_pressed():
+	get_tree().change_scene_to_file("res://Scenes/World.tscn")
+
+func _on_control_pressed():
 	get_tree().change_scene_to_file("res://Scenes/ControlsList.tscn")

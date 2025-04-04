@@ -5,30 +5,57 @@
 [ext_resource type="Script" path="res://ItemList2.gd" id="3_t3pro"]
 [ext_resource type="Script" path="res://Button.gd" id="4_tl32s"]
 
-[node name="Node" type="Node"]
+[node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="TabBar" type="TabBar" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = 415.0
-offset_top = 209.0
-offset_right = 1525.0
-offset_bottom = 616.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 100
+text = "Controls"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="PanelContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="PanelContainer/HBoxContainer"]
+[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -40,7 +67,7 @@ item_0/text = "Icon"
 item_0/icon = ExtResource("1_eqmje")
 script = ExtResource("2_rl3kr")
 
-[node name="ItemList2" type="ItemList" parent="PanelContainer/HBoxContainer"]
+[node name="ItemList2" type="ItemList" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,20 +79,31 @@ item_0/text = "Icon"
 item_0/icon = ExtResource("1_eqmje")
 script = ExtResource("3_t3pro")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 404.0
-offset_top = 68.0
-offset_right = 811.0
-offset_bottom = 208.0
-theme_override_font_sizes/font_size = 100
-text = "Controls"
+[node name="VScrollBar" type="VScrollBar" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+page = 20.0
 
-[node name="Button" type="Button" parent="."]
-offset_left = 1354.0
-offset_top = 655.0
-offset_right = 1520.0
-offset_bottom = 718.0
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
 text = "Continue"
 script = ExtResource("4_tl32s")
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Control/Button" to="MarginContainer/VBoxContainer/Control/Button" method="_on_pressed"]

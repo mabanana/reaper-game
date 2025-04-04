@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=124 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c4tuji157tluo" path="res://gem.tscn" id="11_ntgtc"]
 [ext_resource type="Script" path="res://path_2d.gd" id="12_3pck4"]
 [ext_resource type="Script" path="res://PathFollow2D.gd" id="13_6ioy6"]
+[ext_resource type="Script" path="res://Scenes/volume_slider.gd" id="13_bnf7s"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
 [ext_resource type="Script" path="res://Scenes/WinMessage.gd" id="14_lv3u1"]
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
@@ -1422,22 +1423,6 @@ text = "HP
 script = SubResource("GDScript_tohbf")
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="UI"]
-offset_left = 1876.0
-offset_top = 9.0
-offset_right = 1909.0
-offset_bottom = 40.0
-text = "X"
-script = ExtResource("10_rpxi5")
-
-[node name="ResetButton" type="Button" parent="UI"]
-offset_left = 1781.0
-offset_top = 11.0
-offset_right = 1859.0
-offset_bottom = 41.0
-text = "Reset"
-script = ExtResource("11_bdj65")
-
 [node name="WinMessage" type="Label" parent="UI"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -1452,6 +1437,44 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 script = ExtResource("14_lv3u1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="UI/HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -12.0
+max_value = 0.0
+script = ExtResource("13_bnf7s")
+
+[node name="ResetButton" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Reset"
+script = ExtResource("11_bdj65")
+
+[node name="Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+script = ExtResource("10_rpxi5")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -1701,12 +1724,12 @@ stream = ExtResource("31_d1bs3")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_vqj1h")
-volume_db = -20.0
+volume_db = -10.0
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
-[connection signal="pressed" from="UI/Button" to="UI/Button" method="_on_pressed"]
-[connection signal="pressed" from="UI/ResetButton" to="UI/ResetButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/ResetButton" to="UI/HBoxContainer/ResetButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Button" to="UI/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Triggers/FrogDungeon" to="." method="_on_frog_dungeon_body_entered"]

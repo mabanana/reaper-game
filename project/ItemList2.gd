@@ -6,9 +6,8 @@ func _ready():
 
 	# Define the controls for the action platformer game
 	var controls = [
-		"A",
-		"D",
-		"SpaceBar",
+		"A,D",
+		"SpaceBar, UpArrow",
 		"S",
 		"W",
 		"Left Click"

@@ -6,8 +6,7 @@ func _ready():
 
 	# Define the controls for the action platformer game
 	var controls = [
-		"Move Left:",
-		"Move Right",
+		"Move",
 		"Jump",
 		"Fast Fall",
 		"Float",
@@ -19,3 +18,4 @@ func _ready():
 	for control in controls:
 		add_item(control, null, false)
 		print("items have been added")
+		
