@@ -513,7 +513,7 @@ sprite_2d = NodePath("Sprite2D")
 character_state_machine = NodePath("CharacterStateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_r8l5i")
 hframes = 3
 
 [node name="FrogCollisionShape" type="CollisionShape2D" parent="."]
@@ -552,7 +552,9 @@ animation_player = NodePath("../AnimationPlayer")
 
 [node name="Idle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("9_03bk7")
-move_animation = "Move"
+move_animation = "Run"
+fall_animation = "Fall"
+jump_animation = "Jump"
 can_move = false
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
@@ -653,3 +655,5 @@ stream = ExtResource("6_nbeqg")
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
 [connection signal="body_exited" from="PlayerCollision" to="." method="_on_player_collision_body_exited"]
 [connection signal="body_entered" from="FrogHurtbox" to="." method="_on_frog_hurtbox_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_started"]

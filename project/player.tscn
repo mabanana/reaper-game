@@ -919,6 +919,7 @@ fit_content = true
 script = ExtResource("9_flgqm")
 
 [node name="StateDebugLabel" type="Label" parent="Control" node_paths=PackedStringArray("character")]
+visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = 24.0

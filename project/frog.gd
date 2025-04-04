@@ -21,7 +21,6 @@ func _physics_process(delta):
 
 	# Send parameter data to CharacterStateMachine
 	character_state_machine.state_machine_process(delta)
-	var blend_position: Vector2
 	
 	# Moves the chatacter based on input if state allows movement
 	if character_state_machine.current_state.can_move:

@@ -8,5 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "State : " + character.current_state().name
-	pass
+	text = "State : " + character.current_state().name + ", " + character.anim.current_animation

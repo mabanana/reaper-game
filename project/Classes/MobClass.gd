@@ -5,6 +5,7 @@ class_name Mob
 var chase = false
 var can_atk: bool = false
 var name_animation_finished: String
+var blend_position: Vector2
 @export var collision_shape: CollisionShape2D
 @export var health: int
 @export var drop_amount: int
@@ -18,7 +19,6 @@ var name_animation_finished: String
 @export var character_state_machine: CharacterStateMachine
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 
 func _ready():
 	pass
@@ -44,9 +44,9 @@ func death():
 	current_state().next_state = character_state_machine.states["Death"]
 
 
-func _on_animation_tree_animation_started(anim_name):
+func _on_animation_started(anim_name):
 	name_animation_finished = ""
 
 
-func _on_animation_tree_animation_finished(anim_name):
+func _on_animation_finished(anim_name):
 	name_animation_finished = anim_name

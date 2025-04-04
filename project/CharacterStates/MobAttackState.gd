@@ -19,4 +19,3 @@ func on_enter():
 func on_exit():
 	character.name_animation_finished = ""
 #	if character.can_atk == true:
-

@@ -25,3 +25,12 @@ func loadGame():
 				Game.player_hp = current_line["player_hp"]
 				Game.player_gold = current_line["player_gold"]
 				
+
+static func get_blend_animation(blend_position: Vector2, blend_points: Array):
+	var closest = "Idle"
+	var dist = 2
+	for point in blend_points:
+		if blend_position.distance_to(point[0]) <= dist:
+			closest = point[1]
+			dist = blend_position.distance_to(point[0])
+	return closest

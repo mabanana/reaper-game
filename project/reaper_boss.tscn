@@ -345,7 +345,7 @@ animation_player = NodePath("../AnimationPlayer")
 
 [node name="Idle" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("4_lrt24")
-move_animation = "Move"
+move_animation = "Walk"
 can_move = false
 
 [node name="Death" type="Node" parent="CharacterStateMachine"]
