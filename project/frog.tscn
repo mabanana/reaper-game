@@ -27,7 +27,7 @@ radius = 5.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11pcb"]
-size = Vector2(27, 27)
+size = Vector2(27, 35)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78nex"]
 bg_color = Color(0, 0, 0, 0.164706)
@@ -541,7 +541,7 @@ collision_layer = 2
 collision_mask = 26
 
 [node name="Hurtbox" type="CollisionShape2D" parent="FrogHurtbox"]
-position = Vector2(-0.5, -1.5)
+position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_11pcb")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_player")]

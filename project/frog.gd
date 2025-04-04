@@ -87,7 +87,6 @@ func scare(body: CharacterBody2D, dist: int = 50):
 	chase_distance = dist
 	change_state("Scared")
 
-
 func _on_player_detection_body_entered(body):
 	if body.name == "Player": 
 		chase_location = Game.player_global_position
@@ -97,7 +96,6 @@ func _on_player_detection_body_entered(body):
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
 		chase_location = Game.player_global_position
-
 
 
 func _on_player_collision_body_entered(body):

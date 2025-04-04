@@ -10,4 +10,3 @@ func state_process(delta):
 
 func on_enter():
 	playback.play(scared_animation)
-
