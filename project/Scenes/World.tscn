@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=116 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://PathFollow2D.gd" id="13_6ioy6"]
 [ext_resource type="Script" path="res://Scenes/volume_slider.gd" id="13_bnf7s"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
-[ext_resource type="Script" path="res://Scenes/WinMessage.gd" id="14_lv3u1"]
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
 [ext_resource type="PackedScene" uid="uid://cmmcg8cxlo6ui" path="res://dialogue_trigger.tscn" id="20_48bp2"]
 [ext_resource type="Resource" uid="uid://dkwu6dkfcab7v" path="res://Dialogue/FrogSpawn.dialogue" id="20_bs1xv"]
@@ -1401,7 +1400,6 @@ offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-script = ExtResource("14_lv3u1")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 1
