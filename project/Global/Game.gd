@@ -16,8 +16,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var play_animation_body: CharacterBody2D
 
 
-func set_animation_body(body_path: String):
-	play_animation_body = get_node("/root/World/Mobs/ReaperBoss")
+func set_animation_body(body_path: String = "/root/World/Mobs/ReaperBoss"):
+	play_animation_body = get_node(body_path)
 
 func play_dialogue_animation(anim_name: String):
 	play_animation_body.change_state(anim_name)

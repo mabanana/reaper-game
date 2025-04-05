@@ -25,7 +25,6 @@ func _on_find_pet_body_entered(body):
 		await dialogue_controller.dialogue_ended
 		
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
-		Game.pet_acquired = true
 		print("pet_acquired dialogue ended".capitalize())
 
 func _on_frog_dungeon_body_entered(body):
@@ -48,7 +47,6 @@ func _on_boss_reaper_room_body_entered(body):
 		await dialogue_controller.dialogue_ended
 		
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
-		Game.boss_reaper_room = true
 		%StaticBody2D.queue_free()
 		print("boss_reaper_room dialogue ended".capitalize())
 		

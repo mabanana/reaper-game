@@ -27,6 +27,8 @@ var text_cd: int = 0
 @export var dialogue_container: PanelContainer
 @export var state_machine: StateMachine
 
+@onready var effect_parser:= DialogueEffectParser.new()
+
 signal choice_selected
 signal dialogue_ended
 signal dialogue_started
@@ -43,6 +45,7 @@ func connect_signals():
 	dialogue_started.connect(_init_text_speed_slider)
 	dialogue_advanced.connect(_update_current)
 	dialogue_advanced.connect(_update_choices)
+	dialogue_advanced.connect(_apply_effects)
 	dialogue_ended.connect(_on_dialogue_end)
 
 func _process(delta):
@@ -108,6 +111,10 @@ func next_node(index = -1):
 		current_node = dialogue_tree.nodes[next_node]
 		current_line = 0
 		dialogue_advanced.emit()
+
+func _apply_effects():
+	if "effect" in current:
+		effect_parser.parse_effect_string(current.effect)
 
 func _init_text_speed_slider():
 	text_speed_slider.min_value = min_text_speed
