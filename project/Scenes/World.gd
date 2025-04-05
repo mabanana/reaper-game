@@ -28,7 +28,7 @@ func _on_find_pet_body_entered(body):
 		print("pet_acquired dialogue ended".capitalize())
 
 func _on_frog_dungeon_body_entered(body):
-	await DialogueManager.dialogue_ended
+	#TODO: Add spawn frog trigger logic
 	for spawn_marker in find_child("Spawners").get_children():
 		if spawn_marker.trigger == $Triggers/FrogDungeon:
 			find_child("Mobs").spawn_frog(spawn_marker.global_position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=115 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
@@ -20,8 +20,6 @@
 [ext_resource type="Script" path="res://Scenes/volume_slider.gd" id="13_bnf7s"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
-[ext_resource type="PackedScene" uid="uid://cmmcg8cxlo6ui" path="res://dialogue_trigger.tscn" id="20_48bp2"]
-[ext_resource type="Resource" uid="uid://dkwu6dkfcab7v" path="res://Dialogue/FrogSpawn.dialogue" id="20_bs1xv"]
 [ext_resource type="PackedScene" uid="uid://bj0ew2f8uq33l" path="res://floater.tscn" id="22_i15ib"]
 [ext_resource type="Script" path="res://Scenes/SpawnMarker.gd" id="28_dmf8a"]
 [ext_resource type="AudioStream" uid="uid://mbabmjwe2igt" path="res://Sunny-land-files/10_UI_Menu_SFX/013_Confirm_03.wav" id="31_d1bs3"]
@@ -1266,6 +1264,9 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pqqx"]
+size = Vector2(64, 47)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fb0u"]
 size = Vector2(70, 19)
 
@@ -1552,10 +1553,11 @@ script = ExtResource("13_6ioy6")
 
 [node name="Triggers" type="Node" parent="."]
 
-[node name="FrogDungeon" parent="Triggers" instance=ExtResource("20_48bp2")]
+[node name="FrogDungeon" type="Area2D" parent="Triggers"]
 position = Vector2(419, 587)
-trigger_condition = false
-dialogue_file = ExtResource("20_bs1xv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/FrogDungeon"]
+shape = SubResource("RectangleShape2D_1pqqx")
 
 [node name="FindPet" type="Area2D" parent="Triggers"]
 position = Vector2(1591, -54)
@@ -1721,6 +1723,8 @@ volume_db = -10.0
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Triggers/FrogDungeon" to="." method="_on_frog_dungeon_body_entered"]
+[connection signal="body_entered" from="Triggers/FrogDungeon" to="Triggers/FrogDungeon" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/FrogDungeon" to="Triggers/FrogDungeon" method="_on_body_exited"]
 [connection signal="body_entered" from="Triggers/FindPet" to="." method="_on_find_pet_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoom" to="." method="_on_boss_reaper_room_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoomExit" to="." method="_on_boss_reaper_room_exit_body_entered"]

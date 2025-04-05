@@ -19,7 +19,6 @@ config/icon="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-2.png"
 
 Game="*res://Global/Game.gd"
 Utils="*res://Global/Utils.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
@@ -30,10 +29,6 @@ general/states=["Utils", "Game", "World"]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
