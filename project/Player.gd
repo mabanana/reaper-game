@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerBody
 
 const scare_offset: int = 20
 var scare_ability = load("res://scare_ability.tscn")
@@ -49,9 +50,9 @@ func _ready():
 	
 func _physics_process(delta):
 	# Gets movement inputs
-	direction = Input.get_axis("move_left", "move_right")
-	
-	check_facing(direction)
+	if action_state_machine.is_can_move():
+		direction = Input.get_axis("move_left", "move_right")
+		check_facing(direction)
 	# Sends paramenter data to Game state machine and character state machine
 	Game.player_global_position = global_position
 	action_state_machine.state_machine_process(delta)

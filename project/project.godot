@@ -28,8 +28,6 @@ general/states=["Utils", "Game", "World"]
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
@@ -144,6 +142,8 @@ locale/translations_pot_files=PackedStringArray("res://Dialogue/TestDialogue.dia
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 viewport/hdr_2d=true

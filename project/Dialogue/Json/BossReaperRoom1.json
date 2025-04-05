@@ -1,0 +1,90 @@
+{
+  "dialogue_id": "boss_reaper_room_start",
+  "nodes": {
+	"start": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "I see you have arrived in one piece. Good."
+		},
+		"1": {
+		  "speaker": "Reaper",
+		  "text": "I literally walked 2 steps. it wasnt a very difficult path."
+		},
+		"2": {
+		  "speaker": "Boss Reaper",
+		  "text": "These Forests are full of vile creatures, I need you to kill them, and bring me their souls."
+		},
+		"3": {
+		  "speaker": "Reaper",
+		  "text": "Vile creatures? You mean like frogs?"
+		},
+		"4": {
+		  "speaker": "Boss Reaper",
+		  "text": "You're quick to catch on, I like that..."
+		},
+		"5": {
+		  "speaker": "Reaper",
+		  "text": "wait YOU WANT ME TO KILL FROGS? Do frogs even have souls? Gingers will never recover from learning that even frogs have souls."
+		}
+	  },
+	  "choices": ["is_this_a_joke"]
+	},
+
+	"is_this_a_joke": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around."
+		}
+	  },
+	  "choices": ["apologize_for_your_transgressions", "lighten_the_mood"]
+	},
+
+	"apologize_for_your_transgressions": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Reaper",
+		  "text": "OF COURSE NOT SIR, YES SIR!"
+		},
+		"1": {
+		  "speaker": "Boss Reaper",
+		  "text": "That's what I thought"
+		}
+	  },
+	  "choices": ["end"]
+	},
+
+	"lighten_the_mood": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Reaper",
+		  "text": "But they're so cuuute~"
+		},
+		"1": {
+		  "speaker": "Boss Reaper",
+		  "text": "Im going to pretend you never said that. Ahem."
+		}
+	  },
+	  "choices": ["end"]
+	},
+
+	"end": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Reaper",
+		  "text": "Well, they're cute, but I bet they'll be even cuter when they're dead and mutilated."
+		},
+		"1": {
+		  "speaker": "Boss Reaper",
+		  "text": "W T F. ok anyways-"
+		},
+		"2": {
+		  "speaker": "Boss Reaper",
+		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs."
+		}
+	  },
+	  "choices": []
+	}
+  }
+}

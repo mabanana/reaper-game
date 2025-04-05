@@ -9,6 +9,7 @@ class_name State
 var character : CharacterBody2D
 var next_state: State
 var playback: AnimationPlayer
+var state_machine: StateMachine
 
 func state_process(delta):
 	pass
