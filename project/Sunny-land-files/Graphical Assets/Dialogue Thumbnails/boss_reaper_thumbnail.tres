@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://clasw2nda6sur"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8hcy3"]
+load_path = "res://.godot/imported/Bringer-of-Death-SpritSheet.png-071afe5fd55d692aa06c3826d55baacf.ctex"
+
+[resource]
+atlas = SubResource("CompressedTexture2D_8hcy3")
+region = Rect2(82, 40, 47, 44)

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c5pcmtegnix5c"]
+
+[ext_resource type="Texture2D" uid="uid://c401qt0obc5bn" path="res://Sunny-land-files/Sorceror/flying-head.png" id="1_ajluu"]
+
+[resource]
+atlas = ExtResource("1_ajluu")
+region = Rect2(85, 16, 21, 21)

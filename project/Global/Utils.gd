@@ -2,6 +2,12 @@ extends Node
 
 const SAVE_PATH = "res://savegame.bin"
 
+var thumbnails: Dictionary = {
+	"Reaper": "res://Sunny-land-files/Graphical Assets/Dialogue Thumbnails/reaper_player_thumbnail.tres",
+	"Boss Reaper": "res://Sunny-land-files/Graphical Assets/Dialogue Thumbnails/boss_reaper_thumbnail.tres",
+	"Flyer" : "res://Sunny-land-files/Graphical Assets/Dialogue Thumbnails/flyer_thumbnail.tres",
+}
+
 func game_reset():
 	Game.player_hp = 10
 	Game.player_gold = 0

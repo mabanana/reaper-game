@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://25vqs1jxcsi7"]
 
 [ext_resource type="Script" path="res://Dialogue/Controller/dialogue_controller.gd" id="1_kbxpl"]
-[ext_resource type="Texture2D" uid="uid://xec0w1lddbox" path="res://Sunny-land-files/Graphical Assets/sprites/player/idle/player-idle-1.png" id="2_cltnh"]
 [ext_resource type="Script" path="res://Classes/state_machine.gd" id="2_nmbuh"]
 [ext_resource type="Script" path="res://Dialogue/Controller/States/typing_state.gd" id="3_vipdb"]
 [ext_resource type="Script" path="res://Dialogue/Controller/States/choice_state.gd" id="4_0kmmw"]
 [ext_resource type="Script" path="res://Dialogue/Controller/States/Idle_state.gd" id="5_e6pbt"]
 [ext_resource type="Script" path="res://Dialogue/Controller/States/game_actions_state.gd" id="6_uogdq"]
+[ext_resource type="Texture2D" uid="uid://d0lxj3y0afy5l" path="res://Sunny-land-files/Graphical Assets/Dialogue Thumbnails/reaper_player_thumbnail.tres" id="7_wyckp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kvfc"]
 bg_color = Color(0.6, 0.6, 0.6, 0.435294)
@@ -14,7 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.435294)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twebn"]
 bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
-[node name="DialogueController" type="Control" node_paths=PackedStringArray("text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
+[node name="DialogueController" type="Control" node_paths=PackedStringArray("text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "thumbnail", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +27,7 @@ speaker_label = NodePath("MainContainer/SpeakerLabelContainer/MarginContainer/Sp
 end_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/EndLabel")
 text_speed_slider = NodePath("SettingsContatiner/TextSpeedSlider")
 thumbnail_vbox = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox")
+thumbnail = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/ThumbnailVbox/Thumbnail")
 choices_vbox = NodePath("MainContainer/ChoicesContainer/PanelContainer/MarginContainer/ChoicesVBox")
 choices_container = NodePath("MainContainer/ChoicesContainer")
 dialogue_container = NodePath("MainContainer/DialogueContainer")
@@ -157,7 +158,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_cltnh")
+texture = ExtResource("7_wyckp")
 expand_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer"]

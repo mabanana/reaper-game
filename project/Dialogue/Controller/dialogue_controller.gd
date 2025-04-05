@@ -22,6 +22,7 @@ var text_cd: int = 0
 @export var end_label: Label
 @export var text_speed_slider: HSlider
 @export var thumbnail_vbox: VBoxContainer
+@export var thumbnail: TextureRect
 @export var choices_vbox: VBoxContainer
 @export var choices_container: MarginContainer
 @export var dialogue_container: PanelContainer
@@ -144,6 +145,9 @@ func _update_current():
 	current_text = current.text
 	speaker_label.text = current.speaker
 	thumbnail_vbox.visible = len(current.speaker) > 0
+	if current.speaker in Utils.thumbnails:
+		var tex = load(Utils.thumbnails[current.speaker])
+		thumbnail.texture = tex
 	text_index = 0
 
 func _update_choices():
