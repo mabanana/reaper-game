@@ -14,10 +14,19 @@ func _process(delta):
 	if Game.gems_collected == 2 and get_node("Mobs").get_child_count() == 1:
 		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		win_sound.play()
-func _on_find_pet_body_entered(body):
-	await DialogueManager.dialogue_ended
-	Game.pet_acquired = true
 
+func _on_find_pet_body_entered(body):
+	if (body is PlayerBody 
+	and body.action_state_machine.current_state.name != "Busy" 
+	and not Game.pet_acquired):
+		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Busy"]
+		dialogue_controller.start("res://Dialogue/Json/PetFound.json")
+		
+		await dialogue_controller.dialogue_ended
+		
+		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
+		Game.pet_acquired = true
+		print("pet_acquired dialogue ended".capitalize())
 
 func _on_frog_dungeon_body_entered(body):
 	await DialogueManager.dialogue_ended
@@ -40,17 +49,33 @@ func _on_boss_reaper_room_body_entered(body):
 		
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
 		Game.boss_reaper_room = true
+		%StaticBody2D.queue_free()
 		print("boss_reaper_room dialogue ended".capitalize())
 		
 
 
 func _on_boss_reaper_room_exit_body_entered(body):
-	await DialogueManager.dialogue_ended
-	Game.boss_reaper_room_exit = true
-
-
-func _on_boss_reaper_room_exit_2_body_entered(body):
-	pass
+	if (body is PlayerBody 
+	and body.action_state_machine.current_state.name != "Busy" 
+	and not Game.boss_reaper_room_exit):
+		if Game.boss_reaper_room:
+			body.action_state_machine.current_state.next_state = body.action_state_machine.states["Busy"]
+			dialogue_controller.start("res://Dialogue/Json/BossReaperRoomExit.json")
+			
+			await dialogue_controller.dialogue_ended
+			
+			body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
+			print("boss_reaper_room_exit dialogue ended".capitalize())
+			Game.boss_reaper_room_exit = true
+			Game.unlocked_scare = true
+		else:
+			body.action_state_machine.current_state.next_state = body.action_state_machine.states["Busy"]
+			dialogue_controller.start("res://Dialogue/Json/BossReaperRoomExit2.json")
+			
+			await dialogue_controller.dialogue_ended
+			
+			body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
+			print("boss_reaper_room_exit_2 dialogue ended".capitalize())
 
 
 func _on_area_2d_body_entered(body):

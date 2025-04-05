@@ -1,0 +1,14 @@
+{
+	"dialogue_id": "boss_reaper_room_exit_2",
+	"nodes": {
+		"start": {
+		"dialogue": {
+			"0": {
+				"speaker": "Flyer",
+				"text": "Not that way!"
+			}
+		},
+		"choices": []
+		}
+	}
+}

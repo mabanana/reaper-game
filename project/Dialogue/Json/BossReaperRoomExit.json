@@ -1,0 +1,69 @@
+{
+	"dialogue_id": "boss_reaper_room_exit",
+	"nodes": {
+		
+		"start": {
+		"dialogue": {
+			"0": {
+				"speaker": "Flyer",
+			"text": "Aren't you excited? your first task!"
+			},
+			"1": {
+			"speaker": "Reaper",
+			"text": "This task doesnt even make sense. What do frogs even drop when they die?"
+			},
+			"2": {
+			"speaker": "Flyer",
+			"text": "Can't say I've ever thought about that. Honestly I have not been trained to handle a newbie immediately having a mental breakdown on the job."
+			}
+		},
+		"choices" : ["alright", "sass_back"]
+		},
+		"alright": {
+			"dialogue" : {
+				"0": {
+				"speaker": "Reaper",
+				"text": "Just tell me what to do."
+				},
+				"1": {
+				"speaker": "Flyer",
+				"text": "Thats the spirit!"
+				}
+			},
+			"choices": ["end"]
+			},
+
+		"sass_back": {
+			"dialogue" : {
+				"0": {
+					"speaker": "Reaper",
+					"text": "I was wrong to expect anything from you"
+				},
+				"1": {
+					"speaker": "Flyer",
+					"text": "Likewise, now quit yapping, we got work to do!"
+				}
+			},
+			"choices": ["end"]
+			},
+
+		"end" : {
+			"dialogue":{
+				"0": {
+					"speaker": "Flyer",
+					"text": "There are souls to reap, and I'm only gonna teach you once."
+				},
+				"1": {
+					"speaker": "Flyer",
+					"text": "First, go scooch up a to that frog right in front of you, and then press {SCARE}"
+				},
+				"2": {
+					"speaker": "Reaper",
+					"text": "Ugh, this is gonna suck.",
+					"effect": "set unlocked_scare = true"
+				}
+			},
+			"choices": []
+		}
+	}
+}
