@@ -17,6 +17,10 @@ func _process(delta):
 			text_temp = bb_style + "You can now Double Jump!!"
 		elif Game.gems_collected == 2:
 			text_temp = bb_style + "Jumps do more Damage!!"
+		elif Game.gems_collected == 3:
+			text_temp = bb_style + "Hold W to Float!!"
+		elif Game.gems_collected == 4:
+			text_temp = bb_style + "Click to Fly while Floating!!"
 		else:
 			Game.show_player_msg = false
 		text = text_temp

@@ -72,12 +72,12 @@ func _physics_process(delta):
 
 
 	if action_state_machine.current_state.name == "Float":
-		if Input.is_action_pressed("float") and Game.unlocked_float:
+		if Input.is_action_just_pressed("float") and Game.unlocked_float:
 			is_float = false
-		elif (Input.is_action_pressed("jump") or Input.is_action_pressed("float")) and jump_counter > 0:
+		elif (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("float")) and jump_counter > 0:
 			is_float = false
 			jump()
-		elif Input.is_action_pressed("left_click") and Game.unlocked_fly:
+		elif Input.is_action_just_pressed("left_click") and Game.unlocked_fly:
 			#Does not work as intended when using touch screen
 			#Take mouse position from event instead of global position
 			is_float = false
@@ -86,7 +86,7 @@ func _physics_process(delta):
 			velocity = flight_direction * flight_speed
 			action_state_machine.current_state.next_state = action_state_machine.states["Fly"]
 	
-	elif action_state_machine.current_state.name == "Fly":
+	if action_state_machine.current_state.name == "Fly":
 		velocity.x = move_toward(velocity.x, speed * flight_direction.x, speed/10)
 		velocity.y = move_toward(velocity.y, speed * flight_direction.y, speed/10)
 
@@ -108,9 +108,9 @@ func _physics_process(delta):
 				is_fast_fall = true
 	
 		if jump_counter > 0 or ground_state_machine.current_state.name == "Ground":
-			if (Input.is_action_pressed("jump") or Input.is_action_pressed("float")):
+			if (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("float")):
 					jump()
-			elif Input.is_action_pressed("jump") and is_on_floor():
+			elif Input.is_action_just_pressed("jump") and is_on_floor():
 					jump()
 	
 		if direction != 0:
@@ -172,7 +172,7 @@ func scare_attack():
 	add_child(scare_hitbox)
 
 func jump_reset():
-	if Game.gems_collected >= 1:
+	if Game.jump_has_dbl:
 		jump_counter = 1
 	else:
 		jump_counter = 0
