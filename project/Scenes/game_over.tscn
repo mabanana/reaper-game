@@ -7,8 +7,9 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kthjm"]
 load_path = "res://.godot/imported/middle.png-a80ccf76994f0184467d2a696541f677.ctex"
 
-[node name="GameOver" type="Node2D"]
+[node name="GameOver" type="Node2D" node_paths=PackedStringArray("restart_button")]
 script = ExtResource("1_e7lqy")
+restart_button = NodePath("CanvasLayer/CenterContainer/VBoxContainer/MarginContainer/Play")
 
 [node name="BG" parent="." instance=ExtResource("3_ux848")]
 
@@ -44,15 +45,9 @@ texture = SubResource("CompressedTexture2D_kthjm")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -272.5
-offset_top = -87.5
-offset_right = 272.5
-offset_bottom = 87.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_q1kfl")
@@ -60,13 +55,10 @@ theme = ExtResource("2_q1kfl")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
-layout_mode = 2
-
 [node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_constants/outline_size = 17
 theme_override_font_sizes/font_size = 100
 text = "Game Over"
 horizontal_alignment = 1
@@ -80,5 +72,3 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 text = "Click to Return to Main Menu"
-
-[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/MarginContainer/Play" to="." method="_on_play_pressed"]
