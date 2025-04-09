@@ -1784,8 +1784,6 @@ volume_db = -16.0
 [connection signal="timeout" from="Timers/SpawnTimer" to="Mobs" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/Timer" to="Collectables" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Triggers/FrogDungeon" to="." method="_on_frog_dungeon_body_entered"]
-[connection signal="body_entered" from="Triggers/FrogDungeon" to="Triggers/FrogDungeon" method="_on_body_entered"]
-[connection signal="body_exited" from="Triggers/FrogDungeon" to="Triggers/FrogDungeon" method="_on_body_exited"]
 [connection signal="body_entered" from="Triggers/FindPet" to="." method="_on_find_pet_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoom" to="." method="_on_boss_reaper_room_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoomExit" to="." method="_on_boss_reaper_room_exit_body_entered"]
