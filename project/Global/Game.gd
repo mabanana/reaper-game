@@ -48,6 +48,10 @@ func gem_collected(n:int = 1):
 			Game.jump_has_dbl = true 
 		if Game.gems_collected == 2:
 			Game.jump_has_dmg = true
+		if Game.gems_collected == 3:
+			var unlocked_float: bool = false
+		if Game.gems_collected == 4:
+			var unlocked_fly: bool = false
 
 func get_input_key(name: String):
 	return str(InputMap.action_get_events(name)[0].as_text().split(" ")[0])

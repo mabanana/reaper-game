@@ -50,3 +50,6 @@ func _on_animation_started(anim_name):
 
 func _on_animation_finished(anim_name):
 	name_animation_finished = anim_name
+
+func die():
+	queue_free()

@@ -10,4 +10,4 @@ func on_enter():
 
 func state_process(delta):
 	if character.name_animation_finished == death_animation:
-		character.queue_free() 
+		character.die()

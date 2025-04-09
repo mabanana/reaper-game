@@ -233,3 +233,6 @@ func _on_player_animation_tree_animation_started(anim_name):
 func _on_hurtbox_body_entered(body):
 	print("Player: a " + str(body.name) + " has collided with the player's hitbox")
 	
+
+func die():
+	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")

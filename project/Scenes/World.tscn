@@ -1414,6 +1414,12 @@ position = Vector2(650, 1349)
 [node name="Gem" parent="Collectables" instance=ExtResource("11_ntgtc")]
 position = Vector2(-54, 255)
 
+[node name="Gem3" parent="Collectables" instance=ExtResource("11_ntgtc")]
+position = Vector2(1224, 390)
+
+[node name="Gem4" parent="Collectables" instance=ExtResource("11_ntgtc")]
+position = Vector2(-602, 497)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="WinMessage" type="Label" parent="UI"]
