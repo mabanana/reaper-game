@@ -108,7 +108,7 @@ func _physics_process(delta):
 				is_fast_fall = true
 	
 		if jump_counter > 0 or ground_state_machine.current_state.name == "Ground":
-			if Input.is_action_just_pressed("jump"):
+			if (Input.is_action_pressed("jump") or Input.is_action_pressed("float")):
 					jump()
 			elif Input.is_action_pressed("jump") and is_on_floor():
 					jump()
