@@ -12,7 +12,7 @@ var current: Dictionary
 var input_handler: InputHandler
 var json_path: String
 var text_index: int
-var text_speed: int = 3
+var text_speed: int = 2
 const min_text_speed: int = 0
 const max_text_speed: int = 3
 var text_cd: int = 0
