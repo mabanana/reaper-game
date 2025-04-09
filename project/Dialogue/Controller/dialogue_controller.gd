@@ -17,6 +17,7 @@ const min_text_speed: int = 0
 const max_text_speed: int = 3
 var text_cd: int = 0
 
+@export var back_panel: Panel
 @export var text_label: Label
 @export var speaker_label: Label
 @export var end_label: Label
@@ -56,6 +57,8 @@ func _process(delta):
 			!len(current_node.choices)
 			and text_index >= len(current.text) 
 			and current_line >= len(current_node.dialogue) - 1)
+		var a = 0 if Game.dialogue_animation_playing else 1
+		back_panel.modulate.a = move_toward(back_panel.modulate.a, a, 0.1)
 
 func _gui_input(event):
 	var result: Dictionary = input_handler.handle_input(event)

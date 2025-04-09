@@ -14,13 +14,17 @@ var boss_reaper_room: bool = false
 var boss_reaper_room_exit: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var play_animation_body: CharacterBody2D
+var dialogue_animation_playing: bool = false
 
 
 func set_animation_body(body_path: String = "/root/World/Mobs/ReaperBoss"):
 	play_animation_body = get_node(body_path)
 
 func play_dialogue_animation(anim_name: String):
+	dialogue_animation_playing = true
 	play_animation_body.change_state(anim_name)
+	await play_animation_body.anim.animation_finished
+	dialogue_animation_playing = false
 	
 func reset_state():
 	player_hp = 10

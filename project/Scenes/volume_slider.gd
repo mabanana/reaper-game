@@ -12,4 +12,9 @@ func _process(delta):
 	pass
 
 func _on_volume_slider_changed(value):
-	AudioServer.set_bus_volume_db(0, value)
+	if value == min_value:
+		AudioServer.set_bus_volume_db(0, -72)
+	else:
+		AudioServer.set_bus_volume_db(0, value)
+	
+	

@@ -14,7 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.435294)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twebn"]
 bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
-[node name="DialogueController" type="Control" node_paths=PackedStringArray("text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "thumbnail", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
+[node name="DialogueController" type="Control" node_paths=PackedStringArray("back_panel", "text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "thumbnail", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kbxpl")
+back_panel = NodePath("Panel")
 text_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/ScrollContainer/TextLabel")
 speaker_label = NodePath("MainContainer/SpeakerLabelContainer/MarginContainer/SpeakerLabel")
 end_label = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/EndLabel")

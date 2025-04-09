@@ -777,10 +777,11 @@ func _process(delta):
 	pass
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "scare_sound", "ground_state_machine", "action_state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_camera", "anim", "sprite_2d", "death_sound", "mob_jump_sound", "walk_sound", "jump_sound", "hurt_sound", "scare_sound", "ground_state_machine", "action_state_machine")]
 collision_mask = 14
 floor_snap_length = 8.0
 script = ExtResource("1_6qtnx")
+player_camera = NodePath("PlayerCamera")
 anim = NodePath("PlayerAnimationPlayer")
 sprite_2d = NodePath("PlayerSprite")
 death_sound = NodePath("SFX/player_death")

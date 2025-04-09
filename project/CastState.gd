@@ -10,6 +10,9 @@ func on_enter():
 			next_state = get_parent().states["Idle"]
 	)
 	character.cast_sound.play()
+	await get_tree().create_timer(0.9).timeout
+	character.cast_sound_2.play()
+	
 
 func state_process(delta):
 	pass

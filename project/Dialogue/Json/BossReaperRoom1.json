@@ -27,7 +27,6 @@
 		"5": {
 		  "speaker": "Reaper",
 		  "text": "wait YOU WANT ME TO KILL FROGS? Do frogs even have souls? Gingers will never recover from learning that even frogs have souls.",
-		  "effect": "do play_dialogue_animation string Cast"
 		}
 	  },
 	  "choices": ["is_this_a_joke"]
@@ -38,7 +37,7 @@
 		"0": {
 		  "speaker": "Boss Reaper",
 		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around.",
-		  "effect": "do "
+		  "effect": "do play_dialogue_animation string Cast"
 		}
 	  },
 	  "choices": ["apologize_for_your_transgressions", "lighten_the_mood"]

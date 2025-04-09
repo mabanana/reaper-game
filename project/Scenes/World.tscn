@@ -1434,7 +1434,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-min_value = -12.0
+min_value = -20.0
 max_value = 0.0
 script = ExtResource("13_bnf7s")
 
@@ -1714,7 +1714,7 @@ stream = ExtResource("31_d1bs3")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_vqj1h")
-volume_db = -10.0
+volume_db = -16.0
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]

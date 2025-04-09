@@ -1,5 +1,6 @@
 extends Mob
 @export var cast_sound: AudioStreamPlayer2D
+@export var cast_sound_2: AudioStreamPlayer2D
 func _ready():
 	pass
 func _physics_process(delta):

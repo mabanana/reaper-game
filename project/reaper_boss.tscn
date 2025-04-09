@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ce7sej5eu8h5x"]
+[gd_scene load_steps=19 format=3 uid="uid://ce7sej5eu8h5x"]
 
 [ext_resource type="Texture2D" uid="uid://bnsgrgd5dqofp" path="res://Sunny-land-files/Sorceror/Bringer-of-Death-SpritSheet.png" id="1_8cbbv"]
 [ext_resource type="Script" path="res://reaper_boss.gd" id="1_trxlq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://MobsStateDebugLabel.gd" id="7_bk4t1"]
 [ext_resource type="Script" path="res://CastState.gd" id="7_vh2h4"]
 [ext_resource type="AudioStream" uid="uid://kqlimuiefiqg" path="res://Sunny-land-files/8_Atk_Magic_SFX/04_Fire_explosion_04_medium.wav" id="9_vpqei"]
+[ext_resource type="AudioStream" uid="uid://deruki53gaq6k" path="res://Sunny-land-files/8_Atk_Magic_SFX/18_Thunder_02.wav" id="10_lvwm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfn0x"]
 size = Vector2(37, 54)
@@ -305,11 +306,12 @@ _data = {
 "Walk": SubResource("Animation_obglv")
 }
 
-[node name="ReaperBoss" type="CharacterBody2D" node_paths=PackedStringArray("cast_sound", "collision_shape", "anim", "sprite_2d", "character_state_machine")]
+[node name="ReaperBoss" type="CharacterBody2D" node_paths=PackedStringArray("cast_sound", "cast_sound_2", "collision_shape", "anim", "sprite_2d", "character_state_machine")]
 collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_trxlq")
 cast_sound = NodePath("SFX/reaperboss_cast")
+cast_sound_2 = NodePath("SFX/reaperboss_cast2")
 collision_shape = NodePath("CollisionShape2D")
 health = 1000
 drop_amount = 20
@@ -384,3 +386,7 @@ character = NodePath("..")
 
 [node name="reaperboss_cast" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("9_vpqei")
+
+[node name="reaperboss_cast2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("10_lvwm6")
+volume_db = 3.0

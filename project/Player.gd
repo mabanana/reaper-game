@@ -24,6 +24,7 @@ var id: String = "Player"
 var facing: int = 1
 var blend_position: Vector2 = Vector2(0,0)
 
+@export var player_camera: Camera2D
 @export var anim: AnimationPlayer
 @export var sprite_2d: Sprite2D
 @export var death_sound: AudioStreamPlayer
@@ -47,6 +48,12 @@ func _ready():
 	anim.animation_started.connect(_on_player_animation_tree_animation_started)
 	anim.play("Idle")
 	
+func _process(delta):
+	if Game.dialogue_animation_playing:
+		player_camera.global_position = Game.play_animation_body.global_position
+		player_camera.zoom = Vector2(3,3)
+	else:
+		player_camera.position = Vector2.ZERO
 	
 func _physics_process(delta):
 	# Gets movement inputs
