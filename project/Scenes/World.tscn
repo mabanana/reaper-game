@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=117 format=3 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Scenes/volume_slider.gd" id="13_bnf7s"]
 [ext_resource type="PackedScene" uid="uid://c21anuopabphs" path="res://MovingPlatform.tscn" id="14_gp7d6"]
 [ext_resource type="PackedScene" uid="uid://bjqrdn4fp0lpo" path="res://DestructBlock.tscn" id="16_ip8ql"]
+[ext_resource type="Script" path="res://Scenes/tutorial_trigger.gd" id="19_7vp85"]
 [ext_resource type="PackedScene" uid="uid://bj0ew2f8uq33l" path="res://floater.tscn" id="22_i15ib"]
 [ext_resource type="Script" path="res://Scenes/SpawnMarker.gd" id="28_dmf8a"]
 [ext_resource type="AudioStream" uid="uid://mbabmjwe2igt" path="res://Sunny-land-files/10_UI_Menu_SFX/013_Confirm_03.wav" id="31_d1bs3"]
@@ -1284,6 +1285,9 @@ size = Vector2(45, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvojr"]
 size = Vector2(6604, 202)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qob4t"]
+size = Vector2(50, 50)
+
 [sub_resource type="Gradient" id="Gradient_6n62h"]
 offsets = PackedFloat32Array(0, 0.709677)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -1596,6 +1600,24 @@ shape = SubResource("RectangleShape2D_pnr2f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Area2D"]
 position = Vector2(1372, 1838)
 shape = SubResource("RectangleShape2D_fvojr")
+
+[node name="TutorialTrigger" type="Area2D" parent="Triggers" node_paths=PackedStringArray("message_label")]
+position = Vector2(1486, 401)
+script = ExtResource("19_7vp85")
+message_label = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TutorialTrigger"]
+shape = SubResource("RectangleShape2D_qob4t")
+debug_color = Color(0.956863, 0.6, 0.701961, 0.419608)
+
+[node name="Label" type="Label" parent="Triggers/TutorialTrigger"]
+visible = false
+offset_left = -52.0
+offset_top = -18.0
+offset_right = 3.0
+offset_bottom = 5.0
+theme_override_constants/outline_size = 3
+text = "Press E"
 
 [node name="Lights" type="Node" parent="."]
 
