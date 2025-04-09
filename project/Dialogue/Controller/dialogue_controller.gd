@@ -53,10 +53,7 @@ func connect_signals():
 func _process(delta):
 	if current_node:
 		text_animation_tick()
-		end_label.visible = (
-			!len(current_node.choices)
-			and text_index >= len(current.text) 
-			and current_line >= len(current_node.dialogue) - 1)
+		end_label.visible = text_index >= len(current.text) 
 		var a = 0 if Game.dialogue_animation_playing else 1
 		back_panel.modulate.a = move_toward(back_panel.modulate.a, a, 0.1)
 

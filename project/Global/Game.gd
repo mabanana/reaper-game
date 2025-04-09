@@ -6,6 +6,10 @@ var player_alive: bool = true
 var jump_has_dmg: bool = false
 var jump_has_dbl: bool = false
 var unlocked_scare: bool = false
+var unlocked_float: bool = false
+var unlocked_fly: bool = false
+var scare_used: bool = false
+
 var gems_collected: int = 0
 var player_global_position: Vector2
 var show_player_msg: bool = false

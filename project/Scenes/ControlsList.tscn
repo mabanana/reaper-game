@@ -1,20 +1,139 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm5sgbuqeodh8"]
 
-[ext_resource type="Texture2D" uid="uid://d3lr2uas6ax8v" path="res://addons/dialogue_manager/assets/icon.svg" id="1_eqmje"]
-[ext_resource type="Script" path="res://ItemList.gd" id="2_rl3kr"]
-[ext_resource type="Script" path="res://ItemList2.gd" id="3_t3pro"]
-[ext_resource type="Script" path="res://Button.gd" id="4_tl32s"]
+[ext_resource type="Theme" uid="uid://brxalam3p88u5" path="res://Scenes/MenuTheme.tres" id="1_8mpoh"]
+[ext_resource type="Script" path="res://Scenes/controls_list.gd" id="2_rsrkb"]
+[ext_resource type="Texture2D" uid="uid://cs8c5bdg7pbi2" path="res://Sunny-land-files/Keyboard Letters and Symbols.png" id="4_wwnwy"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="GDScript" id="GDScript_5nfcc"]
+script/source = "extends Button
 
-[node name="TabBar" type="TabBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/World.tscn\")
+"
+
+[node name="ControlsList" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8mpoh")
+script = ExtResource("2_rsrkb")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Controls" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.5
+offset_right = 97.5
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="W" type="Sprite2D" parent="."]
+position = Vector2(375, 316)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 38
+
+[node name="S" type="Sprite2D" parent="."]
+position = Vector2(378, 385)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 34
+
+[node name="A" type="Sprite2D" parent="."]
+position = Vector2(298, 385)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 16
+
+[node name="D" type="Sprite2D" parent="."]
+position = Vector2(458, 385)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 19
+
+[node name="F" type="Sprite2D" parent="."]
+position = Vector2(763, 377)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 21
+
+[node name="E" type="Sprite2D" parent="."]
+position = Vector2(686, 308)
+scale = Vector2(5, 5)
+texture = ExtResource("4_wwnwy")
+hframes = 8
+vframes = 14
+frame = 20
+
+[node name="Move" type="Label" parent="."]
+offset_left = 172.0
+offset_top = 288.0
+offset_right = 367.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 30
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Label" parent="."]
+offset_left = 813.0
+offset_top = 358.0
+offset_right = 1017.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 30
+text = "Next Dialogue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Power" type="Label" parent="."]
+offset_left = 728.0
+offset_top = 282.0
+offset_right = 932.0
+offset_bottom = 324.0
+theme_override_font_sizes/font_size = 30
+text = "Use Power"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 364.0
+offset_bottom = 245.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
@@ -29,7 +148,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 50
 text = "Controls"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
@@ -51,33 +170,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
 [node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 50
 auto_height = true
 item_count = 1
 fixed_column_width = 1000
 item_0/text = "Icon"
-item_0/icon = ExtResource("1_eqmje")
-script = ExtResource("2_rl3kr")
 
 [node name="ItemList2" type="ItemList" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 50
 auto_height = true
 item_count = 1
 fixed_column_width = 1000
 item_0/text = "Icon"
-item_0/icon = ExtResource("1_eqmje")
-script = ExtResource("3_t3pro")
 
 [node name="VScrollBar" type="VScrollBar" parent="MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(20, 0)
@@ -88,22 +197,23 @@ page = 20.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Control"]
-custom_minimum_size = Vector2(300, 100)
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -15.5
-offset_bottom = 15.5
+anchor_bottom = 1.0
+offset_left = -50.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
-text = "Continue"
-script = ExtResource("4_tl32s")
+text = "Close"
+script = SubResource("GDScript_5nfcc")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Control/Button" to="MarginContainer/VBoxContainer/Control/Button" method="_on_pressed"]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Control/Button2" to="MarginContainer/VBoxContainer/Control/Button2" method="_on_pressed"]

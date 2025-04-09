@@ -180,7 +180,7 @@ autowrap_mode = 2
 
 [node name="EndLabel" type="Label" parent="MainContainer/DialogueContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Click to Continue..."
+text = "Press F to Continue..."
 horizontal_alignment = 2
 
 [node name="SettingsContatiner" type="VBoxContainer" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcvc71fpjdou6"]
+[gd_scene load_steps=4 format=3 uid="uid://bcvc71fpjdou6"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_xlj2s"]
 [ext_resource type="PackedScene" uid="uid://4ah4qatf7ba4" path="res://BG.tscn" id="2_oqd6l"]
+[ext_resource type="PackedScene" uid="uid://cm5sgbuqeodh8" path="res://Scenes/ControlsList.tscn" id="3_jdnnd"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("play_button", "controls_button", "quit_button")]
 script = ExtResource("1_xlj2s")
@@ -56,3 +57,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "QUIT"
+
+[node name="ControlsList" parent="CanvasLayer" instance=ExtResource("3_jdnnd")]
+unique_name_in_owner = true

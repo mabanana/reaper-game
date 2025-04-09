@@ -21,4 +21,4 @@ func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Scenes/World.tscn")
 
 func _on_control_pressed():
-	get_tree().change_scene_to_file("res://Scenes/ControlsList.tscn")
+	%ControlsList.show()

@@ -9,6 +9,9 @@ func _ready():
 	dialogue_controller = load("res://Dialogue/Controller/dialogue_controller.tscn").instantiate()
 	$UI.add_child(dialogue_controller)
 	dialogue_controller.hide()
+	%ControlsButton.pressed.connect(func ():
+		%ControlsList.show()
+		)
 
 func _process(delta):
 	if Game.gems_collected == 2 and get_node("Mobs").get_child_count() == 1:

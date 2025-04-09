@@ -23,6 +23,7 @@ var flight_direction : Vector2
 var id: String = "Player"
 var facing: int = 1
 var blend_position: Vector2 = Vector2(0,0)
+var camera_zoom = Vector2(2,2)
 
 @export var player_camera: Camera2D
 @export var anim: AnimationPlayer
@@ -54,6 +55,7 @@ func _process(delta):
 		player_camera.zoom = Vector2(3,3)
 	else:
 		player_camera.position = Vector2.ZERO
+		player_camera.zoom = camera_zoom
 	
 func _physics_process(delta):
 	# Gets movement inputs
@@ -70,12 +72,12 @@ func _physics_process(delta):
 
 
 	if action_state_machine.current_state.name == "Float":
-		if Input.is_action_just_released("float"):
+		if Input.is_action_pressed("float") and Game.unlocked_float:
 			is_float = false
-		if Input.is_action_just_pressed("jump") and jump_counter > 0:
+		elif (Input.is_action_pressed("jump") or Input.is_action_pressed("float")) and jump_counter > 0:
 			is_float = false
 			jump()
-		if Input.is_action_pressed("left_click"):
+		elif Input.is_action_pressed("left_click") and Game.unlocked_fly:
 			#Does not work as intended when using touch screen
 			#Take mouse position from event instead of global position
 			is_float = false
@@ -99,7 +101,7 @@ func _physics_process(delta):
 		blend_position.x = direction
 
 		if ground_state_machine.current_state.name == "Air":
-			if Input.is_action_just_pressed("float"):
+			if Input.is_action_just_pressed("float") and Game.unlocked_float:
 				is_float = true
 				action_state_machine.current_state.next_state = action_state_machine.states["Float"]
 			if Input.is_action_just_pressed("fast_fall"):
