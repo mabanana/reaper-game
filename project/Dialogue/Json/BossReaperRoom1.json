@@ -35,9 +35,18 @@
 	"is_this_a_joke": {
 	  "dialogue": {
 		"0": {
+		  "effect": "do play_dialogue_animation string Cast",
+		  "time": 0.3
+
+		},
+		"1": {
+		  "effect": "do start_camera_shake float 2",
+		  "time": 1.0
+
+		},
+		"2": {
 		  "speaker": "Boss Reaper",
-		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around.",
-		  "effect": "do play_dialogue_animation string Cast"
+		  "text": "Do you think this is a joke? I hope you're not too fond of your own soul, since I might just take it from you if you dont stop joking around."
 		}
 	  },
 	  "choices": ["apologize_for_your_transgressions", "lighten_the_mood"]

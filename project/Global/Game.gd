@@ -55,3 +55,13 @@ func gem_collected(n:int = 1):
 
 func get_input_key(name: String):
 	return str(InputMap.action_get_events(name)[0].as_text().split(" ")[0])
+
+func start_camera_shake(time: float):
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(_camera_shake, 5.0, 1.0, time)
+func _camera_shake(intensity: float):
+	var camera = get_viewport().get_camera_2d()
+	var noise := FastNoiseLite.new()
+	var camera_offset = noise.get_noise_1d(Time.get_ticks_msec()) * intensity
+	camera.offset = Vector2.ONE * camera_offset
+	

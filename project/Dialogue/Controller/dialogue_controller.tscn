@@ -14,7 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.435294)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twebn"]
 bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
-[node name="DialogueController" type="Control" node_paths=PackedStringArray("back_panel", "text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "thumbnail", "choices_vbox", "choices_container", "dialogue_container", "state_machine")]
+[node name="DialogueController" type="Control" node_paths=PackedStringArray("back_panel", "text_label", "speaker_label", "end_label", "text_speed_slider", "thumbnail_vbox", "thumbnail", "choices_vbox", "choices_container", "dialogue_container", "main_container", "state_machine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,7 @@ thumbnail = NodePath("MainContainer/DialogueContainer/MarginContainer/VBoxContai
 choices_vbox = NodePath("MainContainer/ChoicesContainer/PanelContainer/MarginContainer/ChoicesVBox")
 choices_container = NodePath("MainContainer/ChoicesContainer")
 dialogue_container = NodePath("MainContainer/DialogueContainer")
+main_container = NodePath("MainContainer")
 state_machine = NodePath("StateMachine")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "scene")]

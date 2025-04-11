@@ -28,6 +28,7 @@ var text_cd: int = 0
 @export var choices_vbox: VBoxContainer
 @export var choices_container: MarginContainer
 @export var dialogue_container: PanelContainer
+@export var main_container: VBoxContainer
 @export var state_machine: StateMachine
 
 @onready var effect_parser:= DialogueEffectParser.new()
@@ -53,8 +54,6 @@ func connect_signals():
 
 func _process(delta):
 	if current_node:
-		if current_text == "":
-			advance()
 		text_animation_tick()
 		end_label.visible = text_index >= len(current_text) 
 		var a = 0 if Game.dialogue_animation_playing else 1
@@ -95,6 +94,9 @@ func start(json_path):
 	dialogue_advanced.emit()
 
 func advance():
+	# Magically fixes some formatting issues
+	hide()
+	show()
 	if current_line < len(current_node.dialogue) - 1:
 		current_line += 1
 		dialogue_advanced.emit()
@@ -119,6 +121,12 @@ func next_node(index = -1):
 func _apply_effects():
 	if "effect" in current:
 		effect_parser.parse_effect_string(current.effect)
+	if current_text == "":
+		if "time" in current:
+			main_container.hide()
+			await get_tree().create_timer(current.time).timeout
+			main_container.show()
+		advance()
 
 func _init_text_speed_slider():
 	text_speed_slider.min_value = min_text_speed
