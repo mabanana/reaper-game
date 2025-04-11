@@ -12,11 +12,10 @@ func _ready():
 	%ControlsButton.pressed.connect(func ():
 		%ControlsList.show()
 		)
+	
 
 func _process(delta):
-	if Game.gems_collected == 2 and get_node("Mobs").get_child_count() == 1:
-		#get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
-		win_sound.play()
+	pass
 
 func _on_find_pet_body_entered(body):
 	if (body is PlayerBody 
