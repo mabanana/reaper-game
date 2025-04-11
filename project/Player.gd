@@ -66,17 +66,13 @@ func _physics_process(delta):
 	Game.player_global_position = global_position
 	action_state_machine.state_machine_process(delta)
 	ground_state_machine.state_machine_process(delta)
-	
-
-	
-
 
 	if action_state_machine.current_state.name == "Float":
+		is_float = Input.is_action_pressed("float")
 		if Input.is_action_just_pressed("float") and Game.unlocked_float:
 			is_float = false
 		elif (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("float")) and jump_counter > 0:
 			is_float = false
-			jump()
 		elif Input.is_action_just_pressed("left_click") and Game.unlocked_fly:
 			#Does not work as intended when using touch screen
 			#Take mouse position from event instead of global position
@@ -108,9 +104,9 @@ func _physics_process(delta):
 				is_fast_fall = true
 	
 		if jump_counter > 0 or ground_state_machine.current_state.name == "Ground":
-			if (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("float")):
+			if Input.is_action_just_pressed("float") and !Game.unlocked_float:
 					jump()
-			elif Input.is_action_just_pressed("jump") and is_on_floor():
+			elif Input.is_action_just_pressed("jump"):
 					jump()
 	
 		if direction != 0:
@@ -132,7 +128,7 @@ func _physics_process(delta):
 		blend_position.x = 0
 		if action_state_machine.has_gravity():
 			if is_fast_fall:
-				velocity.y += Game.gravity * delta + speed
+				velocity.y += Game.gravity * delta * 5
 			else:
 				velocity.y += Game.gravity * delta
 		#TODO: What is this for below.
@@ -208,6 +204,7 @@ func _on_mob_jump_collision_body_entered(body):
 				print("Player: " + "player dealt " + str(jump_damage_to_mob) + " to a " + str(body.name))
 				body.take_damage(jump_damage_to_mob)
 				mob_jump_sound.play()
+				Game.start_camera_shake(0.2)
 
 
 	if body.name == "TileMap":
