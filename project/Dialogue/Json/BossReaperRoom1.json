@@ -83,8 +83,10 @@
 		},
 		"2": {
 		  "speaker": "Boss Reaper",
-		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs.",
-		  "effect": "set boss_reaper_room bool true"
+		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs."
+		},
+		"3": {
+			"effect": "set boss_reaper_room bool true"
 		}
 	  },
 	  "choices": []

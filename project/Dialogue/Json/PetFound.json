@@ -15,7 +15,10 @@
 			"speaker": "Flyer",
 			"text": "Lets keep moving forwards, the boss is waiting for you.",
 			"effect": "set pet_acquired bool true"
-		  }
+		  },
+		  "3": {
+			"effect": "do test_func String effect_system_is_working"
+		  },
 		},
 		"choices": []
 	  }

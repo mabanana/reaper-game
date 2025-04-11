@@ -9,7 +9,7 @@ func parse_effect_string(effect: String):
 			if len(split) > 2:
 				var type = split[2]
 				argument = split[3]
-				argument = parse_type(type, argument)
+				argument = parse_type(type.to_lower(), argument)
 				Game.call(method_name, argument)
 			else:
 				Game.call(method_name)

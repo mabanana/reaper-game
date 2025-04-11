@@ -8,6 +8,7 @@ var dialogue_tree: Dictionary
 var current_node: Dictionary
 var current_line: int
 var current_text: String
+var current_speaker: String
 var current: Dictionary
 var input_handler: InputHandler
 var json_path: String
@@ -52,8 +53,10 @@ func connect_signals():
 
 func _process(delta):
 	if current_node:
+		if current_text == "":
+			advance()
 		text_animation_tick()
-		end_label.visible = text_index >= len(current.text) 
+		end_label.visible = text_index >= len(current_text) 
 		var a = 0 if Game.dialogue_animation_playing else 1
 		back_panel.modulate.a = move_toward(back_panel.modulate.a, a, 0.1)
 
@@ -61,9 +64,9 @@ func _gui_input(event):
 	var result: Dictionary = input_handler.handle_input(event)
 	if result:
 		if result.context == InputHandler.Context.mouse_pressed:
-			if current_node and text_index <= len(current.text) - 1:
-				text_label.text = current.text
-				text_index = len(current.text) - 1
+			if current_node and text_index <= len(current_text) - 1:
+				text_label.text = current_text
+				text_index = len(current_text) - 1
 			else:
 				advance()
 func _input(event):
@@ -77,9 +80,9 @@ func _input(event):
 				var selection = result.action - InputHandler.PlayerActions.SELECT_SlOT_1
 				next_node(selection)
 		elif result.context == InputHandler.Context.key_pressed:
-			if current_node and text_index <= len(current.text) - 1:
-				text_label.text = current.text
-				text_index = len(current.text) - 1
+			if current_node and text_index <= len(current_text) - 1:
+				text_label.text = current_text
+				text_index = len(current_text) - 1
 			else:
 				advance()
 
@@ -133,20 +136,21 @@ func next_character(text: String, label: Label = text_label):
 		
 func text_animation_tick():
 	if text_cd <= 0:
-		next_character(current.text)
+		next_character(current_text)
 		if text_speed == 3:
-			next_character(current.text)
+			next_character(current_text)
 		text_cd = max_text_speed - text_speed
 	else:
 		text_cd -= 1
 
 func _update_current():
 	current = current_node.dialogue[str(current_line)]
-	current_text = current.text
-	speaker_label.text = current.speaker
-	thumbnail_vbox.visible = len(current.speaker) > 0
-	if current.speaker in Utils.thumbnails:
-		var tex = load(Utils.thumbnails[current.speaker])
+	current_text = current.text if "text" in current else ""
+	current_speaker = current.speaker if "speaker" in current else ""
+	speaker_label.text = current_speaker
+	thumbnail_vbox.visible = len(current_speaker) > 0
+	if current_speaker in Utils.thumbnails:
+		var tex = load(Utils.thumbnails[current_speaker])
 		thumbnail.texture = tex
 	text_index = 0
 
