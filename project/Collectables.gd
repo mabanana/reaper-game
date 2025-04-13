@@ -10,6 +10,8 @@ func spawn_cherry(int_x, int_y):
 func _on_mobs_child_exiting_tree(node):
 	var mob_position = node.position
 	var mob_name = str(node.name)
+	if not get_tree():
+		return
 	for i in RandomNumberGenerator.new().randi_range(node.drop_amount, node.drop_amount + node.drop_range):
 		var rng = RandomNumberGenerator.new().randi_range(-10,10)
 		spawn_cherry(mob_position.x + (rng), mob_position.y)
