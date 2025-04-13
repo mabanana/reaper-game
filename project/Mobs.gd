@@ -1,23 +1,31 @@
 extends Node2D
 
+@export var spawners: Node2D
 var frog = preload("res://frog.tscn")
-# Called when the node enters the scene tree for the first time.
+
+var spawner_dict = {}
+var spawn_interval = 15
+
 func _ready():
-	pass # Replace with function body.
+	init_spawners()
+	_on_spawn_timer_timeout()
+	
+func init_spawners():
+	for spawner: Marker2D in spawners.get_children():
+		if spawner.name.to_lower().contains("frog"):
+			spawner_dict[spawner] = spawn_frog(spawner.global_position)
 
+func _on_spawn_timer_timeout():
+	for spawner: Marker2D in spawner_dict.keys():
+		if spawner_dict[spawner] == null:
+			var new_frog = spawn_frog(spawner.global_position)
+			spawner_dict[spawner] = new_frog
+			break
+	get_tree().create_timer(spawn_interval).timeout.connect(_on_spawn_timer_timeout)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-#func _on_spawn_timer_timeout():
-#	var rng = RandomNumberGenerator.new()
-#	var rand_int_x = rng.randi_range(850, 1150)
-#	var int_y = 310
-#	spawn_frog(Vector2(rand_int_x,int_y))# Replace with function body.
-
-func spawn_frog(spawn_position: Vector2):
+func spawn_frog(pos: Vector2):
 	var frog_temp = frog.instantiate()
-	frog_temp.position = spawn_position
+	frog_temp.global_position = pos
 	add_child(frog_temp)
+	print("Frog spawned at %s" % [pos])
+	return frog_temp
