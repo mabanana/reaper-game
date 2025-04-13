@@ -1,11 +1,10 @@
-[gd_scene load_steps=120 format=4 uid="uid://cucrj7qo0r8rq"]
+[gd_scene load_steps=119 format=4 uid="uid://cucrj7qo0r8rq"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_uoiiq"]
 [ext_resource type="Script" path="res://BG.gd" id="1_vubnl"]
 [ext_resource type="Texture2D" uid="uid://dyqto4viiwray" path="res://Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_xgq51"]
 [ext_resource type="Texture2D" uid="uid://brtmx2325v773" path="res://Sunny-land-files/Graphical Assets/environment/tileset.png" id="3_d6wah"]
 [ext_resource type="PackedScene" uid="uid://bmin8jl4ji6iv" path="res://player.tscn" id="4_8colo"]
-[ext_resource type="Script" path="res://Scenes/PlayerNode.gd" id="4_dn6hn"]
 [ext_resource type="Texture2D" uid="uid://dtbul8msqx3x5" path="res://Sunny-land-files/Graphical Assets/environment/Background/props.png" id="4_vutn3"]
 [ext_resource type="Script" path="res://Mobs.gd" id="5_voxrr"]
 [ext_resource type="PackedScene" uid="uid://cs0kay877rrbv" path="res://frog.tscn" id="6_0u63l"]
@@ -1393,20 +1392,8 @@ tile_set = SubResource("TileSet_pwn4r")
 script = ExtResource("5_voxrr")
 spawners = NodePath("../Spawners")
 
-[node name="Frog" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(523, 243)
-
-[node name="Frog5" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(4, 451)
-
-[node name="Frog2" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(784, 185)
-
-[node name="Frog3" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(803, 501)
-
-[node name="Frog4" parent="Mobs" instance=ExtResource("6_0u63l")]
-position = Vector2(604, 724)
+[node name="TutorialFrog" parent="Mobs" instance=ExtResource("6_0u63l")]
+position = Vector2(1450, 424)
 
 [node name="ReaperBoss" parent="Mobs" instance=ExtResource("8_2bceu")]
 position = Vector2(1909, 391)
@@ -1741,7 +1728,6 @@ texture_scale = 3.76
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(1771, 68)
-script = ExtResource("4_dn6hn")
 
 [node name="Player" parent="Player" instance=ExtResource("4_8colo")]
 position = Vector2(-185, 328)
@@ -1758,7 +1744,34 @@ position = Vector2(700, 700)
 position = Vector2(642, 549)
 
 [node name="FrogSpawner3" type="Marker2D" parent="Spawners"]
-position = Vector2(1450, 424)
+position = Vector2(1502, 289)
+
+[node name="FrogSpawner4" type="Marker2D" parent="Spawners"]
+position = Vector2(803, 503)
+
+[node name="FrogSpawner5" type="Marker2D" parent="Spawners"]
+position = Vector2(604, 727)
+
+[node name="FrogSpawner6" type="Marker2D" parent="Spawners"]
+position = Vector2(523, 245)
+
+[node name="FrogSpawner7" type="Marker2D" parent="Spawners"]
+position = Vector2(783, 187)
+
+[node name="FrogSpawner8" type="Marker2D" parent="Spawners"]
+position = Vector2(-889, 272)
+
+[node name="FrogSpawner9" type="Marker2D" parent="Spawners"]
+position = Vector2(-1380, 451)
+
+[node name="FrogSpawner10" type="Marker2D" parent="Spawners"]
+position = Vector2(-1307, 308)
+
+[node name="FrogSpawner11" type="Marker2D" parent="Spawners"]
+position = Vector2(-1069, 128)
+
+[node name="FrogSpawner12" type="Marker2D" parent="Spawners"]
+position = Vector2(-1090, 372)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_d1bs3")
@@ -1775,5 +1788,4 @@ volume_db = -16.0
 [connection signal="body_entered" from="Triggers/BossReaperRoom" to="." method="_on_boss_reaper_room_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoomExit" to="." method="_on_boss_reaper_room_exit_body_entered"]
 [connection signal="body_entered" from="Triggers/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="child_exiting_tree" from="Player" to="Player" method="_on_child_exiting_tree"]
 [connection signal="finished" from="AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]
