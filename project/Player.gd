@@ -207,10 +207,10 @@ func _on_mob_jump_collision_body_entered(body):
 				Game.start_camera_shake(0.2)
 
 
-	if body.name == "TileMap":
+	if body is TileMapLayer:
 		var tile_coords = body.local_to_map(global_position)
 		tile_coords.y += 1
-		var tile_data = body.get_cell_tile_data(0 , tile_coords)
+		var tile_data = body.get_cell_tile_data(tile_coords)
 		if tile_data:
 			if tile_data.get_custom_data("is_spike"):
 				take_damage()
