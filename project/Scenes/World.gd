@@ -28,12 +28,6 @@ func _on_find_pet_body_entered(body):
 		
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
 		print("pet_acquired dialogue ended".capitalize())
-
-func _on_frog_dungeon_body_entered(body):
-	#TODO: Add spawn frog trigger logic
-	for spawn_marker in find_child("Spawners").get_children():
-		if spawn_marker.trigger == $Triggers/FrogDungeon:
-			find_child("Mobs").spawn_frog(spawn_marker.global_position)
 	
 func on_dialogue_manager_dialogue_ended():
 	pass
