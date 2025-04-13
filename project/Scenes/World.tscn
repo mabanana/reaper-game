@@ -1429,7 +1429,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="HudButtons" type="MarginContainer" parent="UI"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -1439,24 +1439,24 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HudButtons"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/HudButtons/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HudButtons/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = -5
 
-[node name="Label" type="Label" parent="UI/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/HudButtons/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Volume"
 horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="UI/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="UI/HudButtons/HBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1465,14 +1465,14 @@ min_value = -20.0
 max_value = 0.0
 script = ExtResource("13_bnf7s")
 
-[node name="ResetButton" type="Button" parent="UI/MarginContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="UI/HudButtons/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Reset Game"
 script = ExtResource("11_bdj65")
 
-[node name="ControlsButton" type="Button" parent="UI/MarginContainer/HBoxContainer"]
+[node name="ControlsButton" type="Button" parent="UI/HudButtons/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1480,14 +1480,14 @@ size_flags_vertical = 4
 text = "Controls
 "
 
-[node name="Button" type="Button" parent="UI/MarginContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="UI/HudButtons/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Exit Game"
 script = ExtResource("10_rpxi5")
 
-[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+[node name="TopLeftDisplay" type="MarginContainer" parent="UI"]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 15
@@ -1495,10 +1495,10 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TopLeftDisplay"]
 layout_mode = 2
 
-[node name="HP" type="Label" parent="UI/MarginContainer2/VBoxContainer"]
+[node name="HP" type="Label" parent="UI/TopLeftDisplay/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1509,7 +1509,7 @@ text = "HP
 script = ExtResource("9_wgko5")
 metadata/_edit_use_anchors_ = true
 
-[node name="Gold" type="Label" parent="UI/MarginContainer2/VBoxContainer"]
+[node name="Gold" type="Label" parent="UI/TopLeftDisplay/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1782,8 +1782,8 @@ volume_db = -16.0
 
 [connection signal="child_exiting_tree" from="Mobs" to="Collectables" method="_on_mobs_child_exiting_tree"]
 [connection signal="child_exiting_tree" from="Collectables" to="Collectables" method="_on_child_exiting_tree"]
-[connection signal="pressed" from="UI/MarginContainer/HBoxContainer/ResetButton" to="UI/MarginContainer/HBoxContainer/ResetButton" method="_on_pressed"]
-[connection signal="pressed" from="UI/MarginContainer/HBoxContainer/Button" to="UI/MarginContainer/HBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="UI/HudButtons/HBoxContainer/ResetButton" to="UI/HudButtons/HBoxContainer/ResetButton" method="_on_pressed"]
+[connection signal="pressed" from="UI/HudButtons/HBoxContainer/ExitButton" to="UI/HudButtons/HBoxContainer/ExitButton" method="_on_pressed"]
 [connection signal="body_entered" from="Triggers/FindPet" to="." method="_on_find_pet_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoom" to="." method="_on_boss_reaper_room_body_entered"]
 [connection signal="body_entered" from="Triggers/BossReaperRoomExit" to="." method="_on_boss_reaper_room_exit_body_entered"]

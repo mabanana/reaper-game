@@ -97,6 +97,8 @@ func advance():
 	# Magically fixes some formatting issues
 	hide()
 	show()
+	if not current_node:
+		return
 	if current_line < len(current_node.dialogue) - 1:
 		current_line += 1
 		dialogue_advanced.emit()
