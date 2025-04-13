@@ -26,7 +26,7 @@
 		},
 		"5": {
 		  "speaker": "Reaper",
-		  "text": "wait YOU WANT ME TO KILL FROGS? Do frogs even have souls? Gingers will never recover from learning that even frogs have souls.",
+		  "text": "wait YOU WANT ME TO KILL FROGS? Do frogs even have souls? Gingers will never recover from learning that even frogs have souls."
 		}
 	  },
 	  "choices": ["is_this_a_joke"]
@@ -37,12 +37,10 @@
 		"0": {
 		  "effect": "do play_dialogue_animation string Cast",
 		  "time": 0.3
-
 		},
 		"1": {
 		  "effect": "do start_camera_shake float 2",
 		  "time": 1.0
-
 		},
 		"2": {
 		  "speaker": "Boss Reaper",
@@ -95,7 +93,7 @@
 		  "text": "It seems like we're on the same page then, come back after killing 1000 frogs."
 		},
 		"3": {
-			"effect": "set boss_reaper_room bool true"
+		  "effect": "set boss_reaper_room bool true"
 		}
 	  },
 	  "choices": []

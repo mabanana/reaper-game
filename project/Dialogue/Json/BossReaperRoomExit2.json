@@ -1,14 +1,53 @@
 {
-	"dialogue_id": "boss_reaper_room_exit_2",
-	"nodes": {
-		"start": {
-		"dialogue": {
-			"0": {
-				"speaker": "Flyer",
-				"text": "Not that way!"
-			}
-		},
-		"choices": []
+  "dialogue_id": "boss_reaper_room_exit_2",
+  "nodes": {
+	"start": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Flyer",
+		  "text": "Not that way!"
 		}
+	  },
+	  "choices": ["ok", "i_dont_care"]
+	},
+	"just_let_me_through": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Flyer",
+		  "text": "Let's go then."
+		},
+		"1": {
+		  "effect": "set unlocked_scare bool true"
+		},
+		"2": {
+		  "effect": "set boss_reaper_room bool true"
+		},
+		"3": {
+		  "effect": "set pet_acquired bool true"
+		},
+		"4": {
+		  "effect": "set boss_reaper_room_exit bool true"
+		}
+	  },
+	  "choices": []
+	},
+	"i_dont_care": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Flyer",
+		  "text": "Hmm, ok then don't blame me if boss man gets mad."
+		}
+	  },
+	  "choices": ["just_let_me_through", "ok"]
+	},
+	"ok": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Flyer",
+		  "text": ""
+		}
+	  },
+	  "choices": []
 	}
+  }
 }

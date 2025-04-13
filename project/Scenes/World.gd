@@ -50,6 +50,7 @@ func _on_boss_reaper_room_body_entered(body):
 		
 		body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
 		%StaticBody2D.queue_free()
+		print("Tutorial wall removed.")
 		print("boss_reaper_room dialogue ended".capitalize())
 		
 
@@ -73,7 +74,9 @@ func _on_boss_reaper_room_exit_body_entered(body):
 			dialogue_controller.start("res://Dialogue/Json/BossReaperRoomExit2.json")
 			
 			await dialogue_controller.dialogue_ended
-			
+			if Game.unlocked_scare == true:
+				%StaticBody2D.queue_free()
+				print("Tutorial wall removed.")
 			body.action_state_machine.current_state.next_state = body.action_state_machine.states["Idle"]
 			print("boss_reaper_room_exit_2 dialogue ended".capitalize())
 
