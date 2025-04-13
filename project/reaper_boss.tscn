@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce7sej5eu8h5x"]
+[gd_scene load_steps=20 format=3 uid="uid://ce7sej5eu8h5x"]
 
 [ext_resource type="Texture2D" uid="uid://bnsgrgd5dqofp" path="res://Sunny-land-files/Sorceror/Bringer-of-Death-SpritSheet.png" id="1_8cbbv"]
 [ext_resource type="Script" path="res://reaper_boss.gd" id="1_trxlq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://CastState.gd" id="7_vh2h4"]
 [ext_resource type="AudioStream" uid="uid://kqlimuiefiqg" path="res://Sunny-land-files/8_Atk_Magic_SFX/04_Fire_explosion_04_medium.wav" id="9_vpqei"]
 [ext_resource type="AudioStream" uid="uid://deruki53gaq6k" path="res://Sunny-land-files/8_Atk_Magic_SFX/18_Thunder_02.wav" id="10_lvwm6"]
+[ext_resource type="PackedScene" uid="uid://c0u4ork48goxe" path="res://interact_component.tscn" id="11_mqklv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfn0x"]
 size = Vector2(37, 54)
@@ -390,3 +391,9 @@ stream = ExtResource("9_vpqei")
 [node name="reaperboss_cast2" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("10_lvwm6")
 volume_db = 3.0
+
+[node name="InteractComponent" parent="." instance=ExtResource("11_mqklv")]
+visible = false
+position = Vector2(-13, -35)
+pos_offset = Vector2(-13, -35)
+label_text = "Talk"

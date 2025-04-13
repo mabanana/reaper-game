@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0u4ork48goxe"]
+
+[ext_resource type="Script" path="res://interact_component.gd" id="1_dq2d4"]
+[ext_resource type="Texture2D" uid="uid://cs8c5bdg7pbi2" path="res://Sunny-land-files/Keyboard Letters and Symbols.png" id="2_vjldc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78awj"]
+atlas = ExtResource("2_vjldc")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvfhp"]
+atlas = ExtResource("2_vjldc")
+region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41wvk"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_78awj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvfhp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_npm2t"]
+radius = 50.0
+
+[node name="InteractComponent" type="Node2D"]
+script = ExtResource("1_dq2d4")
+
+[node name="E" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_41wvk")
+autoplay = "default"
+frame_progress = 0.668015
+
+[node name="Label" type="Label" parent="."]
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 49.0
+offset_bottom = 16.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
+text = "Interact"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 20)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_npm2t")
