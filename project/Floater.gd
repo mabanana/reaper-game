@@ -69,4 +69,3 @@ func pickup(location):
 	print("Floater: Cherry located at " + str(location))
 	character_state_machine.current_state.next_state = character_state_machine.states["Pickup"]
 	pickup_location = location
-

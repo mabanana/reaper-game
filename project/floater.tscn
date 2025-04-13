@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://UI/StateDebugLabel.gd" id="7_30s4p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kuwvg"]
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npjbp"]
 radius = 274.002
@@ -86,11 +87,10 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_npjbp")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character")]
 script = ExtResource("3_babdi")
 current_state = NodePath("Chase")
 character = NodePath("..")
-animation_tree = NodePath("../AnimationTree")
 
 [node name="Chase" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("3_cwp3c")
@@ -112,6 +112,7 @@ flip_h = true
 root_node = NodePath("../AnimationTree")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeStateMachine_a03yb")
 anim_player = NodePath("../AnimationPlayer")
 
