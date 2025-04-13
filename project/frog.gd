@@ -110,6 +110,14 @@ func _on_player_collision_body_exited(body):
 
 
 func _on_frog_hurtbox_body_entered(body):
+	
+	if body is TileMapLayer:
+		var tile_coords = body.local_to_map(global_position)
+		tile_coords.y += 1
+		var tile_data = body.get_cell_tile_data(tile_coords)
+		if tile_data:
+			if tile_data.get_custom_data("is_spike"):
+				take_damage(velocity.y)
 	if current_state().name == "Scared":
 		var fall_damage = velocity.y/30
 		take_damage(fall_damage)
