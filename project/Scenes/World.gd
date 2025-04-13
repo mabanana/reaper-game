@@ -12,7 +12,7 @@ func _ready():
 	%ControlsButton.pressed.connect(func ():
 		%ControlsList.show()
 		)
-	
+	Game.reset_state()
 
 func _process(delta):
 	pass

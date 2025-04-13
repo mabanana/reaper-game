@@ -112,7 +112,7 @@ func next_node(index = -1):
 	if len(current_node.choices) == 1:
 		index = 0
 	
-	if index >= 0:
+	if index >= 0 and index < len(current_node.choices):
 		var next_node = current_node.choices[index]
 		current_node = dialogue_tree.nodes[next_node]
 		current_line = 0
