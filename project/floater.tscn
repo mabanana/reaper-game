@@ -72,7 +72,8 @@ animations = [{
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a03yb"]
 
 [node name="Floater" type="CharacterBody2D" node_paths=PackedStringArray("sprite_2d", "character_state_machine")]
-collision_mask = 6
+collision_layer = 32
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("2_sfp10")
 sprite_2d = NodePath("AnimatedSprite2D")
