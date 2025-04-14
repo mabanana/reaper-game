@@ -1,3 +1,4 @@
+extends Node
 class_name InputHandler
 
 var input_map

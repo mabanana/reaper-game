@@ -392,8 +392,9 @@ stream = ExtResource("9_vpqei")
 stream = ExtResource("10_lvwm6")
 volume_db = 3.0
 
-[node name="InteractComponent" parent="." instance=ExtResource("11_mqklv")]
+[node name="InteractComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("11_mqklv")]
 visible = false
 position = Vector2(-13, -35)
 pos_offset = Vector2(-13, -35)
 label_text = "Talk"
+parent = NodePath("..")

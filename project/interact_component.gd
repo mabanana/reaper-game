@@ -21,6 +21,14 @@ func _ready():
 			visible = false
 		)
 
+func _input(event):
+	if visible:
+		var result = Inputs.handle_input(event)
+		if "action" in result and result["action"] == Inputs.PlayerActions.ACTION_F:
+			if parent.has_method("interact"):
+				parent.interact()
+				hide()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

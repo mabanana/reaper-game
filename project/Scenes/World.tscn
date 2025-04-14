@@ -1396,6 +1396,7 @@ spawners = NodePath("../Spawners")
 position = Vector2(1450, 424)
 
 [node name="ReaperBoss" parent="Mobs" instance=ExtResource("8_2bceu")]
+unique_name_in_owner = true
 position = Vector2(1909, 391)
 
 [node name="Collectables" type="Node2D" parent="."]
@@ -1730,6 +1731,7 @@ texture_scale = 3.76
 position = Vector2(1771, 68)
 
 [node name="Player" parent="Player" instance=ExtResource("4_8colo")]
+unique_name_in_owner = true
 position = Vector2(-185, 328)
 
 [node name="Floater" parent="Player" instance=ExtResource("22_i15ib")]

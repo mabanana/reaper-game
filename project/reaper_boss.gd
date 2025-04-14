@@ -1,6 +1,7 @@
 extends Mob
 @export var cast_sound: AudioStreamPlayer2D
 @export var cast_sound_2: AudioStreamPlayer2D
+signal interacted
 func _ready():
 	pass
 func _physics_process(delta):
@@ -11,3 +12,6 @@ func _physics_process(delta):
 	#animation_tree.set("parameters/Move/blend_position", velocity.x)
 	
 	move_and_slide()
+
+func interact():
+	interacted.emit()

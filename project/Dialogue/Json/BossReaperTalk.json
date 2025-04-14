@@ -1,0 +1,14 @@
+{
+  "dialogue_id": "boss_reaper_room_talk",
+  "nodes": {
+	"start": {
+	  "dialogue": {
+		"0": {
+		  "speaker": "Boss Reaper",
+		  "text": "Why are you still here?"
+		}
+	  },
+	  "choices": []
+	}
+  }
+}

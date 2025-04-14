@@ -19,6 +19,7 @@ config/icon="res://Sunny-land-files/Graphical Assets/sprites/gem/gem-2.png"
 
 Game="*res://Global/Game.gd"
 Utils="*res://Global/Utils.gd"
+Inputs="*res://Global/input_handler.gd"
 
 [dialogue_manager]
 
